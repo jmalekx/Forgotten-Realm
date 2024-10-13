@@ -7,7 +7,7 @@ public class PlayerCamera : MonoBehaviour
     public float sensitivityX;
     public float sensitivityY;
 
-    public Transform orientation; //player
+    public Transform playerBody; //player
 
     float xRotation; //camera
     float yRotation;
@@ -27,6 +27,6 @@ public class PlayerCamera : MonoBehaviour
         xRotation = Mathf.Clamp(xRotation, -90f, 90f); //ensuring cant look more than 180 up/down
 
         transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
-        orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+        playerBody.rotation = Quaternion.Euler(0, yRotation, 0);
     }
 }

@@ -130,6 +130,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1093515914}
   - component: {fileID: 1093515913}
+  - component: {fileID: 1093515915}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -182,6 +183,25 @@ Transform:
   - {fileID: 1473087836}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1093515915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1093515912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31ac33821ee78674eb8eb6a966706998, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 15
+  groundDrag: 5
+  playerHeight: 3
+  ground:
+    serializedVersion: 2
+    m_Bits: 64
+  playerBody: {fileID: 1359296528}
 --- !u!1 &1157303436
 GameObject:
   m_ObjectHideFlags: 0
@@ -299,7 +319,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1359296528}
   m_Layer: 0
-  m_Name: Orientation
+  m_Name: PlayerBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -445,7 +465,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sensitivityX: 500
   sensitivityY: 500
-  orientation: {fileID: 1359296528}
+  playerBody: {fileID: 1359296528}
 --- !u!81 &1916726481
 AudioListener:
   m_ObjectHideFlags: 0
@@ -516,7 +536,7 @@ GameObject:
   - component: {fileID: 2099329072}
   - component: {fileID: 2099329071}
   - component: {fileID: 2099329070}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
