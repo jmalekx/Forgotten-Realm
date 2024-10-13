@@ -4,9 +4,20 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Moving")]
     public float moveSpeed;
     public float groundDrag;
 
+    public float jumpForce;
+    public float jumpCooldown;
+    public float airMultiplier;
+    bool readyToJump;
+
+    [Header("Keybinds")]
+    public KeyCode jumpKey = KeyCode.Space;
+    public KeyCode sprintKey = KeyCode.LeftControl;
+
+    [Header("Ground")]
     public float playerHeight;
     public LayerMask ground;
     bool grounded;
@@ -22,6 +33,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
+        readyToJump = true;
     }
     void Update()
     {
@@ -43,14 +55,24 @@ public class PlayerController : MonoBehaviour
     {
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
+
+        if (Input.GetKey(jumpKey) && readyToJump && grounded)
+        {
+            readyToJump = false;
+            Jump();
+            Invoke(nameof(ResetJump), jumpCooldown);
+        }
     }
 
     void MovePlayer()
     {
         moveDirection = playerBody.forward * verticalInput + playerBody.right * horizontalInput; //walk in direction youre looking
 
-        rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+        if (grounded) //when player on ground
+            rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
 
+        else if (!grounded) //when player in air
+            rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
     }
 
     void ControlSpeed()
@@ -59,8 +81,19 @@ public class PlayerController : MonoBehaviour
 
         if (flatVelocity.magnitude > moveSpeed)
         {
-            Vector3 limitVelocity = flatVelocity.normalized * moveSpeed;
+            Vector3 limitVelocity = flatVelocity.normalized * moveSpeed; // if faster than set movespeed, calculate max velocity and apply it
             rb.velocity = new Vector3(limitVelocity.x, rb.velocity.y, limitVelocity.z);
         }
+    }
+
+    void Jump()
+    {
+        //resetting y so you can jump exact same height each time
+        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse); //impulse cos only applying force once
+    }
+    void ResetJump()
+    {
+        readyToJump = true;
     }
 }
