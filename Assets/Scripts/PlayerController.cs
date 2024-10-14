@@ -12,16 +12,22 @@ public class PlayerController : MonoBehaviour
     [Header("Moving")]
     private float moveSpeed;
     public float groundDrag;
-
     public float walkSpeed;
-    public float sprintSpeed;
 
+    [Header("Sprinting")]
+    public float sprintSpeed;
+    public float sprintDuration;
+    public float sprintCooldown;
+    private float sprintTimer;
+    private bool isCooldown;
+
+    [Header("Jumping")]
     public float jumpForce;
     public float jumpCooldown;
     public float airMultiplier;
     bool readyToJump;
 
-    [Header("Ground")]
+    [Header("Ground Detection")]
     public float playerHeight;
     public LayerMask ground;
     bool grounded;
@@ -47,6 +53,8 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         readyToJump = true;
+        isCooldown = false;
+        sprintTimer = sprintDuration;
     }
     void Update()
     {
@@ -115,10 +123,23 @@ public class PlayerController : MonoBehaviour
     void MoveState()
     {
         //sprint
-        if(grounded && Input.GetKey(sprint))
+        if (grounded && Input.GetKey(sprint) && !isCooldown)
         {
-            state = isMoving.sprint;
-            moveSpeed = sprintSpeed;
+            if (sprintTimer > 0)
+            {
+                state = isMoving.sprint;
+                moveSpeed = sprintSpeed;
+                sprintTimer -= Time.deltaTime;
+                Debug.Log("Sprinting! Timer: " + sprintTimer);
+            }
+            else
+            {
+                isCooldown = true;
+                Invoke(nameof(ResetCooldown), sprintCooldown);
+                state = isMoving.walk;
+                moveSpeed = walkSpeed;
+                Debug.Log("Sprint on cooldown!");
+            }
         }
         //walk
         else if (grounded)
@@ -132,5 +153,11 @@ public class PlayerController : MonoBehaviour
             state = isMoving.air;
         }
         
+    }
+
+    void ResetCooldown()
+    {
+        isCooldown = false;
+        sprintTimer = sprintDuration;
     }
 }
