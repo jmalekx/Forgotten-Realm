@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -8,6 +9,9 @@ public class PlayerController : MonoBehaviour
     [Header("Keybinds")]
     public KeyCode jump = KeyCode.Space;
     public KeyCode sprint = KeyCode.LeftShift;
+
+    [Header("UI")]
+    public Slider sprintSlider;
 
     [Header("Moving")]
     private float moveSpeed;
@@ -40,8 +44,8 @@ public class PlayerController : MonoBehaviour
     Vector3 moveDirection;
     Rigidbody rb;
 
-    public isMoving state;
-    public enum isMoving
+    public Moving state;
+    public enum Moving
     {
         walk,
         sprint,
@@ -55,6 +59,8 @@ public class PlayerController : MonoBehaviour
         readyToJump = true;
         isCooldown = false;
         sprintTimer = sprintDuration;
+        sprintSlider.maxValue = sprintDuration;
+        sprintSlider.value = sprintDuration;
     }
     void Update()
     {
@@ -62,6 +68,7 @@ public class PlayerController : MonoBehaviour
         KeyboardInputs();
         ControlSpeed();
         MoveState();
+        UpdateSprintUI();
 
         if (grounded)
             rb.drag = groundDrag;
@@ -86,7 +93,7 @@ public class PlayerController : MonoBehaviour
         }
 
     }
-
+    //-----------------------MOVING
     void MovePlayer()
     {
         moveDirection = playerBody.forward * verticalInput + playerBody.right * horizontalInput; //walk in direction youre looking
@@ -109,10 +116,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+
+    //-----------------------JUMPING
     void Jump()
     {
-        //resetting y so you can jump exact same height each time
-        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z); //resetting y so you can jump exact same height each time
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse); //impulse cos only applying force once
     }
     void ResetJump()
@@ -120,14 +128,17 @@ public class PlayerController : MonoBehaviour
         readyToJump = true;
     }
 
+
+    //-----------------------SPRINTING
     void MoveState()
     {
+        bool isMoving = horizontalInput != 0 || verticalInput != 0;
         //sprint
-        if (grounded && Input.GetKey(sprint) && !isCooldown)
+        if (grounded && Input.GetKey(sprint) && !isCooldown && isMoving)
         {
             if (sprintTimer > 0)
             {
-                state = isMoving.sprint;
+                state = Moving.sprint;
                 moveSpeed = sprintSpeed;
                 sprintTimer -= Time.deltaTime;
                 Debug.Log("Sprinting! Timer: " + sprintTimer);
@@ -136,7 +147,7 @@ public class PlayerController : MonoBehaviour
             {
                 isCooldown = true;
                 Invoke(nameof(ResetCooldown), sprintCooldown);
-                state = isMoving.walk;
+                state = Moving.walk;
                 moveSpeed = walkSpeed;
                 Debug.Log("Sprint on cooldown!");
             }
@@ -144,20 +155,36 @@ public class PlayerController : MonoBehaviour
         //walk
         else if (grounded)
         {
-            state = isMoving.walk;
+            state = Moving.walk;
             moveSpeed = walkSpeed;
         }
         //air
         else
         {
-            state = isMoving.air;
+            state = Moving.air;
         }
         
     }
-
     void ResetCooldown()
     {
         isCooldown = false;
         sprintTimer = sprintDuration;
+    }
+    void UpdateSprintUI()
+    {
+        if (!isCooldown)
+        {
+            sprintSlider.value = sprintTimer;
+        }
+        else
+        {
+            float refillSpeed = sprintDuration / sprintCooldown; //bar refilling based on cooldown
+            sprintSlider.value += refillSpeed * Time.deltaTime;
+           
+            if (sprintSlider.value >= sprintDuration) //prevent overfill
+            {
+                sprintSlider.value = sprintDuration;
+            }
+        }
     }
 }
