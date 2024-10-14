@@ -4,18 +4,22 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+
+    [Header("Keybinds")]
+    public KeyCode jump = KeyCode.Space;
+    public KeyCode sprint = KeyCode.LeftShift;
+
     [Header("Moving")]
-    public float moveSpeed;
+    private float moveSpeed;
     public float groundDrag;
+
+    public float walkSpeed;
+    public float sprintSpeed;
 
     public float jumpForce;
     public float jumpCooldown;
     public float airMultiplier;
     bool readyToJump;
-
-    [Header("Keybinds")]
-    public KeyCode jumpKey = KeyCode.Space;
-    public KeyCode sprintKey = KeyCode.LeftControl;
 
     [Header("Ground")]
     public float playerHeight;
@@ -29,6 +33,15 @@ public class PlayerController : MonoBehaviour
 
     Vector3 moveDirection;
     Rigidbody rb;
+
+    public isMoving state;
+    public enum isMoving
+    {
+        walk,
+        sprint,
+        air
+    }
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -40,6 +53,7 @@ public class PlayerController : MonoBehaviour
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, ground); //checking if ground
         KeyboardInputs();
         ControlSpeed();
+        MoveState();
 
         if (grounded)
             rb.drag = groundDrag;
@@ -56,12 +70,13 @@ public class PlayerController : MonoBehaviour
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetKey(jumpKey) && readyToJump && grounded)
+        if (Input.GetKey(jump) && readyToJump && grounded)
         {
             readyToJump = false;
             Jump();
             Invoke(nameof(ResetJump), jumpCooldown);
         }
+
     }
 
     void MovePlayer()
@@ -95,5 +110,27 @@ public class PlayerController : MonoBehaviour
     void ResetJump()
     {
         readyToJump = true;
+    }
+
+    void MoveState()
+    {
+        //sprint
+        if(grounded && Input.GetKey(sprint))
+        {
+            state = isMoving.sprint;
+            moveSpeed = sprintSpeed;
+        }
+        //walk
+        else if (grounded)
+        {
+            state = isMoving.walk;
+            moveSpeed = walkSpeed;
+        }
+        //air
+        else
+        {
+            state = isMoving.air;
+        }
+        
     }
 }

@@ -1311,18 +1311,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ac33821ee78674eb8eb6a966706998, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 15
+  jump: 32
+  sprint: 306
   groundDrag: 8
+  walkSpeed: 15
+  sprintSpeed: 25
   jumpForce: 15
   jumpCooldown: 0.5
   airMultiplier: 0.01
-  jumpKey: 32
-  sprintKey: 306
   playerHeight: 3
   ground:
     serializedVersion: 2
     m_Bits: 64
   playerBody: {fileID: 1359296528}
+  state: 0
 --- !u!1001 &1095497104
 PrefabInstance:
   m_ObjectHideFlags: 0
