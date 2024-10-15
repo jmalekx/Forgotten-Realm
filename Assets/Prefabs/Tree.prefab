@@ -72,6 +72,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 5157704952189190447}
+  - {fileID: 8453674719639034206}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
