@@ -11,21 +11,17 @@ public class PlayerController : MonoBehaviour
     CharacterController controller;
     Animator animator;
 
-   // [Header("Keybinds")]
-  //  public KeyCode jump = KeyCode.Space;
-   // public KeyCode sprint = KeyCode.LeftShift;
-  //  public KeyCode attack = KeyCode.Mouse0;
-
     [Header("UI")]
     public Slider sprintSlider;
-
 
     [Header("Moving")]
     private float moveSpeed;
     public float groundDrag;
     public float walkSpeed;
+
     [Header("Camera")]
     public Camera cam;
+
     [Header("Sprinting")]
     public float sprintSpeed;
     public float sprintDuration;
@@ -50,6 +46,7 @@ public class PlayerController : MonoBehaviour
     float verticalInput;
 
     Vector3 moveDirection;
+    Vector2 movementInput;
     Rigidbody rb;
 
     public Moving state;
@@ -79,41 +76,27 @@ public class PlayerController : MonoBehaviour
 
         playerInput = new PlayerInput();
         input = playerInput.Main;
+        input.Enable();
+
         AssignInputs();
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
-
-    void Jump()
+    void AssignInputs()
     {
-        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z); //resetting y so you can jump exact same height each time
-        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse); //impulse cos only applying force once
-    }
-    void JumpAttempt(){
-        if (readyToJump && grounded)
-        {
-            readyToJump = false;
-            Jump();
-            Invoke(nameof(ResetJump), jumpCooldown);
-        }
-    }
-    void ResetJump()
-    {
-        readyToJump = true;
-    }
-
-    void AssignInputs(){
         input.Jump.performed += ctx => JumpAttempt();
         input.Attack.started += ctx => Attack();
         input.Sprint.performed += ctx => SprintStart();
-       
+        input.Sprint.canceled += ctx => SprintStop();
+
     }
+
     void Update()
     {
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, ground); //checking if ground
-     
-        KeyboardInputs();
+
+        GetInput();
         ControlSpeed();
         MoveState();
         UpdateSprintUI();
@@ -126,24 +109,23 @@ public class PlayerController : MonoBehaviour
             rb.drag = groundDrag;
         else
             rb.drag = 0;
+
     }
 
     void FixedUpdate()
     {
         MovePlayer();
     }
-    void KeyboardInputs()
+
+    void GetInput()
     {
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-        verticalInput = Input.GetAxisRaw("Vertical");
-
-
-
+        movementInput = input.Move.ReadValue<Vector2>();
     }
+
     //-----------------------MOVING
     void MovePlayer()
     {
-        moveDirection = playerBody.forward * verticalInput + playerBody.right * horizontalInput; //walk in direction youre looking
+        moveDirection = playerBody.forward * movementInput.y + playerBody.right * movementInput.x; //walk in direction youre looking
 
         if (grounded) //when player on ground
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
@@ -166,6 +148,24 @@ public class PlayerController : MonoBehaviour
 
     //-----------------------JUMPING
 
+    void JumpAttempt()
+    {
+        if (readyToJump && grounded)
+        {
+            readyToJump = false;
+            Jump();
+            Invoke(nameof(ResetJump), jumpCooldown);
+        }
+    }
+    void Jump()
+    {
+        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z); //resetting y so you can jump exact same height each time
+        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse); //impulse cos only applying force once
+    }
+    void ResetJump()
+    {
+        readyToJump = true;
+    }
 
     //-----------------------SPRINTING
     void MoveState()
@@ -184,8 +184,17 @@ public class PlayerController : MonoBehaviour
         }
         
     }
+
+    void SprintStop()
+    {
+        Debug.Log("Stopped Sprinting, returning to walk.");
+        state = Moving.walk;  //stop sprint and go back to walking
+        moveSpeed = walkSpeed;
+    }
+
     void SprintStart(){
-        bool isMoving = horizontalInput != 0 || verticalInput != 0;
+        Debug.Log("Sprint key pressed!");
+        bool isMoving = movementInput.x != 0 || movementInput.y != 0;
         //sprint
         if (grounded && !isCooldown && isMoving)
         {
@@ -206,6 +215,7 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
     void ResetCooldown()
     {
         isCooldown = false;
@@ -228,10 +238,6 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-
-
-
-
 
     
     [Header("Attacking")]
