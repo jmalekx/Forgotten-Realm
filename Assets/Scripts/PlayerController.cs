@@ -11,10 +11,6 @@ public class PlayerController : MonoBehaviour
     CharacterController controller;
     Animator animator;
 
-   // [Header("Keybinds")]
-  //  public KeyCode jump = KeyCode.Space;
-   // public KeyCode sprint = KeyCode.LeftShift;
-  //  public KeyCode attack = KeyCode.Mouse0;
 
     [Header("UI")]
     public Slider sprintSlider;
@@ -32,6 +28,7 @@ public class PlayerController : MonoBehaviour
     public float sprintCooldown;
     private float sprintTimer;
     private bool isCooldown;
+    private bool isSprinting = false;
 
     [Header("Jumping")]
     public float jumpForce;
@@ -50,15 +47,9 @@ public class PlayerController : MonoBehaviour
     float verticalInput;
 
     Vector3 moveDirection;
+    Vector2 movementInput;
     Rigidbody rb;
 
-    public Moving state;
-    public enum Moving
-    {
-        walk,
-        sprint,
-        air
-    }
 
     void Start()
     {
@@ -66,11 +57,11 @@ public class PlayerController : MonoBehaviour
         rb.freezeRotation = true;
         readyToJump = true;
         isCooldown = false;
+        isSprinting = false;
         sprintTimer = sprintDuration;
         sprintSlider.maxValue = sprintDuration;
         sprintSlider.value = sprintDuration;
-        HealthBar.maxValue = 100; // Set the max value for the progress slider
-        HealthBar.value = 100; 
+        
     }
     void Awake()
     { 
@@ -80,35 +71,20 @@ public class PlayerController : MonoBehaviour
 
         playerInput = new PlayerInput();
         input = playerInput.Main;
+        input.Enable();
+
         AssignInputs();
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
-
-    void Jump()
+    void AssignInputs()
     {
-        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z); //resetting y so you can jump exact same height each time
-        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse); //impulse cos only applying force once
-    }
-    void JumpAttempt(){
-        if (readyToJump && grounded)
-        {
-            readyToJump = false;
-            Jump();
-            Invoke(nameof(ResetJump), jumpCooldown);
-        }
-    }
-    void ResetJump()
-    {
-        readyToJump = true;
-    }
-
-    void AssignInputs(){
         input.Jump.performed += ctx => JumpAttempt();
         input.Attack.started += ctx => Attack();
         input.Sprint.performed += ctx => SprintStart();
-       
+        input.Sprint.canceled += ctx => SprintStop();
+
     }
     void Update()
     {
@@ -118,13 +94,14 @@ public class PlayerController : MonoBehaviour
             HealthBar.value -= Time.deltaTime * 1; // Change the rate (1) to make it slower or faster
         }
         KeyboardInputs();
-        ControlSpeed();
-        MoveState();
-        UpdateSprintUI();
-        if(input.Attack.IsPressed())
-        { Attack();}
 
-        
+        GetInput();
+        ControlSpeed();
+        UpdateSprintUI();
+        HandleSprint();
+
+        if (input.Attack.IsPressed())
+        { Attack();}
 
         if (grounded)
             rb.drag = groundDrag;
@@ -136,18 +113,16 @@ public class PlayerController : MonoBehaviour
     {
         MovePlayer();
     }
-    void KeyboardInputs()
+
+    void GetInput()
     {
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-        verticalInput = Input.GetAxisRaw("Vertical");
-
-
-
+        movementInput = input.Move.ReadValue<Vector2>();
     }
+
     //-----------------------MOVING
     void MovePlayer()
     {
-        moveDirection = playerBody.forward * verticalInput + playerBody.right * horizontalInput; //walk in direction youre looking
+        moveDirection = playerBody.forward * movementInput.y + playerBody.right * movementInput.x; //walk in direction youre looking
 
         if (grounded) //when player on ground
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
@@ -169,49 +144,68 @@ public class PlayerController : MonoBehaviour
 
 
     //-----------------------JUMPING
+    void JumpAttempt()
+    {
+        if (readyToJump && grounded)
+        {
+            readyToJump = false;
+            Jump();
+            Invoke(nameof(ResetJump), jumpCooldown);
+        }
+    }
+    void Jump()
+    {
+        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z); //resetting y so you can jump exact same height each time
+        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse); //impulse cos only applying force once
+    }
+    void ResetJump()
+    {
+        readyToJump = true;
+    }
 
 
     //-----------------------SPRINTING
-    void MoveState()
+    void SprintStop()
     {
-
-        //walk
-        if (grounded)
-        {
-            state = Moving.walk;
-            moveSpeed = walkSpeed;
-        }
-        //air
-        else
-        {
-            state = Moving.air;
-        }
-        
+        Debug.Log("sprint released");
+        isSprinting = false;
+        moveSpeed = walkSpeed;
     }
-    void SprintStart(){
-        bool isMoving = horizontalInput != 0 || verticalInput != 0;
-        //sprint
+    void SprintStart()
+    {
+        Debug.Log("sprint pressed");
+        bool isMoving = movementInput.x != 0 || movementInput.y != 0;//so dont lose sprint when pressed but not moving
         if (grounded && !isCooldown && isMoving)
         {
-            if (sprintTimer > 0)
-            {
-                state = Moving.sprint;
-                moveSpeed = sprintSpeed;
-                sprintTimer -= Time.deltaTime;
-                Debug.Log("Sprinting! Timer: " + sprintTimer);
-            }
-            else
-            {
-                isCooldown = true;
-                Invoke(nameof(ResetCooldown), sprintCooldown);
-                state = Moving.walk;
-                moveSpeed = walkSpeed;
-                Debug.Log("Sprint on cooldown!");
-            }
+            isSprinting = true;
         }
     }
+    void HandleSprint()
+    {
+        if (isSprinting && sprintTimer > 0 && !isCooldown)
+        {
+            moveSpeed = sprintSpeed;
+            sprintTimer -= Time.deltaTime;
+
+            if (sprintTimer <= 0)
+            {
+                Debug.Log("sprint expired, start cooldown");
+                isSprinting = false;
+                isCooldown = true;
+                moveSpeed = walkSpeed;
+                Invoke(nameof(ResetCooldown), sprintCooldown);
+            }
+        }
+
+        if (!isSprinting && !isCooldown)
+        {
+            moveSpeed = walkSpeed;
+        }
+    }
+
     void ResetCooldown()
     {
+        Debug.Log("sprint reset");
         isCooldown = false;
         sprintTimer = sprintDuration;
     }
@@ -232,10 +226,6 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-
-
-
-
 
     
     [Header("Attacking")]
