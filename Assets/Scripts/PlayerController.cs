@@ -93,8 +93,6 @@ public class PlayerController : MonoBehaviour
         {
             HealthBar.value -= Time.deltaTime * 1; // Change the rate (1) to make it slower or faster
         }
-        KeyboardInputs();
-
         GetInput();
         ControlSpeed();
         UpdateSprintUI();
