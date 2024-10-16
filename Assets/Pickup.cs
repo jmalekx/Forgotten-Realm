@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Pickup : MonoBehaviour
 {
-    public Item item = new Item("Item name", 1);
+    public Item item = new Item("Item", 1);
 
     private void OnTriggerEnter(Collider other)
     {

@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("UI")]
     public Slider sprintSlider;
-
+    public Slider HealthBar; 
 
     [Header("Moving")]
     private float moveSpeed;
@@ -69,7 +69,8 @@ public class PlayerController : MonoBehaviour
         sprintTimer = sprintDuration;
         sprintSlider.maxValue = sprintDuration;
         sprintSlider.value = sprintDuration;
-        
+        HealthBar.maxValue = 100; // Set the max value for the progress slider
+        HealthBar.value = 100; 
     }
     void Awake()
     { 
@@ -112,7 +113,10 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, ground); //checking if ground
-     
+        if (HealthBar.value > 0)
+        {
+            HealthBar.value -= Time.deltaTime * 1; // Change the rate (1) to make it slower or faster
+        }
         KeyboardInputs();
         ControlSpeed();
         MoveState();
