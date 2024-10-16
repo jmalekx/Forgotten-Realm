@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
     public float sprintCooldown;
     private float sprintTimer;
     private bool isCooldown;
+    private bool isSprinting = false;
 
     [Header("Jumping")]
     public float jumpForce;
@@ -49,13 +50,6 @@ public class PlayerController : MonoBehaviour
     Vector2 movementInput;
     Rigidbody rb;
 
-    public Moving state;
-    public enum Moving
-    {
-        walk,
-        sprint,
-        air
-    }
 
     void Start()
     {
@@ -63,6 +57,7 @@ public class PlayerController : MonoBehaviour
         rb.freezeRotation = true;
         readyToJump = true;
         isCooldown = false;
+        isSprinting = false;
         sprintTimer = sprintDuration;
         sprintSlider.maxValue = sprintDuration;
         sprintSlider.value = sprintDuration;
@@ -91,25 +86,22 @@ public class PlayerController : MonoBehaviour
         input.Sprint.canceled += ctx => SprintStop();
 
     }
-
     void Update()
     {
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, ground); //checking if ground
 
         GetInput();
         ControlSpeed();
-        MoveState();
         UpdateSprintUI();
-        if(input.Attack.IsPressed())
-        { Attack();}
+        HandleSprint();
 
-        
+        if (input.Attack.IsPressed())
+        { Attack();}
 
         if (grounded)
             rb.drag = groundDrag;
         else
             rb.drag = 0;
-
     }
 
     void FixedUpdate()
@@ -147,7 +139,6 @@ public class PlayerController : MonoBehaviour
 
 
     //-----------------------JUMPING
-
     void JumpAttempt()
     {
         if (readyToJump && grounded)
@@ -167,57 +158,49 @@ public class PlayerController : MonoBehaviour
         readyToJump = true;
     }
 
+
     //-----------------------SPRINTING
-    void MoveState()
-    {
-
-        //walk
-        if (grounded)
-        {
-            state = Moving.walk;
-            moveSpeed = walkSpeed;
-        }
-        //air
-        else
-        {
-            state = Moving.air;
-        }
-        
-    }
-
     void SprintStop()
     {
-        Debug.Log("Stopped Sprinting, returning to walk.");
-        state = Moving.walk;  //stop sprint and go back to walking
+        Debug.Log("sprint released");
+        isSprinting = false;
         moveSpeed = walkSpeed;
     }
-
-    void SprintStart(){
-        Debug.Log("Sprint key pressed!");
-        bool isMoving = movementInput.x != 0 || movementInput.y != 0;
-        //sprint
+    void SprintStart()
+    {
+        Debug.Log("sprint pressed");
+        bool isMoving = movementInput.x != 0 || movementInput.y != 0;//so dont lose sprint when pressed but not moving
         if (grounded && !isCooldown && isMoving)
         {
-            if (sprintTimer > 0)
+            isSprinting = true;
+        }
+    }
+    void HandleSprint()
+    {
+        if (isSprinting && sprintTimer > 0 && !isCooldown)
+        {
+            moveSpeed = sprintSpeed;
+            sprintTimer -= Time.deltaTime;
+
+            if (sprintTimer <= 0)
             {
-                state = Moving.sprint;
-                moveSpeed = sprintSpeed;
-                sprintTimer -= Time.deltaTime;
-                Debug.Log("Sprinting! Timer: " + sprintTimer);
-            }
-            else
-            {
+                Debug.Log("sprint expired, start cooldown");
+                isSprinting = false;
                 isCooldown = true;
-                Invoke(nameof(ResetCooldown), sprintCooldown);
-                state = Moving.walk;
                 moveSpeed = walkSpeed;
-                Debug.Log("Sprint on cooldown!");
+                Invoke(nameof(ResetCooldown), sprintCooldown);
             }
+        }
+
+        if (!isSprinting && !isCooldown)
+        {
+            moveSpeed = walkSpeed;
         }
     }
 
     void ResetCooldown()
     {
+        Debug.Log("sprint reset");
         isCooldown = false;
         sprintTimer = sprintDuration;
     }
@@ -238,7 +221,6 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-
     
     [Header("Attacking")]
     public float attackDistance = 3f;
