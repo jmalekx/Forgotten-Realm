@@ -11,17 +11,17 @@ public class PlayerController : MonoBehaviour
     CharacterController controller;
     Animator animator;
 
+
     [Header("UI")]
     public Slider sprintSlider;
+    public Slider HealthBar; 
 
     [Header("Moving")]
     private float moveSpeed;
     public float groundDrag;
     public float walkSpeed;
-
     [Header("Camera")]
     public Camera cam;
-
     [Header("Sprinting")]
     public float sprintSpeed;
     public float sprintDuration;
@@ -89,6 +89,11 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, ground); //checking if ground
+        if (HealthBar.value > 0)
+        {
+            HealthBar.value -= Time.deltaTime * 1; // Change the rate (1) to make it slower or faster
+        }
+        KeyboardInputs();
 
         GetInput();
         ControlSpeed();
@@ -221,6 +226,7 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
     
     [Header("Attacking")]
     public float attackDistance = 3f;
