@@ -7,14 +7,6 @@ public
 
 {
     public static Inventory Instance;
-
-    /*
-     * ^^^ This line declares a static variable Instance of type Inventory.
-     * This static variable will hold the single instance of the Inventory class, 
-     * implementing the Singleton design pattern. This pattern ensures that 
-     * there is only one instance of the Inventory class that can be accessed globally.
-     */
-
     public List<Item> items = new List<Item> ();
 
 
@@ -63,5 +55,4 @@ public
         }
         Debug.Log(itemToRemove.count + " " + itemToRemove.name + "removed from inventory.");
     }
-
 }
