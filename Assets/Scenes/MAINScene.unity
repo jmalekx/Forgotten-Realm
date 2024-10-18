@@ -475,6 +475,11 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &508049576 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5420425362937415746, guid: 7beee9c6a5972c7499c6a3c8bf05d4d3, type: 3}
+  m_PrefabInstance: {fileID: 7388325215130160837}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &831205004
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1340,9 +1345,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 304882342232619300, guid: 7beee9c6a5972c7499c6a3c8bf05d4d3, type: 3}
+      propertyPath: item.itemPrefab
+      value: 
+      objectReference: {fileID: 508049576}
     - target: {fileID: 5420425362937415746, guid: 7beee9c6a5972c7499c6a3c8bf05d4d3, type: 3}
       propertyPath: m_Name
       value: PickupObject
+      objectReference: {fileID: 0}
+    - target: {fileID: 5420425362937415746, guid: 7beee9c6a5972c7499c6a3c8bf05d4d3, type: 3}
+      propertyPath: m_TagString
+      value: Item
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

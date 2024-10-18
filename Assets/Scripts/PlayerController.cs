@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
 
+
+
     [Header("Keybinds")]
     public KeyCode jump = KeyCode.Space;
     public KeyCode sprint = KeyCode.LeftShift;
@@ -74,9 +76,28 @@ public class PlayerController : MonoBehaviour
             rb.drag = groundDrag;
         else
             rb.drag = 0;
-    }
 
-    void FixedUpdate()
+        //----------------------------------trying to do drop >>>
+
+        //    if (Input.GetKeyDown(KeyCode.Q)) // press 'Q' to drop an item
+        //    {
+        //        Debug.Log("Q key pressed.");
+        //        if (Inventory.Instance.items.Count > 0)
+        //        {
+        //            Item itemToDrop = Inventory.Instance.items[0]; // get the first item to drop
+        //            Debug.Log("Attempting to drop item: " + itemToDrop.name);
+        //            Inventory.Instance.DropItem(itemToDrop);
+        //        }
+        //        else
+        //        {
+        //            Debug.Log("Inventory is empty, no items to drop.");
+        //        }
+        //    }
+        //}
+
+        //----------------------------------trying to do drop <<<
+    }
+        void FixedUpdate()
     {
         MovePlayer();
     }
