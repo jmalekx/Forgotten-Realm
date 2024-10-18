@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem.HID;
 
 public class MushroomMan : MonoBehaviour
 {
@@ -107,32 +108,20 @@ public class MushroomMan : MonoBehaviour
     }
     void MoveToVillage()
     {
-        // Set the target X and Z, leaving Y to be determined by the raycast
         targetPosition = new Vector3(targetX, transform.position.y, targetZ);
-
-        // Raycast from above the target position to detect the ground height
-        Vector3 raycastOrigin = new Vector3(targetX, transform.position.y + 50f, targetZ); // Start raycast 50 units above current y position
-
         RaycastHit hit;
-        if (Physics.Raycast(raycastOrigin, Vector3.down, out hit, Mathf.Infinity, ground))
+        if (Physics.Raycast(targetPosition + Vector3.up * 10f, Vector3.down, out hit, Mathf.Infinity, ground))
         {
-            // Set targetPosition.y to the terrain height at the target location, plus a small objectHeight offset
-            targetPosition.y = hit.point.y + objectHeight;
-            Debug.Log("Raycast hit terrain at height: " + hit.point.y + ", setting target Y to: " + targetPosition.y);
+            targetPosition = hit.point + Vector3.up * objectHeight;
+            isMoving = true;
         }
         else
         {
-            // Fallback: Keep current y if the raycast fails (prevent object sinking into ground)
-            targetPosition.y = transform.position.y;
-            Debug.LogWarning("Raycast did not hit terrain, maintaining current Y position: " + targetPosition.y);
+            // If raycast fails, set isMoving to false
+            isMoving = false;
         }
 
-        // Start moving towards the village
-        isMoving = true;
         moveToVillage = true;
-
-        // Visualize the raycast for debugging
-        Debug.DrawRay(raycastOrigin, Vector3.down * 100f, Color.red, 5f); // Display for 5 seconds
     }
 
     void ChooseNewTargetPosition()
@@ -160,12 +149,22 @@ public class MushroomMan : MonoBehaviour
 
     void MoveTowardsTarget()
     {
-        transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+        Vector3 targetXZ = new Vector3(targetPosition.x, transform.position.y, targetPosition.z);
+        transform.position = Vector3.MoveTowards(transform.position, targetXZ, moveSpeed * Time.deltaTime);
 
-        if (Vector3.Distance(transform.position, targetPosition) < 0.1f) //check if reached target
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position + Vector3.up * 10f, Vector3.down, out hit, Mathf.Infinity, ground))
+        {
+            //set the object Y pos to follow the terrain
+            transform.position = new Vector3(transform.position.x, hit.point.y + objectHeight, transform.position.z);
+        }
+
+        //check if reached
+        if (Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(targetPosition.x, 0, targetPosition.z)) < 0.1f)
         {
             isMoving = false;
             StopAndWait();
+
             if (moveToVillage)
             {
                 moveToVillage = false;
