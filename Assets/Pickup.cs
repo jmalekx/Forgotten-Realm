@@ -4,27 +4,9 @@ using UnityEngine;
 
 public class Pickup : MonoBehaviour
 {
-<<<<<<< HEAD
     public Item item = new Item("Item", 1);
 
     private void OnTriggerEnter(Collider other)
-=======
-    //public Item item = new Item("Item name", 1, ); //create instance of item
-
-    // Assign the prefab directly in the inspector
-    public GameObject itemPrefab;
-
-    // Initialize the item with the item's name, count, and prefab
-    public Item item;
-
-    private void Awake()
-    {
-        // Create instance of item
-        item = new Item("Item name", 1, itemPrefab);
-    }
-
-    private void OnTriggerEnter(Collider other) 
->>>>>>> parent of 148d0e5e (Merge branch 'main' into Darena-branch)
     {
         if (other.CompareTag("Player"))
         {
