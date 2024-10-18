@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Pickup : MonoBehaviour
 {
+
     //public Item item = new Item("Item name", 1, ); //create instance of item
 
     // Assign the prefab directly in the inspector
@@ -19,6 +20,7 @@ public class Pickup : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) 
+
     {
         if (other.CompareTag("Player"))
         {
