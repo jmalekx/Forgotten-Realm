@@ -16,14 +16,19 @@ public class MushroomMan : MonoBehaviour
     [Header("Dialogue")]
     public GameObject player;  //player detection
     public float dialogueRange = 5f;  //distance to trigger
-    public string dialogue = "Hello, Player!";  //message
+    public string dialogue;  //message
     public TextMeshProUGUI dialogueText;
     public float dialogueDuration;
     private float dialogueTimer;
     private bool dialogueActivated = false;
 
+    [Header("Target Position")]
+    public float targetX; 
+    public float targetZ;
+
     private Vector3 targetPosition;
     private bool isMoving = false;
+    private bool moveToVillage = false;
     private float stopDuration;
     private float stopTimer;
     private bool isNearPlayer = false;  //track if player nearby
@@ -43,14 +48,14 @@ public class MushroomMan : MonoBehaviour
             //pause and do dialogue if player nearby
             SaySomething();
         }
-        else
+        else if (!dialogueActivated)
         {
             //normal random movement if the player is not nearby
             if (isMoving)
             {
                 MoveTowardsTarget();
             }
-            else
+            else if (!moveToVillage)
             {
                 stopTimer -= Time.deltaTime;
                 if (stopTimer <= 0f)
@@ -66,7 +71,13 @@ public class MushroomMan : MonoBehaviour
             if (dialogueTimer <= 0)
             {
                 HideDialogue();
+                MoveToVillage();
             }
+        }
+
+        if (moveToVillage && isMoving)
+        {
+            MoveTowardsTarget();
         }
     }
     void CheckPlayerDistance()
@@ -84,8 +95,6 @@ public class MushroomMan : MonoBehaviour
     }
     void SaySomething()
     {
-        //to replace with a ui
-        Debug.Log(dialogue);
         dialogueText.text = dialogue;
         dialogueText.gameObject.SetActive(true);
         dialogueTimer = dialogueDuration;
@@ -95,6 +104,35 @@ public class MushroomMan : MonoBehaviour
     void HideDialogue()
     {
         dialogueText.gameObject.SetActive(false);
+    }
+    void MoveToVillage()
+    {
+        // Set the target X and Z, leaving Y to be determined by the raycast
+        targetPosition = new Vector3(targetX, transform.position.y, targetZ);
+
+        // Raycast from above the target position to detect the ground height
+        Vector3 raycastOrigin = new Vector3(targetX, transform.position.y + 50f, targetZ); // Start raycast 50 units above current y position
+
+        RaycastHit hit;
+        if (Physics.Raycast(raycastOrigin, Vector3.down, out hit, Mathf.Infinity, ground))
+        {
+            // Set targetPosition.y to the terrain height at the target location, plus a small objectHeight offset
+            targetPosition.y = hit.point.y + objectHeight;
+            Debug.Log("Raycast hit terrain at height: " + hit.point.y + ", setting target Y to: " + targetPosition.y);
+        }
+        else
+        {
+            // Fallback: Keep current y if the raycast fails (prevent object sinking into ground)
+            targetPosition.y = transform.position.y;
+            Debug.LogWarning("Raycast did not hit terrain, maintaining current Y position: " + targetPosition.y);
+        }
+
+        // Start moving towards the village
+        isMoving = true;
+        moveToVillage = true;
+
+        // Visualize the raycast for debugging
+        Debug.DrawRay(raycastOrigin, Vector3.down * 100f, Color.red, 5f); // Display for 5 seconds
     }
 
     void ChooseNewTargetPosition()
@@ -128,6 +166,14 @@ public class MushroomMan : MonoBehaviour
         {
             isMoving = false;
             StopAndWait();
+            if (moveToVillage)
+            {
+                moveToVillage = false;
+            }
+            else
+            {
+                StopAndWait();
+            }
         }
     }
 

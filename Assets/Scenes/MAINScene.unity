@@ -2954,7 +2954,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -49.986572, y: 0, z: -54.088013, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -3089,7 +3089,7 @@ Transform:
   m_GameObject: {fileID: 1295891030}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -280.6, y: 1.5, z: 396.66}
+  m_LocalPosition: {x: -129.09, y: 11.74, z: -174.36}
   m_LocalScale: {x: 2, y: 1.5, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3116,10 +3116,12 @@ MonoBehaviour:
     m_Bits: 64
   objectHeight: 1.5
   player: {fileID: 1093515912}
-  dialogueRange: 5
-  dialogue: Hello, Player!
+  dialogueRange: 8
+  dialogue: oh!!!!!!
   dialogueText: {fileID: 1276231318}
-  dialogueDuration: 3
+  dialogueDuration: 2
+  targetX: -250
+  targetZ: -150
 --- !u!1 &1311359948
 GameObject:
   m_ObjectHideFlags: 0
