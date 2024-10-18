@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class MushroomMan : MonoBehaviour
@@ -16,7 +17,11 @@ public class MushroomMan : MonoBehaviour
     public GameObject player;  //player detection
     public float dialogueRange = 5f;  //distance to trigger
     public string dialogue = "Hello, Player!";  //message
-    
+    public TextMeshProUGUI dialogueText;
+    public float dialogueDuration;
+    private float dialogueTimer;
+    private bool dialogueActivated = false;
+
     private Vector3 targetPosition;
     private bool isMoving = false;
     private float stopDuration;
@@ -26,13 +31,14 @@ public class MushroomMan : MonoBehaviour
     void Start()
     {
         StopAndWait();
+        dialogueText.gameObject.SetActive(false); //disable dialogue text
     }
 
     void Update()
     {
         CheckPlayerDistance(); //check if the player nearby
 
-        if (isNearPlayer)
+        if (isNearPlayer && !dialogueActivated)
         {
             //pause and do dialogue if player nearby
             SaySomething();
@@ -53,6 +59,15 @@ public class MushroomMan : MonoBehaviour
                 }
             }
         }
+
+        if (dialogueTimer > 0)
+        {
+            dialogueTimer -= Time.deltaTime;
+            if (dialogueTimer <= 0)
+            {
+                HideDialogue();
+            }
+        }
     }
     void CheckPlayerDistance()
     {
@@ -71,8 +86,15 @@ public class MushroomMan : MonoBehaviour
     {
         //to replace with a ui
         Debug.Log(dialogue);
+        dialogueText.text = dialogue;
+        dialogueText.gameObject.SetActive(true);
+        dialogueTimer = dialogueDuration;
 
-        // Optionally, you could wait for a few seconds here before resuming movement
+        dialogueActivated = true;
+    }
+    void HideDialogue()
+    {
+        dialogueText.gameObject.SetActive(false);
     }
 
     void ChooseNewTargetPosition()
