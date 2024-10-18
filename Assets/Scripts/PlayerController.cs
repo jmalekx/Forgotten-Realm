@@ -20,15 +20,19 @@ public class PlayerController : MonoBehaviour
     private float moveSpeed;
     public float groundDrag;
     public float walkSpeed;
-    [Header("Camera")]
+
     public Camera cam;
+
     [Header("Sprinting")]
     public float sprintSpeed;
     public float sprintDuration;
     public float sprintCooldown;
+    public float regenDelay;
     private float sprintTimer;
     private bool isCooldown;
-    private bool isSprinting = false;
+    private bool isSprinting;
+    private float regenTimer;
+    private bool isSprintRegen;
 
     [Header("Jumping")]
     public float jumpForce;
@@ -98,6 +102,7 @@ public class PlayerController : MonoBehaviour
         ControlSpeed();
         UpdateSprintUI();
         HandleSprint();
+        HandleSprintRegen();
 
         if (input.Attack.IsPressed())
         { Attack();}
@@ -169,6 +174,12 @@ public class PlayerController : MonoBehaviour
         Debug.Log("sprint released");
         isSprinting = false;
         moveSpeed = walkSpeed;
+
+        if (!isCooldown)
+        {
+            regenTimer = sprintCooldown;
+            isSprintRegen = false;
+        }
     }
     void SprintStart()
     {
@@ -177,6 +188,7 @@ public class PlayerController : MonoBehaviour
         if (grounded && !isCooldown && isMoving)
         {
             isSprinting = true;
+            isSprintRegen = false;
         }
     }
     void HandleSprint()
@@ -196,9 +208,33 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        if (!isSprinting && !isCooldown && sprintTimer < sprintDuration && regenTimer <= 0 && !isSprintRegen)
+        {
+            isSprintRegen = true;
+        }
         if (!isSprinting && !isCooldown)
         {
             moveSpeed = walkSpeed;
+        }
+    }
+    void HandleSprintRegen()
+    {
+        if (!isSprinting && !isCooldown)
+        {
+            if (regenTimer > 0)
+            {
+                regenTimer -= Time.deltaTime; 
+            }
+            else if (isSprintRegen)
+            {
+                sprintTimer += (sprintDuration / sprintCooldown) * Time.deltaTime; //smooth gradual bar
+
+                if (sprintTimer >= sprintDuration)
+                {
+                    sprintTimer = sprintDuration; 
+                    isSprintRegen = false; 
+                }
+            }
         }
     }
 
@@ -206,24 +242,11 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("sprint reset");
         isCooldown = false;
-        sprintTimer = sprintDuration;
+        isSprintRegen = true;
     }
     void UpdateSprintUI()
     {
-        if (!isCooldown)
-        {
-            sprintSlider.value = sprintTimer;
-        }
-        else
-        {
-            float refillSpeed = sprintDuration / sprintCooldown; //bar refilling based on cooldown
-            sprintSlider.value += refillSpeed * Time.deltaTime;
-           
-            if (sprintSlider.value >= sprintDuration) //prevent overfill
-            {
-                sprintSlider.value = sprintDuration;
-            }
-        }
+        sprintSlider.value = sprintTimer;
     }
 
     
