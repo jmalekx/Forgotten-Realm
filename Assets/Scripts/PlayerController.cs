@@ -61,6 +61,7 @@ public class PlayerController : MonoBehaviour
         sprintTimer = sprintDuration;
         sprintSlider.maxValue = sprintDuration;
         sprintSlider.value = sprintDuration;
+        HealthBar.value = 100;
         
     }
     void Awake()
