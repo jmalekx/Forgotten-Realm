@@ -34,31 +34,34 @@ public class MushroomMan : MonoBehaviour
     private float stopTimer;
     private bool isNearPlayer = false;  //track if player nearby
 
+    private CharacterController characterController;
+
     void Start()
     {
+        characterController = GetComponent<CharacterController>();
         StopAndWait();
         dialogueText.gameObject.SetActive(false); //disable dialogue text
     }
 
-    void Update()
+    void FixedUpdate() //for consistent physics calculations
     {
-        CheckPlayerDistance(); //check if the player nearby
+        CheckPlayerDistance();
 
         if (isNearPlayer && !dialogueActivated)
         {
-            //pause and do dialogue if player nearby
+            //pause and do dialogue if the player nearby
             SaySomething();
         }
         else if (!dialogueActivated)
         {
-            //normal random movement if the player is not nearby
+            //normal random movement if the player not nearby
             if (isMoving)
             {
                 MoveTowardsTarget();
             }
             else if (!moveToVillage)
             {
-                stopTimer -= Time.deltaTime;
+                stopTimer -= Time.fixedDeltaTime;
                 if (stopTimer <= 0f)
                 {
                     ChooseNewTargetPosition();
@@ -109,18 +112,7 @@ public class MushroomMan : MonoBehaviour
     void MoveToVillage()
     {
         targetPosition = new Vector3(targetX, transform.position.y, targetZ);
-        RaycastHit hit;
-        if (Physics.Raycast(targetPosition + Vector3.up * 10f, Vector3.down, out hit, Mathf.Infinity, ground))
-        {
-            targetPosition = hit.point + Vector3.up * objectHeight;
-            isMoving = true;
-        }
-        else
-        {
-            // If raycast fails, set isMoving to false
-            isMoving = false;
-        }
-
+        SetTargetPositionToGround();
         moveToVillage = true;
     }
 
@@ -133,33 +125,38 @@ public class MushroomMan : MonoBehaviour
         );
 
         targetPosition = transform.position + randomDirection;
+        SetTargetPositionToGround();
+    }
 
+    void SetTargetPositionToGround()
+    {
         RaycastHit hit;
         if (Physics.Raycast(targetPosition + Vector3.up * 10f, Vector3.down, out hit, Mathf.Infinity, ground))
         {
-            targetPosition = hit.point + Vector3.up * objectHeight; //ensure the object stays above the terrain
+            targetPosition = hit.point + Vector3.up * objectHeight; //ensure object stays above the terrain
             isMoving = true;
         }
         else
         {
-            //if target invalid, choose another pos
-            ChooseNewTargetPosition();
+            isMoving = false;
         }
     }
 
     void MoveTowardsTarget()
     {
         Vector3 targetXZ = new Vector3(targetPosition.x, transform.position.y, targetPosition.z);
-        transform.position = Vector3.MoveTowards(transform.position, targetXZ, moveSpeed * Time.deltaTime);
+        Vector3 direction = (targetXZ - transform.position).normalized;
+        characterController.Move(direction * moveSpeed * Time.fixedDeltaTime);
 
+        //raycast down to adjust Y position based on terrain
         RaycastHit hit;
         if (Physics.Raycast(transform.position + Vector3.up * 10f, Vector3.down, out hit, Mathf.Infinity, ground))
         {
-            //set the object Y pos to follow the terrain
+            //set object y position based on the terrain height
             transform.position = new Vector3(transform.position.x, hit.point.y + objectHeight, transform.position.z);
         }
 
-        //check if reached
+        //check if reached target
         if (Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(targetPosition.x, 0, targetPosition.z)) < 0.1f)
         {
             isMoving = false;
@@ -176,10 +173,28 @@ public class MushroomMan : MonoBehaviour
         }
     }
 
+
     void StopAndWait()
     {
         stopDuration = Random.Range(minRange, maxRange);
         stopTimer = stopDuration;
         isMoving = false;
+    }
+
+    void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        //only react to collisions with objects that are not ground
+        if ((ground & (1 << hit.collider.gameObject.layer)) == 0)
+        {
+            //currently moving to village
+            if (moveToVillage)
+            {
+                MoveToVillage(); //re-route to village
+            }
+            else
+            {
+                ChooseNewTargetPosition(); //choose new position
+            }
+        }
     }
 }
