@@ -2976,7 +2976,7 @@ MonoBehaviour:
   moveDistance: 6
   ground:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   objectHeight: 1.5
   minRange: 2
   maxRange: 5
@@ -3133,6 +3133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   items: []
+  HealthBar: {fileID: 0}
 --- !u!1 &1421441916
 GameObject:
   m_ObjectHideFlags: 0
