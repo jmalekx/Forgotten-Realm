@@ -2980,6 +2980,9 @@ MonoBehaviour:
   objectHeight: 1.5
   minRange: 2
   maxRange: 5
+  player: {fileID: 1093515912}
+  dialogueRange: 5
+  dialogue: Hello, Player!
 --- !u!1 &1311359948
 GameObject:
   m_ObjectHideFlags: 0
