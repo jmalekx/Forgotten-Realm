@@ -1,23 +1,27 @@
 using UnityEngine;
 
-public class RandomMovement : MonoBehaviour
+public class MushroomMan : MonoBehaviour
 {
+    [Header("Movement")]
     public float moveSpeed;
     public float moveDistance; //max distance to move per move
-    public LayerMask ground;
-    public float objectHeight;
-    public float minRange;
+    public float minRange; //range to move
     public float maxRange;
 
-    public GameObject player;  // Reference to the player
-    public float dialogueRange = 5f;  // Distance at which the player triggers dialogue
-    public string dialogue = "Hello, Player!";  // Dialogue message
+    [Header("Ground detection")]
+    public LayerMask ground;
+    public float objectHeight;
 
+    [Header("Dialogue")]
+    public GameObject player;  //player detection
+    public float dialogueRange = 5f;  //distance to trigger
+    public string dialogue = "Hello, Player!";  //message
+    
     private Vector3 targetPosition;
     private bool isMoving = false;
     private float stopDuration;
     private float stopTimer;
-    private bool isNearPlayer = false;  // Track if player is nearby
+    private bool isNearPlayer = false;  //track if player nearby
 
     void Start()
     {
@@ -26,16 +30,16 @@ public class RandomMovement : MonoBehaviour
 
     void Update()
     {
-        CheckPlayerDistance();  // Check if the player is nearby
+        CheckPlayerDistance(); //check if the player nearby
 
         if (isNearPlayer)
         {
-            // Pause movement and initiate dialogue when the player is nearby
+            //pause and do dialogue if player nearby
             SaySomething();
         }
         else
         {
-            // Normal random movement if the player is not nearby
+            //normal random movement if the player is not nearby
             if (isMoving)
             {
                 MoveTowardsTarget();
@@ -50,26 +54,22 @@ public class RandomMovement : MonoBehaviour
             }
         }
     }
-
-    // Check the distance between the object and the player
     void CheckPlayerDistance()
     {
         float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
 
         if (distanceToPlayer <= dialogueRange)
         {
-            isNearPlayer = true;  // Player is within range, pause movement
+            isNearPlayer = true;  //pause movement if player near
         }
         else
         {
-            isNearPlayer = false;  // Player is out of range, resume movement
+            isNearPlayer = false;
         }
     }
-
-    // Dialogue or action when the player is near
     void SaySomething()
     {
-        // Log dialogue to the console (replace with UI or other dialogue system if needed)
+        //to replace with a ui
         Debug.Log(dialogue);
 
         // Optionally, you could wait for a few seconds here before resuming movement
@@ -88,12 +88,12 @@ public class RandomMovement : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(targetPosition + Vector3.up * 10f, Vector3.down, out hit, Mathf.Infinity, ground))
         {
-            targetPosition = hit.point + Vector3.up * objectHeight; // Ensure the object stays above the terrain
+            targetPosition = hit.point + Vector3.up * objectHeight; //ensure the object stays above the terrain
             isMoving = true;
         }
         else
         {
-            // If invalid target, choose again
+            //if target invalid, choose another pos
             ChooseNewTargetPosition();
         }
     }
@@ -102,7 +102,7 @@ public class RandomMovement : MonoBehaviour
     {
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
 
-        if (Vector3.Distance(transform.position, targetPosition) < 0.1f) // Check if reached target
+        if (Vector3.Distance(transform.position, targetPosition) < 0.1f) //check if reached target
         {
             isMoving = false;
             StopAndWait();
