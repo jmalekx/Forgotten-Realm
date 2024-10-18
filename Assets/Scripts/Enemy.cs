@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class NPCMovement : MonoBehaviour
 {
     public float EnemySpeed = 2f;
-    public float interval = 4f; 
+    public float interval = 1.5f; 
     private Vector3 RandomDirection;     
     private float timePassed;          
 
