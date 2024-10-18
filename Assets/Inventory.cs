@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public 
     class Inventory : MonoBehaviour
 
@@ -9,7 +9,7 @@ public
     public static Inventory Instance;
     public List<Item> items = new List<Item> ();
 
-
+    public Slider HealthBar;
     void Awake()
     {
         if (Instance != null)
@@ -35,7 +35,9 @@ public
         if (!itemExists)
         {
             items.Add(itemToAdd);
+            
         }
+        HealthBar.value +=30;
         Debug.Log(itemToAdd.count + " " + itemToAdd.name + "added to inventory.");
     }
 

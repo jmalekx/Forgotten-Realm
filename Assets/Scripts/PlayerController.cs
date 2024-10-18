@@ -112,7 +112,13 @@ public class PlayerController : MonoBehaviour
         else
             rb.drag = 0;
     }
-
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy")) 
+        {
+            HealthBar.value -= 30;
+        }
+    }
     void FixedUpdate()
     {
         MovePlayer();
