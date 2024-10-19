@@ -30,4 +30,5 @@ public class InventoryUI : MonoBehaviour
 
         itemCountText.text = displayText; // Update the Text component
     }
+    
 }
