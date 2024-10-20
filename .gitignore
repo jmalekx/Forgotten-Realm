@@ -61,7 +61,7 @@ sysinfo.txt
 # *.unitypackage
 # *.app
 
-# Crashlytics generated file
+# Crashlytics generated fileMETA
 crashlytics-build.properties
 
 # Packed Addressables

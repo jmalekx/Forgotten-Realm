@@ -14,13 +14,8 @@ GameObject:
   - component: {fileID: 8946370117686527699}
   - component: {fileID: 2781368359921292339}
   m_Layer: 0
-<<<<<<< Updated upstream:Assets/Prefabs/PickupObject.prefab
-  m_Name: PickupObject
-  m_TagString: Item
-=======
   m_Name: Apple
   m_TagString: Untagged
->>>>>>> Stashed changes:Assets/Prefabs/Apple.prefab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123,12 +118,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e778b87e40c2cf04aaa905abf7e54a6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< Updated upstream:Assets/Prefabs/PickupObject.prefab
-  itemPrefab: {fileID: 5420425362937415746}
-  item:
-    name: 
-    count: 0
-    itemPrefab: {fileID: 5420425362937415746}
-=======
   collectibleItemData: {fileID: 11400000, guid: 6c87b38545161fa4d8281981a8f872a9, type: 2}
->>>>>>> Stashed changes:Assets/Prefabs/Apple.prefab

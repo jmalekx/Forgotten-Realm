@@ -10,6 +10,7 @@ public class InventoryUI : MonoBehaviour
     void Start()
     {
         inventory = Inventory.Instance; // get the singleton instance of Inventory
+        itemCountText = GetComponent<TMP_Text>();
         UpdateItemCount(); // initialize the text
     }
 
