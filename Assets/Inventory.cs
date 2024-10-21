@@ -1,60 +1,69 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public 
-    class Inventory : MonoBehaviour
-
+public class Inventory : MonoBehaviour
 {
     public static Inventory Instance;
-    public List<Item> items = new List<Item> ();
+
+    public List<ItemData> items = new List<ItemData>();
+
+    public event Action OnInventoryChanged; // Event to notify inventory changes
 
     public Slider HealthBar;
     void Awake()
     {
         if (Instance != null)
-        Destroy(gameObject);
+            Destroy(gameObject);
         else
             Instance = this;
+        items.Clear();
     }
 
-
-    public void AddItem(Item itemToAdd)
+//------------------------------------------------------------------------------------------------------------
+    public void AddItem(ItemData itemToAdd)
     {
         bool itemExists = false;
 
-        foreach (Item item in items)
+        foreach (ItemData item in items)
         {
-            if(item.name == itemToAdd.name)
+            if (item.itemName == itemToAdd.itemName) // check by item name
             {
-                item.count += itemToAdd.count;
+                item.count += 1; // always add 1 to the count for each pickup
                 itemExists = true;
                 break;
             }
         }
+
         if (!itemExists)
         {
-            items.Add(itemToAdd);
+            itemToAdd.count = 1; // initialize count to 1 for a new item
+            items.Add(itemToAdd); // add new item if it does not exist
             
         }
         HealthBar.value +=30;
-        Debug.Log(itemToAdd.count + " " + itemToAdd.name + "added to inventory.");
+
+        OnInventoryChanged?.Invoke(); // notify the UI to update
+        Debug.Log(itemToAdd.itemName + " added to inventory. Total count: " + itemToAdd.count);
     }
 
-    public void RemoveItem(Item itemToRemove)
+    //------------------------------------------------------------------------------------------------------------
+    public void RemoveItem(ItemData itemToRemove)
     {
         foreach (var item in items)
         {
-            if(item.name == itemToRemove.name)
+            if (item.itemName == itemToRemove.itemName)
             {
                 item.count -= itemToRemove.count;
-                if(item.count == 0)
+                if (item.count <= 0)
                 {
-                    items.Remove(itemToRemove);
+                    items.Remove(item);
                 }
                 break;
             }
         }
-        Debug.Log(itemToRemove.count + " " + itemToRemove.name + "removed from inventory.");
+
+        OnInventoryChanged?.Invoke(); // notify the UI to update
+        Debug.Log(itemToRemove.count + " " + itemToRemove.itemName + " removed from inventory.");
     }
 }

@@ -10,7 +10,7 @@ public class Pickup : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Inventory.Instance.AddItem(item);
+//            Inventory.Instance.AddItem(item);
             Destroy(gameObject);
         }
     }
