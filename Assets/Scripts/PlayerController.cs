@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody rb;
 
     [Header("Attacking")]
-    public float attackRange = 7f;
+    public float attackDistance = 7f;
 
 
     void Start()
