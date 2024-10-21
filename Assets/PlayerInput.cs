@@ -64,15 +64,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Inventory"",
-                    ""type"": ""Button"",
-                    ""id"": ""9a234a9e-1e1a-4f4d-9908-6474b59f2e89"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Drop"",
                     ""type"": ""Button"",
                     ""id"": ""7088b6b6-69d9-4ba8-b1f5-a69d45111a78"",
@@ -179,17 +170,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""bae349c6-5067-41e2-8d9c-50e64456a8c3"",
-                    ""path"": ""<Keyboard>/tab"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Inventory"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
@@ -900,7 +880,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Main_Sprint = m_Main.FindAction("Sprint", throwIfNotFound: true);
         m_Main_Attack = m_Main.FindAction("Attack", throwIfNotFound: true);
         m_Main_Move = m_Main.FindAction("Move", throwIfNotFound: true);
-        m_Main_Inventory = m_Main.FindAction("Inventory", throwIfNotFound: true);
         m_Main_Drop = m_Main.FindAction("Drop", throwIfNotFound: true);
         m_Main_NumberKeys = m_Main.FindAction("NumberKeys", throwIfNotFound: true);
         // UI
@@ -980,7 +959,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Main_Sprint;
     private readonly InputAction m_Main_Attack;
     private readonly InputAction m_Main_Move;
-    private readonly InputAction m_Main_Inventory;
     private readonly InputAction m_Main_Drop;
     private readonly InputAction m_Main_NumberKeys;
     public struct MainActions
@@ -991,7 +969,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @Sprint => m_Wrapper.m_Main_Sprint;
         public InputAction @Attack => m_Wrapper.m_Main_Attack;
         public InputAction @Move => m_Wrapper.m_Main_Move;
-        public InputAction @Inventory => m_Wrapper.m_Main_Inventory;
         public InputAction @Drop => m_Wrapper.m_Main_Drop;
         public InputAction @NumberKeys => m_Wrapper.m_Main_NumberKeys;
         public InputActionMap Get() { return m_Wrapper.m_Main; }
@@ -1015,9 +992,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
-            @Inventory.started += instance.OnInventory;
-            @Inventory.performed += instance.OnInventory;
-            @Inventory.canceled += instance.OnInventory;
             @Drop.started += instance.OnDrop;
             @Drop.performed += instance.OnDrop;
             @Drop.canceled += instance.OnDrop;
@@ -1040,9 +1014,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
-            @Inventory.started -= instance.OnInventory;
-            @Inventory.performed -= instance.OnInventory;
-            @Inventory.canceled -= instance.OnInventory;
             @Drop.started -= instance.OnDrop;
             @Drop.performed -= instance.OnDrop;
             @Drop.canceled -= instance.OnDrop;
@@ -1235,7 +1206,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnSprint(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
-        void OnInventory(InputAction.CallbackContext context);
         void OnDrop(InputAction.CallbackContext context);
         void OnNumberKeys(InputAction.CallbackContext context);
     }
