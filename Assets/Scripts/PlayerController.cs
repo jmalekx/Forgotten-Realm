@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class PlayerController : MonoBehaviour
 
 
     [Header("UI")]
+    public TMP_Text DeathText;
     public Slider sprintSlider;
     public Slider HealthBar; 
 
@@ -116,7 +118,12 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("sword")) 
         {
-            HealthBar.value -= 30;
+            HealthBar.value -= 10;
+            if(HealthBar.value <= 0){
+                string displayText = "GAME OVER";
+                DeathText.text  = displayText;
+                enabled = false;
+            }
         }
     }
     void FixedUpdate()
