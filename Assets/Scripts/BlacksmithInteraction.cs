@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class BlacksmithInteraction : MonoBehaviour
 {
@@ -7,6 +9,7 @@ public class BlacksmithInteraction : MonoBehaviour
     public GameObject dialogueUI; // UI for feedback
     public string interactKey = "e"; // Which key to press to interact with the villager
     private bool playerInRange = false;
+    public TMP_Text Etext;
 
     void Update()
     {
@@ -22,6 +25,7 @@ public class BlacksmithInteraction : MonoBehaviour
     {
         playerInRange = true; 
         Debug.Log("Player entered range."); // Add this line
+        Etext.text="press e to interact with the villager";
         if (dialogueUI != null)
         {
             dialogueUI.SetActive(true); // Show Interaction UI 
@@ -35,6 +39,7 @@ void OnTriggerExit(Collider other)
     {
         playerInRange = false; 
         Debug.Log("Player exited range."); // Add this line
+        Etext.text="";
         if (dialogueUI != null)
         {
             dialogueUI.SetActive(false); // Show Interaction UI 
