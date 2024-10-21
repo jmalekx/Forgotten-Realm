@@ -268,6 +268,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemCountText: {fileID: 4056777}
+  inventory: {fileID: 0}
 --- !u!4 &9089190 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6850985121334555248, guid: 8bed4684bbace474698139d00bb98ca3, type: 3}
@@ -509,6 +510,7 @@ GameObject:
   - component: {fileID: 32197163}
   - component: {fileID: 32197162}
   - component: {fileID: 32197161}
+  - component: {fileID: 32197165}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -607,6 +609,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &32197165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 32197160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dd409dd0af27234fb62dd28d4342280, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryMenu: {fileID: 1129506740}
+  itemPanelPrefab: {fileID: 3461046250129067459, guid: 78b2e770a9492744dbd01669d89ab044, type: 3}
+  itemPanelGrid: {fileID: 1870912499}
 --- !u!1001 &53530616
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2458,51 +2475,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78b2e770a9492744dbd01669d89ab044, type: 3}
---- !u!1 &512908093
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 512908095}
-  - component: {fileID: 512908094}
-  m_Layer: 0
-  m_Name: InventoryManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &512908094
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 512908093}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09f62905c83976b429c846ae22db4aa3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemCountText: {fileID: 4056777}
---- !u!4 &512908095
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 512908093}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -312, y: 1.5, z: 430.83}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &515843698 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6850985121334555248, guid: 8bed4684bbace474698139d00bb98ca3, type: 3}
@@ -4818,7 +4790,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 360.2, y: -513}
+  m_AnchoredPosition: {x: 351, y: -513}
   m_SizeDelta: {x: 370, y: 40}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1129506742
@@ -10223,7 +10195,6 @@ SceneRoots:
   - {fileID: 1592517731}
   - {fileID: 1093515914}
   - {fileID: 15264471}
-  - {fileID: 512908095}
   - {fileID: 195429301}
   - {fileID: 580678316}
   - {fileID: 1472113434}
