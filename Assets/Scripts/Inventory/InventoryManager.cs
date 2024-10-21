@@ -12,6 +12,8 @@ public class InventoryManager : MonoBehaviour
     public GameObject itemPanelPrefab;
     public GameObject itemPanelGrid;
 
+    public Camera playerCamera;
+
     private PlayerInput playerInput;
     private InputAction scrollAction;
     private InputAction numberKeysAction;
@@ -81,7 +83,7 @@ public class InventoryManager : MonoBehaviour
                 TextMeshProUGUI itemNameText = itemSlot.GetComponentInChildren<TextMeshProUGUI>();
                 if (itemNameText != null)
                 {
-                    itemNameText.text = inventory.items[i].itemName; 
+                    itemNameText.text = inventory.items[i].itemName;
                     itemNameText.color = (i == selectedItemIndex) ? Color.blue : Color.white;  //highlight selected item
                 }
             }
@@ -149,7 +151,19 @@ public class InventoryManager : MonoBehaviour
 
     private void DropItemToWorld(ItemData item)
     {
-        // Implement logic for spawning the item back into the game world
-        Debug.Log("Dropped " + item.itemName + " into the world.");
+        //prefab exists
+        if (item.itemPrefab != null)
+        {
+            //position in fron of player camera
+            Vector3 dropPosition = playerCamera.transform.position + playerCamera.transform.forward * 3.5f; // can adjust distance
+            GameObject droppedItem = Instantiate(item.itemPrefab, dropPosition, Quaternion.identity);
+
+            // Optionally, add a Rigidbody component for physics interactions
+            Rigidbody rb = droppedItem.AddComponent<Rigidbody>();
+            rb.AddForce(playerCamera.transform.up * 5f, ForceMode.Impulse); // Add some upward force to the item
+
+            //log
+            Debug.Log("Dropped " + item.itemName + " into the world.");
+        }
     }
 }
