@@ -41,10 +41,7 @@ public class Inventory : MonoBehaviour
             items.Add(itemToAdd); // add new item if it does not exist
             
         }
-        if(itemToAdd.itemName == "Apple"){
-            HealthBar.value +=20;
-        }
-       
+        HealthBar.value +=30;
 
         OnInventoryChanged?.Invoke(); // notify the UI to update
         Debug.Log(itemToAdd.itemName + " added to inventory. Total count: " + itemToAdd.count);
