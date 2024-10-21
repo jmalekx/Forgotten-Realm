@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using TMPro;
+using System.Threading.Tasks;
 
 public class PlayerController : MonoBehaviour
 {
@@ -58,6 +59,8 @@ public class PlayerController : MonoBehaviour
 
     [Header("Attacking")]
     public float attackDistance = 7f;
+
+   
 
 
     void Start()
@@ -267,21 +270,29 @@ public class PlayerController : MonoBehaviour
 
     void Attack(){
 
-        // Create a ray from the main camera based on mouse position
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        // Perform the raycast
         if (Physics.Raycast(ray, out hit, attackDistance))
         {
             if (hit.collider.CompareTag("Enemy"))
             {
-                Destroy(hit.collider.gameObject);
+                GameObject EnemyHit = hit.collider.gameObject;
+                CharacterController EnemyMoveController = EnemyHit.GetComponent<CharacterController>();
+            if (EnemyMoveController != null)
+            {
+                EnemyMoveController.Move(Vector3.zero);
+            }
+                Rigidbody enemyRigidbody = EnemyHit.AddComponent<Rigidbody>();
+                enemyRigidbody.mass = 4f;
+                StartCoroutine(Destroyed(EnemyHit, 1f));
             }
 
         }
 
     }
-         
-
+    IEnumerator Destroyed(GameObject TargetedEnemy, float delay){
+        yield return new WaitForSeconds(delay);
+        Destroy(TargetedEnemy);
+    }
 }
 
