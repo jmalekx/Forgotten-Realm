@@ -4268,7 +4268,7 @@ MonoBehaviour:
   HealthBar: {fileID: 27114413}
   groundDrag: 8
   walkSpeed: 15
-  cam: {fileID: 0}
+  cam: {fileID: 1916726482}
   sprintSpeed: 25
   sprintDuration: 5
   sprintCooldown: 4
@@ -4281,14 +4281,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   playerBody: {fileID: 1359296528}
-  attackDistance: 3
-  attackDelay: 0.4
-  attackSpeed: 1
-  attackDamage: 1
-  attackLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  hitEffect: {fileID: 0}
+  attackRange: 10
 --- !u!114 &1093515916
 MonoBehaviour:
   m_ObjectHideFlags: 0
