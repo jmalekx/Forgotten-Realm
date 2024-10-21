@@ -474,6 +474,7 @@ MonoBehaviour:
   inventoryMenu: {fileID: 1129506740}
   itemPanelPrefab: {fileID: 3461046250129067459, guid: 78b2e770a9492744dbd01669d89ab044, type: 3}
   itemPanelGrid: {fileID: 1870912499}
+  playerCamera: {fileID: 1916726482}
 --- !u!1001 &53530616
 PrefabInstance:
   m_ObjectHideFlags: 0
