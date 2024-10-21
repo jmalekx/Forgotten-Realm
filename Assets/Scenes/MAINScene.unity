@@ -267,8 +267,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09f62905c83976b429c846ae22db4aa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemCountText: {fileID: 4056777}
-  inventory: {fileID: 0}
 --- !u!4 &9089190 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6850985121334555248, guid: 8bed4684bbace474698139d00bb98ca3, type: 3}
@@ -4281,7 +4279,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   playerBody: {fileID: 1359296528}
-  attackRange: 10
+  attackDistance: 7
 --- !u!114 &1093515916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5850,8 +5848,8 @@ MonoBehaviour:
   dialogue: oh!!!!!!
   dialogueText: {fileID: 1276231318}
   dialogueDuration: 2
-  targetX: -270
-  targetZ: -210
+  targetX: -165
+  targetZ: -212
 --- !u!143 &1295891036
 CharacterController:
   m_ObjectHideFlags: 0
