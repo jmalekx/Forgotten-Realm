@@ -8,17 +8,23 @@ public class InventoryManager : MonoBehaviour
 {
     [Header("Inventory Menu")]
     public GameObject inventoryMenu;
-    public GameObject itemPanel;
+    public GameObject itemPanelPrefab;
     public GameObject itemPanelGrid;
 
     private PlayerInput playerInput;
     private InputAction inventoryAction;
     private bool isInventoryOpen = false;
 
+    private Inventory inventory;
+
 
     void Start()
     {
         inventoryMenu.SetActive(false);
+        inventory = Inventory.Instance;
+        inventory.OnInventoryChanged += UpdateInventoryUI; // Subscribe to inventory updates
+
+        UpdateInventoryUI();
     }
 
     void Awake()
@@ -53,6 +59,28 @@ public class InventoryManager : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.Locked; 
             Cursor.visible = false;
+        }
+    }
+
+    // Updates the inventory UI based on current inventory items
+    void UpdateInventoryUI()
+    {
+        // Clear existing item panels
+        foreach (Transform child in itemPanelGrid.transform)
+        {
+            Destroy(child.gameObject);
+        }
+
+        // Create a new item panel for each item in the inventory
+        foreach (ItemData item in inventory.items)
+        {
+            GameObject newItemPanel = Instantiate(itemPanelPrefab, itemPanelGrid.transform);
+            ItemSlot itemSlot = newItemPanel.GetComponent<ItemSlot>();
+
+            if (itemSlot != null)
+            {
+                itemSlot.UpdateSlot(item); // Update the slot with item data
+            }
         }
     }
 }
