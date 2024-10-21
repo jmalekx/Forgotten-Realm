@@ -16,7 +16,6 @@ public class InventoryManager : MonoBehaviour
 
     private PlayerInput playerInput;
     private InputAction scrollAction;
-    private InputAction numberKeysAction;
     private InputAction dropAction;
 
     private Inventory inventory;
@@ -33,7 +32,6 @@ public class InventoryManager : MonoBehaviour
     {
         playerInput = new PlayerInput();
         scrollAction = playerInput.UI.ScrollWheel;
-        numberKeysAction = playerInput.Main.NumberKeys;
         dropAction = playerInput.Main.Drop;
 
         OnEnable();
@@ -42,22 +40,18 @@ public class InventoryManager : MonoBehaviour
     void OnEnable()
     {
         scrollAction.Enable();
-        numberKeysAction.Enable();
         dropAction.Enable();
 
         scrollAction.performed += OnScroll;
-        numberKeysAction.performed += OnNumberKeyPressed;
         dropAction.performed += OnDropItem;
     }
 
     void OnDisable()
     {
         scrollAction.performed -= OnScroll;
-        numberKeysAction.performed -= OnNumberKeyPressed;
         dropAction.performed -= OnDropItem;
 
         scrollAction.Disable();
-        numberKeysAction.Disable();
         dropAction.Disable();
     }
 
