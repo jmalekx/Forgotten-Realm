@@ -15,9 +15,10 @@ GameObject:
   - component: {fileID: 6248878970483646026}
   - component: {fileID: 6298796682130704458}
   - component: {fileID: 4813099282160296255}
+  - component: {fileID: -643121611332508602}
   m_Layer: 0
   m_Name: Wood
-  m_TagString: Untagged
+  m_TagString: Wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -169,3 +170,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-643121611332508602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2806829959780113856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d220c9d8076b01f4e9539103457bb922, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wood: {fileID: 11400000, guid: bbf05760390f52b4c960af477e5baf35, type: 2}
+  stone: {fileID: 11400000, guid: fadea3d57e888824996757aa59a32f9f, type: 2}
+  dagger: {fileID: 11400000, guid: aac3ca4828ef5c54a808dd3a262dd36a, type: 2}

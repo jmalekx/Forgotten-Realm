@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Enemy
   - sword
+  - Wood
+  - Stone
   layers:
   - Default
   - TransparentFX
