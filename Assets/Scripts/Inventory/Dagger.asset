@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a7b9a8f2addc0b4da3ed82d21bcd89f, type: 3}
   m_Name: Dagger
   m_EditorClassIdentifier: 
-  itemName: 
+  itemName: Dagger
   icon: {fileID: 0}
   count: 0
-  itemPrefab: {fileID: 0}
+  itemPrefab: {fileID: 7524377764197213444, guid: daf317255c894784f89f3ea3e02bd127, type: 3}
