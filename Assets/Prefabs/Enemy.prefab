@@ -44,3 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55f0be0240f863044992469156c8cad5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EnemySpeed: 1
+  interval: 1.5
+  ground:
+    serializedVersion: 2
+    m_Bits: 0
+  objectHeight: 0
