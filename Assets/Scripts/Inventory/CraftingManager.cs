@@ -10,28 +10,70 @@ public class CraftingManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-
+        // Ensure we only craft once
         if (hasCrafted) return;
 
-        if (other.CompareTag("Wood") && CompareTag("Stone") ||
-            other.CompareTag("Stone") && CompareTag("Wood"))
+        // Check if the collider is wood or stone
+        if (other.CompareTag("Wood") || other.CompareTag("Stone"))
         {
+            // Check if we have both items present
+            if (HasBothItemsInTrigger())
+            {
+                CraftDagger();
+            }
+        }
+    }
 
-            hasCrafted = true;
+    private void CraftDagger()
+    {
+        hasCrafted = true;
 
-            // Destroy the colliding objects
-            Destroy(other.gameObject);
-            Destroy(gameObject);
+        // Destroy all wood and stone objects in the vicinity
+        DestroyGameObjectsWithTag("Wood");
+        DestroyGameObjectsWithTag("Stone");
 
-            // Instantiate a dagger
-            Vector3 spawnPosition = transform.position;
-            Instantiate(dagger.itemPrefab, spawnPosition, Quaternion.identity);
+        // Instantiate a dagger at the position of the crafting manager
+        Vector3 spawnPosition = transform.position;
+        Instantiate(dagger.itemPrefab, spawnPosition, Quaternion.identity);
 
-            // Add the crafted dagger to the inventory
-            Inventory.Instance.AddItem(dagger);
+        Debug.Log("Crafted a dagger!");
+    }
 
+    private bool HasBothItemsInTrigger()
+    {
+        // Use Physics.OverlapSphere to check for both items in the trigger area
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 1f); // Adjust radius as needed
+        bool hasWood = false;
+        bool hasStone = false;
 
-            Debug.Log("Crafted a dagger!");
+        foreach (var collider in colliders)
+        {
+            if (collider.CompareTag("Wood"))
+            {
+                hasWood = true;
+                // If we found both, we can exit early
+                if (hasStone) break;
+            }
+            else if (collider.CompareTag("Stone"))
+            {
+                hasStone = true;
+                // If we found both, we can exit early
+                if (hasWood) break;
+            }
+        }
+
+        return hasWood && hasStone;
+    }
+
+    private void DestroyGameObjectsWithTag(string tag)
+    {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 1f); // Adjust radius as needed
+        foreach (var collider in colliders)
+        {
+            if (collider.CompareTag(tag))
+            {
+                Destroy(collider.gameObject);
+            }
         }
     }
 }
