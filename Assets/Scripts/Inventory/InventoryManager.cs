@@ -137,6 +137,19 @@ public class InventoryManager : MonoBehaviour
             Rigidbody rb = droppedItem.AddComponent<Rigidbody>();
             rb.AddForce(playerCamera.transform.up * 5f, ForceMode.Impulse); // Add some upward force to the item
 
+            CraftingManager craftingManager = droppedItem.AddComponent<CraftingManager>();
+            if (item.itemName == "Wood")
+            {
+                droppedItem.tag = "Wood";
+                craftingManager.wood = item;
+            }
+            else if (item.itemName == "Stone")
+            {
+                droppedItem.tag = "Stone";
+                craftingManager.stone = item;
+            }
+
+
             //log
             Debug.Log("Dropped " + item.itemName + " into the world.");
         }
