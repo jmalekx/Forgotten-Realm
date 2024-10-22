@@ -99,23 +99,6 @@ public class InventoryManager : MonoBehaviour
 
         UpdateInventoryUI();
     }
-
-    // Handle number keys to select item
-    private void OnNumberKeyPressed(InputAction.CallbackContext context)
-    {
-        int pressedKey = (int)context.ReadValue<float>();  // Get number key pressed (1-0)
-        if (pressedKey >= 1 && pressedKey <= 9)
-        {
-            selectedItemIndex = pressedKey - 1;  // Inventory slots map to 1-9 keys
-        }
-        else if (pressedKey == 0)
-        {
-            selectedItemIndex = 9;  // 0 key maps to 10th slot
-        }
-
-        UpdateInventoryUI();
-    }
-
     //handle dropping an item
     private void OnDropItem(InputAction.CallbackContext context)
     {
@@ -127,6 +110,7 @@ public class InventoryManager : MonoBehaviour
             {
                 //decrease the item count by one
                 selectedItem.count--;
+                UpdateInventoryUI();
 
                 //if the count reaches zero remove the item from inventory
                 if (selectedItem.count <= 0)
@@ -136,9 +120,6 @@ public class InventoryManager : MonoBehaviour
 
                 //place the item back into the world
                 DropItemToWorld(selectedItem);
-
-                //update the UI after removal
-                UpdateInventoryUI();
             }
         }
     }
