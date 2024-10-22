@@ -15,9 +15,10 @@ GameObject:
   - component: {fileID: 7536441802395000103}
   - component: {fileID: -2943873437471328985}
   - component: {fileID: 6496149659932046651}
+  - component: {fileID: -3740388045817002562}
   m_Layer: 0
   m_Name: Stone
-  m_TagString: Untagged
+  m_TagString: Stone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -65,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6f27aae2e521588468337a9f4c98519d, type: 2}
+  - {fileID: 2100000, guid: 8a7b21f39d3b0df4ca2a0fa5cd8918fe, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -169,3 +170,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-3740388045817002562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5667204126385634317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d220c9d8076b01f4e9539103457bb922, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wood: {fileID: 11400000, guid: bbf05760390f52b4c960af477e5baf35, type: 2}
+  stone: {fileID: 11400000, guid: fadea3d57e888824996757aa59a32f9f, type: 2}
+  dagger: {fileID: 11400000, guid: aac3ca4828ef5c54a808dd3a262dd36a, type: 2}

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: d220c9d8076b01f4e9539103457bb922
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - wood: {fileID: 11400000, guid: bbf05760390f52b4c960af477e5baf35, type: 2}
+  - stone: {fileID: 11400000, guid: fadea3d57e888824996757aa59a32f9f, type: 2}
+  - dagger: {fileID: 11400000, guid: aac3ca4828ef5c54a808dd3a262dd36a, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
