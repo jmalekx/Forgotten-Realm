@@ -110,6 +110,7 @@ public class InventoryManager : MonoBehaviour
             {
                 //decrease the item count by one
                 selectedItem.count--;
+                UpdateInventoryUI();
 
                 //if the count reaches zero remove the item from inventory
                 if (selectedItem.count <= 0)
@@ -119,9 +120,6 @@ public class InventoryManager : MonoBehaviour
 
                 //place the item back into the world
                 DropItemToWorld(selectedItem);
-
-                //update the UI after removal
-                UpdateInventoryUI();
             }
         }
     }
