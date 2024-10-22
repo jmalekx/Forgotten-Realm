@@ -2727,6 +2727,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fd7be570a74e884ebcf7e1fd218e5c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collectibleItemData: {fileID: 0}
 --- !u!136 &369997419
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5750,6 +5751,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fd7be570a74e884ebcf7e1fd218e5c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collectibleItemData: {fileID: 0}
 --- !u!136 &996567870
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -6238,6 +6240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fd7be570a74e884ebcf7e1fd218e5c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collectibleItemData: {fileID: 0}
 --- !u!136 &1105529000
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -11983,6 +11986,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fd7be570a74e884ebcf7e1fd218e5c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collectibleItemData: {fileID: 0}
 --- !u!136 &1925495487
 CapsuleCollider:
   m_ObjectHideFlags: 0
