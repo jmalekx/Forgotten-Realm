@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class ItemSlot : MonoBehaviour
 {
     public Image iconImage;
+    public Image tintOverlay;
     public TMP_Text countText;
     public TMP_Text itemNameText;
     public void UpdateSlot(ItemData itemData)
@@ -16,6 +17,7 @@ public class ItemSlot : MonoBehaviour
             iconImage.sprite = itemData.icon;
             countText.text = itemData.count > 1 ? itemData.count.ToString() : ""; // Set item count
             iconImage.enabled = true;
+            tintOverlay.enabled = false;
 
             if (itemData.icon == null)
             {
@@ -24,7 +26,8 @@ public class ItemSlot : MonoBehaviour
             }
             else
             {
-                itemNameText.enabled = false; 
+                itemNameText.enabled = false;
+                iconImage.color = new Color(1.5f, 1.5f, 1.5f, 1.5f);
             }
         }
         else
@@ -37,22 +40,23 @@ public class ItemSlot : MonoBehaviour
     public void ClearSlot()
     {
         iconImage.sprite = null;
-        iconImage.enabled = false;
+        iconImage.color = new Color(0f, 0f, 0f, 0f);
         countText.text = "";
         itemNameText.enabled = false;
+        tintOverlay.enabled = false;
     }
 
     public void SetSelected(bool isSelected)
     {
         if (isSelected)
         {
-            iconImage.color = new Color(1f, 0f, 1f, 1f); // Purple
-            countText.color = new Color(1f, 0f, 1f, 1f); 
+            tintOverlay.enabled = true;
+            tintOverlay.color = new Color(1f, 0f, 1f, 0.15f);
+ 
         }
         else
         {
-            iconImage.color = iconImage.sprite != null ? Color.white : new Color(0f, 0f, 0f, 0f); // Reset or transparent if empty
-            countText.color = Color.white; //
+            tintOverlay.enabled = false;
         }
     }
 }
