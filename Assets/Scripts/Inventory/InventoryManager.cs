@@ -4,6 +4,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -64,22 +65,27 @@ public class InventoryManager : MonoBehaviour
         }
 
         //create new item panel for each item in the inventory
-        for (int i = 0; i < inventory.items.Count; i++)
+        int maxSlots = 10;
+        for (int i = 0; i < maxSlots; i++)
         {
             GameObject newItemPanel = Instantiate(itemPanelPrefab, itemPanelGrid.transform);
             ItemSlot itemSlot = newItemPanel.GetComponent<ItemSlot>();
 
             if (itemSlot != null)
             {
-                itemSlot.UpdateSlot(inventory.items[i]);
-
-                //update the item name text color based on selection
-                TextMeshProUGUI itemNameText = itemSlot.GetComponentInChildren<TextMeshProUGUI>();
-                if (itemNameText != null)
+                if (i < inventory.items.Count)
                 {
-                    itemNameText.text = inventory.items[i].itemName;
-                    itemNameText.color = (i == selectedItemIndex) ? Color.blue : Color.white;  //highlight selected item
+
+                    itemSlot.UpdateSlot(inventory.items[i]);
+
                 }
+                else
+                {
+                    itemSlot.ClearSlot();
+          
+                }
+
+                itemSlot.SetSelected(i == selectedItemIndex);
             }
         }
     }
@@ -88,13 +94,14 @@ public class InventoryManager : MonoBehaviour
     private void OnScroll(InputAction.CallbackContext context)
     {
         Vector2 scrollValue = context.ReadValue<Vector2>();
+        int maxSlots = 10;
         if (scrollValue.y > 0)
         {
-            selectedItemIndex = Mathf.Max(0, selectedItemIndex - 1); // Scroll up
+            selectedItemIndex = (selectedItemIndex - 1 + maxSlots) % maxSlots; // Scroll up
         }
         else if (scrollValue.y < 0)
         {
-            selectedItemIndex = Mathf.Min(inventory.items.Count - 1, selectedItemIndex + 1); // Scroll down
+            selectedItemIndex = (selectedItemIndex + 1) % maxSlots; // Scroll down
         }
 
         UpdateInventoryUI();
