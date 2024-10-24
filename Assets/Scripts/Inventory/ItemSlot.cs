@@ -51,7 +51,7 @@ public class ItemSlot : MonoBehaviour
         if (isSelected)
         {
             tintOverlay.enabled = true;
-            tintOverlay.color = new Color(1f, 0f, 1f, 0.2f);
+            tintOverlay.color = new Color(0.6f, 0f, 0.9f, 0.5f);
  
         }
         else
