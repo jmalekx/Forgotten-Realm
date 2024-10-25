@@ -1,0 +1,42 @@
+fileFormatVersion: 2
+guid: bddd73eb535bb654d9eb3da00f24c7f5
+labels:
+- 2d
+- PBR
+- Shaders
+- fall
+- grass
+- ground
+- grounddetails
+- handpainted
+- ice
+- lava
+- leaves
+- materials
+- mushrooms
+- nature
+- paintedtextures
+- rock
+- rocks
+- stone
+- stylized
+- summer
+- textures
+- texures
+- tiles
+- vegetation
+- winter
+timeCreated: 1503431171
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: textures & materials
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 49170
+  packageName: Painted Tiles - Sleeping Forest
+  packageVersion: 1.1
+  assetPath: Assets/Toby Fredson/Hand Painted Tiles - SleepingForest/Materials/MaterialBall
+    (2).mat
+  uploadId: 198574
