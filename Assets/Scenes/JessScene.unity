@@ -1469,7 +1469,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2436052964748980451, guid: 83ec27ed9134c96499e8526c2442077f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -195.28
+      value: -194.42
       objectReference: {fileID: 0}
     - target: {fileID: 2436052964748980451, guid: 83ec27ed9134c96499e8526c2442077f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1477,7 +1477,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2436052964748980451, guid: 83ec27ed9134c96499e8526c2442077f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 350.18
+      value: 349.72
       objectReference: {fileID: 0}
     - target: {fileID: 2436052964748980451, guid: 83ec27ed9134c96499e8526c2442077f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1927,7 +1927,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 746700243970013678, guid: 4b994c3f8b0cd7547ab91743cd2f48ac, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -193.39339
+      value: -192.45
       objectReference: {fileID: 0}
     - target: {fileID: 746700243970013678, guid: 4b994c3f8b0cd7547ab91743cd2f48ac, type: 3}
       propertyPath: m_LocalPosition.y
@@ -8544,7 +8544,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 1711789845}
-  interactionRange: 3.5
+  interactionRange: 3.6
   itemPromptPrefab: {fileID: 5307971043835590166, guid: 1be3a87e1c03b9346a34482c985b17ac, type: 3}
 --- !u!1 &1905070413
 GameObject:

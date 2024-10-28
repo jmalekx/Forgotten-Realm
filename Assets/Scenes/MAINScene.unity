@@ -5637,7 +5637,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 1916726482}
-  interactionRange: 3.5
+  interactionRange: 3.6
   itemPromptPrefab: {fileID: 5307971043835590166, guid: 1be3a87e1c03b9346a34482c985b17ac, type: 3}
 --- !u!4 &1099851316 stripped
 Transform:
