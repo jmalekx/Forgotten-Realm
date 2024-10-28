@@ -5507,6 +5507,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1093515914}
+  - component: {fileID: 1093515917}
   - component: {fileID: 1093515913}
   - component: {fileID: 1093515915}
   - component: {fileID: 1093515916}
@@ -5623,6 +5624,21 @@ MonoBehaviour:
   m_DefaultActionMap: Main
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 1916726482}
+--- !u!114 &1093515917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1093515912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b8ce5aaef3b9da45954d236d9bf932d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCamera: {fileID: 1916726482}
+  interactionRange: 3.6
+  itemPromptPrefab: {fileID: 5307971043835590166, guid: 1be3a87e1c03b9346a34482c985b17ac, type: 3}
 --- !u!4 &1099851316 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 259189318982006495, guid: 7beee9c6a5972c7499c6a3c8bf05d4d3, type: 3}
@@ -10745,7 +10761,7 @@ GameObject:
   - component: {fileID: 1916726481}
   - component: {fileID: 1916726480}
   - component: {fileID: 1916726483}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlayerCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
