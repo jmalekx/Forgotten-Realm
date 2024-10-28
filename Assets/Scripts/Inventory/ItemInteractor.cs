@@ -1,14 +1,36 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.InputSystem;
 
 public class ItemInteractor : MonoBehaviour
 {
     public Camera playerCamera;
     public float interactionRange = 3.0f; //interaction range
     public GameObject itemPromptPrefab; //prefab for text
+
     private GameObject currentPrompt; //current prompt
     private Collectible currentItem; //collectible
+    private PlayerInput playerInput;
+    private InputAction interactAction;
 
+    private void Awake()
+    {
+        playerInput = new PlayerInput();
+        interactAction = playerInput.Main.Interact;
+
+    }
+
+    private void OnEnable()
+    {
+        interactAction.Enable();
+        interactAction.performed += OnPickup;
+    }
+
+    private void OnDisable()
+    {
+        interactAction.performed -= OnPickup;
+        interactAction.Disable();
+    }
     void Update()
     {
         //raycast from camera center
@@ -21,17 +43,22 @@ public class ItemInteractor : MonoBehaviour
             Collectible collectible = hit.collider.GetComponent<Collectible>();
             if (collectible != null)
             {
-                currentItem = collectible; //item to collectible
-                ShowItemPrompt(collectible.collectibleItemData.itemName, collectible.transform.position); //show prompt
+                if (currentItem != collectible)
+                {
+                    currentItem = collectible;
+                    ShowItemPrompt(collectible.collectibleItemData.itemName, collectible.transform.position);
+                }
             }
             else
             {
                 HideItemPrompt();
+                currentItem = null;
             }
         }
         else
         {
             HideItemPrompt();
+            currentItem = null;
         }
 
         //if prompt active, rotate to player camera
@@ -41,6 +68,20 @@ public class ItemInteractor : MonoBehaviour
         }
     }
 
+    void OnPickup(InputAction.CallbackContext context)
+    {
+        if (currentItem != null)
+        {
+            PickupItem();
+        }
+    }
+    void PickupItem()
+    {
+        Inventory.Instance.AddItem(currentItem.collectibleItemData); //add item
+        Destroy(currentItem.gameObject); //destroy collectible object
+        currentItem = null; //clear current item
+        HideItemPrompt(); 
+    }
     private void ShowItemPrompt(string itemName, Vector3 position)
     {
         if (currentPrompt == null)
@@ -59,7 +100,7 @@ public class ItemInteractor : MonoBehaviour
         }
         if (staticText != null)
         {
-            staticText.text = "pickup item"; //text that never changes - if do e to pickup can change this to that
+            staticText.text = "E to pickup item"; //text that never changes - if do e to pickup can change this to that
         }
 
         //update promp above text
