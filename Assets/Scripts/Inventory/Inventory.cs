@@ -20,6 +20,23 @@ public class Inventory : MonoBehaviour
         items.Clear();
     }
 
+    public void UseItem(ItemData itemToUse)
+    {
+        if (itemToUse.count >0)
+        {
+            HealthBar.value = Mathf.Min(HealthBar.maxValue, HealthBar.value + itemToUse.healthRestoreAmount);
+            itemToUse.count--;
+
+            if (itemToUse.count <= 0 )
+            {
+                items.Remove(itemToUse);
+            }
+
+            OnInventoryChanged?.Invoke();
+            Debug.Log("Consumed " + itemToUse.itemName + ", health restored by " + itemToUse.healthRestoreAmount);
+        }
+    }
+
 //------------------------------------------------------------------------------------------------------------
     public void AddItem(ItemData itemToAdd)
     {
@@ -41,9 +58,9 @@ public class Inventory : MonoBehaviour
             items.Add(itemToAdd); // add new item if it does not exist
             
         }
-        if(itemToAdd.itemName == "Apple"){
-            HealthBar.value +=20;
-        }
+        //if(itemToAdd.itemName == "Apple"){
+        //    HealthBar.value +=20;
+        //}
 
         OnInventoryChanged?.Invoke(); // notify the UI to update
         Debug.Log(itemToAdd.itemName + " added to inventory. Total count: " + itemToAdd.count);

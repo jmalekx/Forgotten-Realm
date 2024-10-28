@@ -89,6 +89,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Use"",
+                    ""type"": ""Button"",
+                    ""id"": ""a5dd5ccc-1376-4f51-8ece-dee605b1bb4c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -309,6 +318,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3350e693-ef13-4639-a40b-6d04a7ff0ee3"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Use"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -903,6 +923,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Main_Drop = m_Main.FindAction("Drop", throwIfNotFound: true);
         m_Main_Interact = m_Main.FindAction("Interact", throwIfNotFound: true);
         m_Main_NumberKeys = m_Main.FindAction("NumberKeys", throwIfNotFound: true);
+        m_Main_Use = m_Main.FindAction("Use", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -983,6 +1004,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Main_Drop;
     private readonly InputAction m_Main_Interact;
     private readonly InputAction m_Main_NumberKeys;
+    private readonly InputAction m_Main_Use;
     public struct MainActions
     {
         private @PlayerInput m_Wrapper;
@@ -994,6 +1016,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @Drop => m_Wrapper.m_Main_Drop;
         public InputAction @Interact => m_Wrapper.m_Main_Interact;
         public InputAction @NumberKeys => m_Wrapper.m_Main_NumberKeys;
+        public InputAction @Use => m_Wrapper.m_Main_Use;
         public InputActionMap Get() { return m_Wrapper.m_Main; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1024,6 +1047,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @NumberKeys.started += instance.OnNumberKeys;
             @NumberKeys.performed += instance.OnNumberKeys;
             @NumberKeys.canceled += instance.OnNumberKeys;
+            @Use.started += instance.OnUse;
+            @Use.performed += instance.OnUse;
+            @Use.canceled += instance.OnUse;
         }
 
         private void UnregisterCallbacks(IMainActions instance)
@@ -1049,6 +1075,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @NumberKeys.started -= instance.OnNumberKeys;
             @NumberKeys.performed -= instance.OnNumberKeys;
             @NumberKeys.canceled -= instance.OnNumberKeys;
+            @Use.started -= instance.OnUse;
+            @Use.performed -= instance.OnUse;
+            @Use.canceled -= instance.OnUse;
         }
 
         public void RemoveCallbacks(IMainActions instance)
@@ -1238,6 +1267,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnDrop(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnNumberKeys(InputAction.CallbackContext context);
+        void OnUse(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
