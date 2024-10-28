@@ -51,6 +51,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "0a65c568-5a19-41ff-83e5-cbd26e853964",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "NumberKeys",
                     "type": "Button",
                     "id": "14b73003-73e3-4e76-bfcc-ea60ea099f05",
@@ -267,6 +276,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "NumberKeys",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "51eaf1f2-1faa-471c-94f3-eb052eea7b2d",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
