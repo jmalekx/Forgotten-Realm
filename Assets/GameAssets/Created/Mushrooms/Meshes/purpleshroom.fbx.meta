@@ -3,7 +3,22 @@ guid: 8d691bc89a9a4934188e4b87dda2a969
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Shroom
+    second: {fileID: 2100000, guid: d6581d5f08a2eda4b9e7a2ed9d08b569, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ShroomSpots
+    second: {fileID: 2100000, guid: cc364846ccb954841a9f118204195410, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ShroomStalk
+    second: {fileID: 2100000, guid: 2d5580028036c9845aef51ac12a4dcec, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
