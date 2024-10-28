@@ -17,5 +17,8 @@ public class ItemData : ScriptableObject
     public Sprite icon;
     public int count;
     public GameObject itemPrefab;
+
+    public bool isConsumable;
+    public int healthRestoreAmount;
 }
 

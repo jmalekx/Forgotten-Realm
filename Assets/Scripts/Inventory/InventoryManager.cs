@@ -18,6 +18,7 @@ public class InventoryManager : MonoBehaviour
     private PlayerInput playerInput;
     private InputAction scrollAction;
     private InputAction dropAction;
+    private InputAction useAction;
 
     private Inventory inventory;
     private int selectedItemIndex = 0;
@@ -34,6 +35,7 @@ public class InventoryManager : MonoBehaviour
         playerInput = new PlayerInput();
         scrollAction = playerInput.UI.ScrollWheel;
         dropAction = playerInput.Main.Drop;
+        useAction = playerInput.Main.Use;
 
         OnEnable();
     }
@@ -42,18 +44,33 @@ public class InventoryManager : MonoBehaviour
     {
         scrollAction.Enable();
         dropAction.Enable();
+        useAction.Enable();
 
         scrollAction.performed += OnScroll;
         dropAction.performed += OnDropItem;
+        useAction.performed += OnUseItem;
     }
 
     void OnDisable()
     {
         scrollAction.performed -= OnScroll;
         dropAction.performed -= OnDropItem;
+        useAction.performed -= OnUseItem;
 
         scrollAction.Disable();
         dropAction.Disable();
+    }
+    void OnUseItem(InputAction.CallbackContext context)
+    {
+        if (inventory.items.Count > 0 && selectedItemIndex < inventory.items.Count)
+        {
+            ItemData selectedItem = inventory.items[selectedItemIndex];
+            if (selectedItem.isConsumable)
+            {
+                inventory.UseItem(selectedItem);
+                UpdateInventoryUI();
+            }
+        }
     }
 
     void UpdateInventoryUI()
