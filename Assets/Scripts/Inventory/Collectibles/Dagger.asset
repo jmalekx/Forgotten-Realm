@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Dagger
   icon: {fileID: 21300000, guid: 44305c72f381c02438a82b602f23d539, type: 3}
-  count: 1
-  itemPrefab: {fileID: 7524377764197213444, guid: daf317255c894784f89f3ea3e02bd127, type: 3}
+  count: 0
+  itemPrefab: {fileID: 3781618474913775520, guid: 1cc4721bb827e0243bbbd60f05f1fa5f, type: 3}
+  isConsumable: 0
+  healthRestoreAmount: 0

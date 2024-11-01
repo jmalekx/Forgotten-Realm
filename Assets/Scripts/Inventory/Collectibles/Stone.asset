@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Stone
   icon: {fileID: 0}
-  count: 2
+  count: 0
   itemPrefab: {fileID: 5667204126385634317, guid: cfaf4bb5bf23a704c8d3c244150b182f, type: 3}
+  isConsumable: 0
+  healthRestoreAmount: 0

@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Wood
   icon: {fileID: 0}
-  count: 2
+  count: 0
   itemPrefab: {fileID: 2806829959780113856, guid: c859e6e66e9323e4cb69c75e9ce3ca44, type: 3}
+  isConsumable: 0
+  healthRestoreAmount: 0

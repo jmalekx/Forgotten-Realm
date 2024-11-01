@@ -155,7 +155,7 @@ public class InventoryManager : MonoBehaviour
         {
             //position in fron of player camera
             Vector3 dropPosition = playerCamera.transform.position + playerCamera.transform.forward * 3.5f; // can adjust distance
-            GameObject droppedItem = Instantiate(item.itemPrefab, dropPosition, Quaternion.identity);
+            GameObject droppedItem = Instantiate(item.itemPrefab, dropPosition, item.itemPrefab.transform.rotation);
 
             // Optionally, add a Rigidbody component for physics interactions
             Rigidbody rb = droppedItem.AddComponent<Rigidbody>();
