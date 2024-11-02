@@ -23,5 +23,8 @@ public class ItemData : ScriptableObject
     public bool isConsumable;
     public int healthRestoreAmount;
 
+    [Header("Display Info")]
+    public string customDescription;
+
 }
 

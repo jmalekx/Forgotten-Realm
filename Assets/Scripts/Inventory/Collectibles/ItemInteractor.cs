@@ -93,6 +93,7 @@ public class ItemInteractor : MonoBehaviour
         //access components and update
         TMP_Text dynamicText = currentPrompt.transform.Find("dynamic").GetComponent<TMP_Text>();
         TMP_Text staticText = currentPrompt.transform.Find("static").GetComponent<TMP_Text>();
+        TMP_Text customText = currentPrompt.transform.Find("customDescription").GetComponent<TMP_Text>();
 
         if (dynamicText != null)
         {
@@ -101,6 +102,10 @@ public class ItemInteractor : MonoBehaviour
         if (staticText != null)
         {
             staticText.text = "E to pickup item"; //text that never changes - if do e to pickup can change this to that
+        }
+        if (customText != null)
+        {
+            customText.text = currentItem.collectibleItemData.customDescription; //custom item desc 
         }
 
         //update promp above text
