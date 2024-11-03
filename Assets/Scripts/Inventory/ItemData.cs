@@ -13,12 +13,18 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Item", menuName = "Inventory/Item")]
 public class ItemData : ScriptableObject
 {
+    [Header("Item")]
     public string itemName;
     public Sprite icon;
     public int count;
     public GameObject itemPrefab;
 
+    [Header("If Food")]
     public bool isConsumable;
     public int healthRestoreAmount;
+
+    [Header("Display Info")]
+    public string customDescription;
+
 }
 

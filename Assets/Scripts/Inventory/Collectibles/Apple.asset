@@ -18,3 +18,4 @@ MonoBehaviour:
   itemPrefab: {fileID: 1436321320934963955, guid: 069c9cbc336ac3542b6be681742e4035, type: 3}
   isConsumable: 1
   healthRestoreAmount: 20
+  customDescription: +20 health

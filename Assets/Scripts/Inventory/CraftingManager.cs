@@ -32,7 +32,7 @@ public class CraftingManager : MonoBehaviour
         DestroyGameObjectsWithTag("Wood");
         DestroyGameObjectsWithTag("Stone");
 
-        // Instantiate a dagger at the position of the crafting manager
+        // Instantiatse a dagger at the position of the crafting manager
         Vector3 spawnPosition = transform.position;
         Instantiate(dagger.itemPrefab, spawnPosition, Quaternion.identity);
 
