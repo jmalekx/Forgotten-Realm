@@ -60,12 +60,11 @@ public class PlayerController : MonoBehaviour
     [Header("Attacking")]
     public float attackDistance = 7f;
 
-   
-
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
         rb.freezeRotation = true;
         readyToJump = true;
         isCooldown = false;
