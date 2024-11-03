@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a7b9a8f2addc0b4da3ed82d21bcd89f, type: 3}
+  m_Name: Scroll
+  m_EditorClassIdentifier: 
+  itemName: Scroll
+  icon: {fileID: 21300000, guid: 005bd661d50b51248870a7fb6c6e862e, type: 3}
+  count: 1
+  itemPrefab: {fileID: 8716080559934413041, guid: 3d8b1f80d60568e4c9af6d16c0448a28, type: 3}
+  isConsumable: 0
+  healthRestoreAmount: 0
+  customDescription: view objectives
