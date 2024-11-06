@@ -3,7 +3,12 @@ guid: 17f7f8a246ccf944d91472af7d4380a3
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ossos
+    second: {fileID: 2100000, guid: 5755286ab71366d4188216c8b536b1a8, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
