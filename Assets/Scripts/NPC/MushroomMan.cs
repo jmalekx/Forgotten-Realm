@@ -103,6 +103,7 @@ public class MushroomMan : MonoBehaviour
     }
     void SaySomething()
     {
+        _animator.SetBool("isMoving", false);
         dialogueText.text = dialogue;
         dialogueText.gameObject.SetActive(true);
         dialogueTimer = dialogueDuration;
