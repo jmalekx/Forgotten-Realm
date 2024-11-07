@@ -101,21 +101,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  moveDistance: 4
+  moveDistance: 7
+  noiseScale: 0.1
   minRange: 1
   maxRange: 5
   ground:
     serializedVersion: 2
     m_Bits: 64
-  objectHeight: 0.0451
+  objectHeight: 0.0452
   _animator: {fileID: 5674129517359008627}
   player: {fileID: 0}
   dialogueRange: 5
   dialogue: oh!!!!
   dialogueText: {fileID: 0}
   dialogueDuration: 2
-  targetX: -1
-  targetZ: 63
+  targetX: 40
+  targetZ: 83
 --- !u!143 &6660661619578040186
 CharacterController:
   m_ObjectHideFlags: 0
@@ -137,8 +138,8 @@ CharacterController:
   serializedVersion: 3
   m_Height: 1.5
   m_Radius: 0.52
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
+  m_SlopeLimit: 70
+  m_StepOffset: 0.7
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.6, z: 0}

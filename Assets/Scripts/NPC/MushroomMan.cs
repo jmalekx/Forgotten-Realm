@@ -165,7 +165,13 @@ public class MushroomMan : MonoBehaviour
 
         if (distanceToTarget > 0.1f)
         {
-            characterController.Move(direction * moveSpeed * Time.fixedDeltaTime);
+            Vector3 movement = direction * moveSpeed * Time.fixedDeltaTime;
+            //custom gravity to keep the character grounded
+            if (!characterController.isGrounded)
+            {
+                movement.y -= 9.81f * Time.fixedDeltaTime;
+            }
+            characterController.Move(movement);
         }
         else
         {
