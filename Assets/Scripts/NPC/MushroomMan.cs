@@ -1,12 +1,12 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem.HID;
 
 public class MushroomMan : MonoBehaviour
 {
     [Header("Movement")]
     public float moveSpeed;
     public float moveDistance; //max distance to move per move
+    public float noiseScale = 0.1f; //scale of Perlin noise for movement
     public float minRange; //range to move
     public float maxRange;
 
@@ -40,11 +40,19 @@ public class MushroomMan : MonoBehaviour
 
     private CharacterController characterController;
 
+    //variables for perlin noise
+    private float noiseOffsetX;
+    private float noiseOffsetZ;
+
     void Start()
     {
         characterController = GetComponent<CharacterController>();
         StopAndWait();
         dialogueText.gameObject.SetActive(false); //disable dialogue text
+
+        //initialize perlin noise offsets to random values
+        noiseOffsetX = Random.Range(0f, 100f);
+        noiseOffsetZ = Random.Range(0f, 100f);
     }
 
     void FixedUpdate() //for consistent physics calculations
@@ -93,15 +101,7 @@ public class MushroomMan : MonoBehaviour
     void CheckPlayerDistance()
     {
         float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
-
-        if (distanceToPlayer <= dialogueRange)
-        {
-            isNearPlayer = true;  //pause movement if player near
-        }
-        else
-        {
-            isNearPlayer = false;
-        }
+        isNearPlayer = distanceToPlayer <= dialogueRange;
     }
     void SaySomething()
     {
@@ -126,12 +126,10 @@ public class MushroomMan : MonoBehaviour
 
     void ChooseNewTargetPosition()
     {
-        Vector3 randomDirection = new Vector3(
-            Random.Range(-moveDistance, moveDistance),
-            0,
-            Random.Range(-moveDistance, moveDistance)
-        );
+        float offsetX = (Mathf.PerlinNoise(Time.time * noiseScale + noiseOffsetX, 0) - 0.5f) * 2.0f;
+        float offsetZ = (Mathf.PerlinNoise(0, Time.time * noiseScale + noiseOffsetZ) - 0.5f) * 2.0f;
 
+        Vector3 randomDirection = new Vector3(offsetX, 0, offsetZ) * moveDistance;
         targetPosition = transform.position + randomDirection;
         SetTargetPositionToGround();
     }
