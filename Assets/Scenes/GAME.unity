@@ -6515,7 +6515,7 @@ MonoBehaviour:
   ground:
     serializedVersion: 2
     m_Bits: 64
-  objectHeight: 1.5
+  objectHeight: 0.0451
   _animator: {fileID: 1249251843}
   player: {fileID: 1892168047}
   dialogueRange: 5
