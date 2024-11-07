@@ -12540,6 +12540,10 @@ PrefabInstance:
       value: 83
       objectReference: {fileID: 0}
     - target: {fileID: 4333819836646491326, guid: 4e98b6e4b3eb3c045aba3d855ad5b759, type: 3}
+      propertyPath: maxRange
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4333819836646491326, guid: 4e98b6e4b3eb3c045aba3d855ad5b759, type: 3}
       propertyPath: dialogueText
       value: 
       objectReference: {fileID: 15515506}
