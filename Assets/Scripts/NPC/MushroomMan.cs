@@ -1,18 +1,22 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem.HID;
 
 public class MushroomMan : MonoBehaviour
 {
     [Header("Movement")]
     public float moveSpeed;
     public float moveDistance; //max distance to move per move
+    public float noiseScale = 0.1f; //scale of Perlin noise for movement
     public float minRange; //range to move
     public float maxRange;
 
     [Header("Ground detection")]
     public LayerMask ground;
     public float objectHeight;
+
+    [Header("Animation")]
+    [SerializeField]
+    private Animator _animator;
 
     [Header("Dialogue")]
     public GameObject player;  //player detection
@@ -36,11 +40,19 @@ public class MushroomMan : MonoBehaviour
 
     private CharacterController characterController;
 
+    //variables for perlin noise
+    private float noiseOffsetX;
+    private float noiseOffsetZ;
+
     void Start()
     {
         characterController = GetComponent<CharacterController>();
         StopAndWait();
         dialogueText.gameObject.SetActive(false); //disable dialogue text
+
+        //initialize perlin noise offsets to random values
+        noiseOffsetX = Random.Range(0f, 100f);
+        noiseOffsetZ = Random.Range(0f, 100f);
     }
 
     void FixedUpdate() //for consistent physics calculations
@@ -49,11 +61,13 @@ public class MushroomMan : MonoBehaviour
 
         if (isNearPlayer && !dialogueActivated)
         {
+            _animator.SetBool("isReact", true);
             //pause and do dialogue if the player nearby
             SaySomething();
         }
         else if (!dialogueActivated)
         {
+            _animator.SetBool("isReact", false);
             //normal random movement if the player not nearby
             if (isMoving)
             {
@@ -87,18 +101,11 @@ public class MushroomMan : MonoBehaviour
     void CheckPlayerDistance()
     {
         float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
-
-        if (distanceToPlayer <= dialogueRange)
-        {
-            isNearPlayer = true;  //pause movement if player near
-        }
-        else
-        {
-            isNearPlayer = false;
-        }
+        isNearPlayer = distanceToPlayer <= dialogueRange;
     }
     void SaySomething()
     {
+        _animator.SetBool("isMoving", false);
         dialogueText.text = dialogue;
         dialogueText.gameObject.SetActive(true);
         dialogueTimer = dialogueDuration;
@@ -108,6 +115,7 @@ public class MushroomMan : MonoBehaviour
     void HideDialogue()
     {
         dialogueText.gameObject.SetActive(false);
+        _animator.SetBool("isReact", false);
     }
     void MoveToVillage()
     {
@@ -118,12 +126,10 @@ public class MushroomMan : MonoBehaviour
 
     void ChooseNewTargetPosition()
     {
-        Vector3 randomDirection = new Vector3(
-            Random.Range(-moveDistance, moveDistance),
-            0,
-            Random.Range(-moveDistance, moveDistance)
-        );
+        float offsetX = (Mathf.PerlinNoise(Time.time * noiseScale + noiseOffsetX, 0) - 0.5f) * 2.0f;
+        float offsetZ = (Mathf.PerlinNoise(0, Time.time * noiseScale + noiseOffsetZ) - 0.5f) * 2.0f;
 
+        Vector3 randomDirection = new Vector3(offsetX, 0, offsetZ) * moveDistance;
         targetPosition = transform.position + randomDirection;
         SetTargetPositionToGround();
     }
@@ -135,10 +141,12 @@ public class MushroomMan : MonoBehaviour
         {
             targetPosition = hit.point + Vector3.up * objectHeight; //ensure object stays above the terrain
             isMoving = true;
+            _animator.SetBool("isMoving", true);
         }
         else
         {
             isMoving = false;
+            _animator.SetBool("isMoving", false);
         }
     }
 
@@ -146,32 +154,44 @@ public class MushroomMan : MonoBehaviour
     {
         Vector3 targetXZ = new Vector3(targetPosition.x, transform.position.y, targetPosition.z);
         Vector3 direction = (targetXZ - transform.position).normalized;
-        characterController.Move(direction * moveSpeed * Time.fixedDeltaTime);
+        float distanceToTarget = Vector3.Distance(transform.position, targetXZ);
 
-        //raycast down to adjust Y position based on terrain
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position + Vector3.up * 10f, Vector3.down, out hit, Mathf.Infinity, ground))
+        //rotation towards target for more natural movement
+        if (direction != Vector3.zero) //ensure direction
         {
-            //set object y position based on the terrain height
-            transform.position = new Vector3(transform.position.x, hit.point.y + objectHeight, transform.position.z);
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.fixedDeltaTime * 5f); //5f=rotation speed
         }
 
-        //check if reached target
-        if (Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(targetPosition.x, 0, targetPosition.z)) < 0.1f)
+        if (distanceToTarget > 0.1f)
+        {
+            Vector3 movement = direction * moveSpeed * Time.fixedDeltaTime;
+            //custom gravity to keep the character grounded
+            if (!characterController.isGrounded)
+            {
+                movement.y -= 9.81f * Time.fixedDeltaTime;
+            }
+            characterController.Move(movement);
+        }
+        else
         {
             isMoving = false;
+            _animator.SetBool("isMoving", false);
             StopAndWait();
 
             if (moveToVillage)
             {
                 moveToVillage = false;
             }
-            else
-            {
-                StopAndWait();
-            }
+        }
+
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position + Vector3.up * 10f, Vector3.down, out hit, Mathf.Infinity, ground))
+        {
+            transform.position = new Vector3(transform.position.x, hit.point.y + objectHeight, transform.position.z);
         }
     }
+
 
 
     void StopAndWait()
@@ -179,6 +199,7 @@ public class MushroomMan : MonoBehaviour
         stopDuration = Random.Range(minRange, maxRange);
         stopTimer = stopDuration;
         isMoving = false;
+        _animator.SetBool("isMoving", false);
     }
 
     void OnControllerColliderHit(ControllerColliderHit hit)
