@@ -53,11 +53,13 @@ public class MushroomMan : MonoBehaviour
 
         if (isNearPlayer && !dialogueActivated)
         {
+            _animator.SetBool("isReact", true);
             //pause and do dialogue if the player nearby
             SaySomething();
         }
         else if (!dialogueActivated)
         {
+            _animator.SetBool("isReact", false);
             //normal random movement if the player not nearby
             if (isMoving)
             {
@@ -113,6 +115,7 @@ public class MushroomMan : MonoBehaviour
     void HideDialogue()
     {
         dialogueText.gameObject.SetActive(false);
+        _animator.SetBool("isReact", false);
     }
     void MoveToVillage()
     {
