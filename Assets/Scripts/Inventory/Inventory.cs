@@ -56,11 +56,10 @@ public class Inventory : MonoBehaviour
         {
             itemToAdd.count = 1; // initialize count to 1 for a new item
             items.Add(itemToAdd); // add new item if it does not exist
-            
+
+            PopupManager.Instance.DisplayItemHint(itemToAdd.itemName);
+
         }
-        //if(itemToAdd.itemName == "Apple"){
-        //    HealthBar.value +=20;
-        //}
 
         OnInventoryChanged?.Invoke(); // notify the UI to update
         Debug.Log(itemToAdd.itemName + " added to inventory. Total count: " + itemToAdd.count);
