@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public TMP_Text DeathText;
     public Slider sprintSlider;
     public Slider HealthBar; 
+    public float HealthDecreaseSpeed;
 
     [Header("Moving")]
     private float moveSpeed;
@@ -59,6 +60,8 @@ public class PlayerController : MonoBehaviour
 
     [Header("Attacking")]
     public float attackDistance = 7f;
+    public float enemyAttackAmount;
+
 
 
     void Start()
@@ -73,6 +76,8 @@ public class PlayerController : MonoBehaviour
         sprintSlider.maxValue = sprintDuration;
         sprintSlider.value = sprintDuration;
         HealthBar.value = 100;
+        HealthDecreaseSpeed = MainMenu.ChosenHealthDecreaseSpeed;
+        enemyAttackAmount = MainMenu.ChosenenemyAttackAmount;
         
     }
     void Awake()
@@ -96,14 +101,25 @@ public class PlayerController : MonoBehaviour
         input.Attack.started += ctx => Attack();
         input.Sprint.performed += ctx => SprintStart();
         input.Sprint.canceled += ctx => SprintStop();
+    }
 
+    public void easy(){
+        HealthDecreaseSpeed = 0.5f;
+    }
+    public void medium(){
+        HealthDecreaseSpeed = 1f;
+
+    }
+    
+    public void hard(){
+        HealthDecreaseSpeed = 4f; 
     }
     void Update()
     {
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, ground); //checking if ground
         if (HealthBar.value > 0)
         {
-            HealthBar.value -= Time.deltaTime * 1; // Change the rate (1) to make it slower or faster
+            HealthBar.value -= Time.deltaTime * HealthDecreaseSpeed; // Change the rate (1) to make it slower or faster
         }
         GetInput();
         ControlSpeed();
@@ -123,7 +139,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("sword")) 
         {
-            HealthBar.value -= 10;
+            HealthBar.value -= enemyAttackAmount;
             if(HealthBar.value <= 0){
                 string displayText = "GAME OVER";
                 DeathText.text  = displayText;
