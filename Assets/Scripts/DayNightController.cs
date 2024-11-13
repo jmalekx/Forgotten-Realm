@@ -3,9 +3,10 @@ using UnityEngine;
 public class DayNightCycle : MonoBehaviour
 {
     public Light sun;  // Assign the directional light as the "sun"
-    public Light moon; // Optional: Create a second light for the moon
+    public Light moon; // Assign a directional light as the "moon"
     public float dayLength = 120f;  // Full day duration in seconds
-    public Gradient lightColor;  // Controls the sun's color as it changes over time
+    public Gradient lightColor;  // Controls the sun's color over time
+    public Gradient moonColor;  // Optional: Controls the moon's color over time
 
     private float time = 0f;  // Keeps track of the current time of day
 
@@ -24,23 +25,28 @@ public class DayNightCycle : MonoBehaviour
             dayProgress = 0f;
         }
 
-        // Start the sun higher in the sky, at 0 degrees instead of -90
-        float sunAngle = Mathf.Lerp(0f, 180f, dayProgress);  // 0 (mid-morning) to 180 (sunset)
+        // Calculate sun angle (0 to 180 degrees from mid-morning to sunset)
+        float sunAngle = Mathf.Lerp(0f, 180f, dayProgress);
         sun.transform.rotation = Quaternion.Euler(sunAngle, 170f, 0f);
 
-        // Change light color over the day
+        // Change sun's color and intensity over the day
         sun.color = lightColor.Evaluate(dayProgress);
+        sun.intensity = Mathf.Clamp01(Mathf.Cos(dayProgress * Mathf.PI));
 
-        // Adjust lighting intensity (starts bright and gets darker)
-        sun.intensity = Mathf.Clamp01(Mathf.Cos(dayProgress * Mathf.PI));  // Starts bright, gets darker
-
-        // Moon setup (optional): Enable moonlight at night
+        // Moon setup
         if (moon != null)
         {
-            if (dayProgress > 0.5f)
+            // Calculate moon angle (opposite to the sun's path)
+            float moonAngle = Mathf.Lerp(180f, 360f, dayProgress);
+            moon.transform.rotation = Quaternion.Euler(moonAngle, -170f, 0f);
+
+            // Enable moon only at night
+            if (dayProgress > 0.5f || dayProgress < 0.1f)  // Moon is on during dusk, night, and dawn
             {
                 moon.enabled = true;
-                moon.intensity = Mathf.Clamp01(Mathf.Cos((dayProgress - 0.5f) * Mathf.PI * 2));
+                moon.intensity = 0.5f;
+                moon.color = Color.white; // Temporarily set a bright color to test
+
             }
             else
             {
