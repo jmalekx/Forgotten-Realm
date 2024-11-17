@@ -15,6 +15,8 @@ public class PlayerCamera : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked; //locking cursor
         Cursor.visible = false;
+        sensitivityX = MainMenu.ChosenSensitivity;
+        sensitivityY = MainMenu.ChosenSensitivity;
     }
 
     void Update()
