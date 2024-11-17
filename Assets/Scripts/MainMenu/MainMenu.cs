@@ -21,18 +21,21 @@ public class MainMenu : MonoBehaviour
         ChosenenemyAttackAmount = 5;
         //enemyAmount
         //brighter night
+        //sprinttimer
     }
     public void medium(){
         ChosenHealthDecreaseSpeed = 1f; 
         ChosenenemyAttackAmount = 10;
         //enemyAmount
         //normal night
+        //sprinttimer
     }
     public void hard(){
         ChosenHealthDecreaseSpeed = 1.5f;
         ChosenenemyAttackAmount = 15;
         //enemyAmount
         //darker night
+        //sprinttimer
     }
 
     public void Quit(){
