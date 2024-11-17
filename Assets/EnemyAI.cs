@@ -7,6 +7,7 @@ public class EnemyAI : MonoBehaviour
 {
     public Transform playerVariable;
     public float maxDistance = 1.0f;
+    public float EnemyDetectionDistance = 5.0f;
     NavMeshAgent NavAgent;
     Animator animator;
 
@@ -21,7 +22,8 @@ public class EnemyAI : MonoBehaviour
     void Update()
     {
         float distance = (playerVariable.position - NavAgent.destination).magnitude;
-        if(distance > maxDistance){
+        float detectionDistance = (playerVariable.position - transform.position).magnitude;
+        if(distance > maxDistance && detectionDistance < EnemyDetectionDistance){
             NavAgent.destination = playerVariable.position;    
         }
 
