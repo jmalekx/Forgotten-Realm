@@ -32,7 +32,7 @@ The intended player experience is an immersive survival adventure where players 
 * Attack/Use: `Right click`
 * Interact/Pickup: `E`
 * Drop Items: `Q`
-* Inventory Select: `Scroll Wheel`
+* Inventory Select: `Scroll Wheel` or `NumKeys 1 through to 0`
 
 ## Asset Attribution
 ### Third Party Assets
