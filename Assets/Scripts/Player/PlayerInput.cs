@@ -82,18 +82,18 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""NumberKeys"",
+                    ""name"": ""Use"",
                     ""type"": ""Button"",
-                    ""id"": ""14b73003-73e3-4e76-bfcc-ea60ea099f05"",
+                    ""id"": ""a5dd5ccc-1376-4f51-8ece-dee605b1bb4c"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Use"",
+                    ""name"": ""SelectSlot"",
                     ""type"": ""Button"",
-                    ""id"": ""a5dd5ccc-1376-4f51-8ece-dee605b1bb4c"",
+                    ""id"": ""4dfe20fc-6a58-42de-a3bf-5ca81f983ceb"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -202,116 +202,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""626947f3-95d8-4ba2-863e-6dad464353d3"",
-                    ""path"": ""<Keyboard>/1"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""NumberKeys"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""b3a88445-1e2a-4883-a6c1-e2999170f315"",
-                    ""path"": ""<Keyboard>/2"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""NumberKeys"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""1ee04d6e-1a5f-4ea6-ab8e-afe3927ed55e"",
-                    ""path"": ""<Keyboard>/3"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""NumberKeys"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""51f3573e-978f-4af7-bec3-150c4b0b834a"",
-                    ""path"": ""<Keyboard>/4"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""NumberKeys"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""33e3d54e-640a-49b0-bd3d-bec32fa507b2"",
-                    ""path"": ""<Keyboard>/5"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""NumberKeys"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""d7f7d6d5-8693-49d6-a9ca-ed2a74c9fb17"",
-                    ""path"": ""<Keyboard>/6"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""NumberKeys"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""3d5a77d5-e7cd-4294-aa91-2a6029070573"",
-                    ""path"": ""<Keyboard>/7"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""NumberKeys"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""d528524f-6481-4ddb-a91d-f0c8c4326dc7"",
-                    ""path"": ""<Keyboard>/8"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""NumberKeys"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""2de15967-aaa9-415e-9f70-4d065e07e5f0"",
-                    ""path"": ""<Keyboard>/9"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""NumberKeys"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""6270ec8e-9674-41b7-8cd5-9bae4e93fc3d"",
-                    ""path"": ""<Keyboard>/0"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""NumberKeys"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""51eaf1f2-1faa-471c-94f3-eb052eea7b2d"",
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
@@ -329,6 +219,116 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Use"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3a2fd4e2-9f68-4726-a82c-6e68926371ae"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectSlot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""083d660c-972f-4a8b-9dfe-2cad96e1add8"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectSlot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ff14d30b-a7fb-49bd-9670-9c840ca29bfa"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectSlot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""acb126d1-7eb9-4fe5-bb5c-287286de56e9"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectSlot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""61324a4f-e063-4a45-be40-a575e79ca53f"",
+                    ""path"": ""<Keyboard>/5"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectSlot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6701a2f2-ffc6-475e-9486-7b80bc35f921"",
+                    ""path"": ""<Keyboard>/6"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectSlot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d5ea0d8d-bbbd-484c-a8ae-3464c977d30a"",
+                    ""path"": ""<Keyboard>/7"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectSlot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""76aae9ad-17fc-4b78-b5c5-8886534bf3f4"",
+                    ""path"": ""<Keyboard>/8"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectSlot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f92d08ca-9928-4971-90d0-5ec1bf7fa0fd"",
+                    ""path"": ""<Keyboard>/9"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectSlot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5c131119-3712-4aa6-bcf1-d9dc838ecfab"",
+                    ""path"": ""<Keyboard>/0"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectSlot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -922,8 +922,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Main_Move = m_Main.FindAction("Move", throwIfNotFound: true);
         m_Main_Drop = m_Main.FindAction("Drop", throwIfNotFound: true);
         m_Main_Interact = m_Main.FindAction("Interact", throwIfNotFound: true);
-        m_Main_NumberKeys = m_Main.FindAction("NumberKeys", throwIfNotFound: true);
         m_Main_Use = m_Main.FindAction("Use", throwIfNotFound: true);
+        m_Main_SelectSlot = m_Main.FindAction("SelectSlot", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1003,8 +1003,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Main_Move;
     private readonly InputAction m_Main_Drop;
     private readonly InputAction m_Main_Interact;
-    private readonly InputAction m_Main_NumberKeys;
     private readonly InputAction m_Main_Use;
+    private readonly InputAction m_Main_SelectSlot;
     public struct MainActions
     {
         private @PlayerInput m_Wrapper;
@@ -1015,8 +1015,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_Main_Move;
         public InputAction @Drop => m_Wrapper.m_Main_Drop;
         public InputAction @Interact => m_Wrapper.m_Main_Interact;
-        public InputAction @NumberKeys => m_Wrapper.m_Main_NumberKeys;
         public InputAction @Use => m_Wrapper.m_Main_Use;
+        public InputAction @SelectSlot => m_Wrapper.m_Main_SelectSlot;
         public InputActionMap Get() { return m_Wrapper.m_Main; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1044,12 +1044,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
-            @NumberKeys.started += instance.OnNumberKeys;
-            @NumberKeys.performed += instance.OnNumberKeys;
-            @NumberKeys.canceled += instance.OnNumberKeys;
             @Use.started += instance.OnUse;
             @Use.performed += instance.OnUse;
             @Use.canceled += instance.OnUse;
+            @SelectSlot.started += instance.OnSelectSlot;
+            @SelectSlot.performed += instance.OnSelectSlot;
+            @SelectSlot.canceled += instance.OnSelectSlot;
         }
 
         private void UnregisterCallbacks(IMainActions instance)
@@ -1072,12 +1072,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
-            @NumberKeys.started -= instance.OnNumberKeys;
-            @NumberKeys.performed -= instance.OnNumberKeys;
-            @NumberKeys.canceled -= instance.OnNumberKeys;
             @Use.started -= instance.OnUse;
             @Use.performed -= instance.OnUse;
             @Use.canceled -= instance.OnUse;
+            @SelectSlot.started -= instance.OnSelectSlot;
+            @SelectSlot.performed -= instance.OnSelectSlot;
+            @SelectSlot.canceled -= instance.OnSelectSlot;
         }
 
         public void RemoveCallbacks(IMainActions instance)
@@ -1266,8 +1266,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnDrop(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
-        void OnNumberKeys(InputAction.CallbackContext context);
         void OnUse(InputAction.CallbackContext context);
+        void OnSelectSlot(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

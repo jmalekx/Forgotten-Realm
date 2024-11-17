@@ -20,6 +20,7 @@ public class InventoryManager : MonoBehaviour
     private InputAction scrollAction;
     private InputAction dropAction;
     private InputAction useAction;
+    private InputAction selectSlotAction;
 
     private Inventory inventory;
     private int selectedItemIndex = 0;
@@ -39,6 +40,7 @@ public class InventoryManager : MonoBehaviour
         scrollAction = playerInput.UI.ScrollWheel;
         dropAction = playerInput.Main.Drop;
         useAction = playerInput.Main.Use;
+        selectSlotAction = playerInput.Main.SelectSlot;
 
         OnEnable();
     }
@@ -48,11 +50,13 @@ public class InventoryManager : MonoBehaviour
         scrollAction.Enable();
         dropAction.Enable();
         useAction.Enable();
+        selectSlotAction.Enable();
 
         scrollAction.performed += OnScroll;
         dropAction.performed += OnDropItem;
         useAction.performed += OnUseItem;
         useAction.canceled += OnUseItemReleased;
+        selectSlotAction.performed += OnSelectSlot;
     }
 
     void OnDisable()
@@ -60,10 +64,39 @@ public class InventoryManager : MonoBehaviour
         scrollAction.performed -= OnScroll;
         dropAction.performed -= OnDropItem;
         useAction.performed -= OnUseItem;
+        selectSlotAction.performed -= OnSelectSlot;
 
         scrollAction.Disable();
         dropAction.Disable();
+        selectSlotAction.Disable();
     }
+
+    void OnSelectSlot(InputAction.CallbackContext context)
+    {
+        //map control to slot index
+        string keyPressed = context.control.name;
+        int slot = keyPressed switch
+        {
+            "1" => 0,
+            "2" => 1,
+            "3" => 2,
+            "4" => 3,
+            "5" => 4,
+            "6" => 5,
+            "7" => 6,
+            "8" => 7,
+            "9" => 8,
+            "0" => 9,
+            _ => -1, //handle invalid
+        };
+
+        if (slot >= 0 && slot < 10) //inventory range
+        {
+            selectedItemIndex = slot;
+            UpdateInventoryUI();
+        }
+    }
+
     void OnUseItem(InputAction.CallbackContext context)
     {
         if (inventory.items.Count > 0 && selectedItemIndex < inventory.items.Count)
