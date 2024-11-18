@@ -5,6 +5,7 @@ using TMPro;
 public class PopupManager : MonoBehaviour
 {
     public static PopupManager Instance;
+    public int displayTime = 3;
 
     private TMP_Text popupText;
     private PopupAnim popupAnim;
@@ -34,7 +35,7 @@ public class PopupManager : MonoBehaviour
     {
         popupText.text = message;
         popupAnim.ShowPopup();
-        Invoke(nameof(HidePopup), 3f); //hide after 3s
+        Invoke(nameof(HidePopup), displayTime); //hide after 3s
     }
 
     private void HidePopup()
