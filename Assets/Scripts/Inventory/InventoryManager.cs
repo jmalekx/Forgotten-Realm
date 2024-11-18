@@ -15,7 +15,6 @@ public class InventoryManager : MonoBehaviour
 
     public Camera playerCamera;
 
-    private Canvas objectiveCanvas;
     private PlayerInput playerInput;
     private InputAction scrollAction;
     private InputAction dropAction;
@@ -25,13 +24,16 @@ public class InventoryManager : MonoBehaviour
     private Inventory inventory;
     private int selectedItemIndex = 0;
 
+    private PopupAnim objectivePopupAnim;
+
     void Start()
     {
         inventory = Inventory.Instance;
         inventory.OnInventoryChanged += UpdateInventoryUI;
         UpdateInventoryUI();
-        objectiveCanvas = GameObject.Find("objectiveCanvas").GetComponent<Canvas>();
-        objectiveCanvas.enabled = false;
+
+        objectivePopupAnim = GameObject.Find("objectiveCanvas").GetComponent<PopupAnim>();
+        objectivePopupAnim.gameObject.SetActive(false);
     }
 
     void Awake()
@@ -109,7 +111,7 @@ public class InventoryManager : MonoBehaviour
             }
             if (selectedItem.itemName == "Scroll")
             {
-                objectiveCanvas.enabled = true; //show objectives while pressed
+                objectivePopupAnim.ShowPopup(); //show objectives while pressed
             }
         }
     }
@@ -119,7 +121,7 @@ public class InventoryManager : MonoBehaviour
         if (selectedItem.itemName == "Scroll")
         {
             //hide popup when not clicking anymore
-            objectiveCanvas.enabled = false;
+            objectivePopupAnim.HidePopup();
         }
       
     }

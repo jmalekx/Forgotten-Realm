@@ -1,12 +1,14 @@
 using UnityEngine;
 using TMPro;
 
+[RequireComponent(typeof(PopupAnim))]
 public class PopupManager : MonoBehaviour
 {
     public static PopupManager Instance;
 
-    public Canvas popupCanvas;
-    public TMP_Text popupText;
+    private TMP_Text popupText;
+    private PopupAnim popupAnim;
+
     private bool hasDisplayedDropHint = false;
     private bool hasDisplayedAppleHint = false;
     private bool hasDisplayedScrollHint = false;
@@ -20,7 +22,10 @@ public class PopupManager : MonoBehaviour
         else
         {
             Instance = this;
-            popupCanvas.enabled = false; //hide by default
+            popupText = GetComponentInChildren<TMP_Text>();
+            popupAnim = GetComponent<PopupAnim>();
+
+            gameObject.SetActive(false);
         }
     }
 
@@ -28,13 +33,13 @@ public class PopupManager : MonoBehaviour
     public void ShowPopup(string message)
     {
         popupText.text = message;
-        popupCanvas.enabled = true;
-        Invoke("HidePopup", 3f); //hide after 3s
+        popupAnim.ShowPopup();
+        Invoke(nameof(HidePopup), 3f); //hide after 3s
     }
 
     private void HidePopup()
     {
-        popupCanvas.enabled = false;
+        popupAnim.HidePopup();
     }
 
     //specific item hints
