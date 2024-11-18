@@ -6562,7 +6562,7 @@ GameObject:
   - component: {fileID: 787971226}
   - component: {fileID: 787971228}
   - component: {fileID: 787971227}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Terrain5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7679,7 +7679,7 @@ GameObject:
   - component: {fileID: 944839264}
   - component: {fileID: 944839266}
   - component: {fileID: 944839265}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 'Terrain4 '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
