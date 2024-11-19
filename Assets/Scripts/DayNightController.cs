@@ -6,7 +6,8 @@ public class DayNightCycle : MonoBehaviour
     public Light moon; // Assign a directional light as the "moon"
     public float dayLength = 120f;  // Full day duration in seconds
     public Gradient lightColor;  // Controls the sun's color over time
-    public Gradient moonColor;  // Optional: Controls the moon's color over time
+    public Gradient moonColor;  // Controls the moon's color over time
+    public AnimationCurve moonIntensityCurve; // Optional: Curve to control moonlight intensity
 
     private float time = 0f;  // Keeps track of the current time of day
 
@@ -40,18 +41,19 @@ public class DayNightCycle : MonoBehaviour
             float moonAngle = Mathf.Lerp(180f, 360f, dayProgress);
             moon.transform.rotation = Quaternion.Euler(moonAngle, -170f, 0f);
 
-            // Enable moon only at night
-            if (dayProgress > 0.5f || dayProgress < 0.1f)  // Moon is on during dusk, night, and dawn
-            {
-                moon.enabled = true;
-                moon.intensity = 0.5f;
-                moon.color = Color.white; // Temporarily set a bright color to test
+            // Adjust moon's color and intensity dynamically
+            moon.color = moonColor.Evaluate(dayProgress);
+            moon.intensity = moonIntensityCurve.Evaluate(dayProgress);
 
-            }
-            else
-            {
-                moon.enabled = false;
-            }
+            // Enable moon only at night
+            moon.enabled = dayProgress > 0.25f && dayProgress < 0.75f;
         }
+
+        // Optional: Adjust ambient light
+        RenderSettings.ambientLight = Color.Lerp(
+            new Color(0.02f, 0.02f, 0.1f), // Dark blue for night
+            Color.white,                  // Bright white for day
+            Mathf.Clamp01(sun.intensity)
+        );
     }
 }
