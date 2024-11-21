@@ -24,7 +24,7 @@ MonoBehaviour:
     value: 1.9
   focalLength:
     overrideState: 1
-    value: 37
+    value: 36
   kernelSize:
     overrideState: 1
     value: 1
@@ -1493,16 +1493,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48a79b01ea5641d4aa6daa2e23605641, type: 3}
   m_Name: Bloom
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   enabled:
     overrideState: 1
     value: 1
   intensity:
     overrideState: 1
-    value: 1
+    value: 2.5
   threshold:
-    overrideState: 0
-    value: 1
+    overrideState: 1
+    value: 0.45
   softKnee:
     overrideState: 0
     value: 0.5
@@ -1511,7 +1511,7 @@ MonoBehaviour:
     value: 65472
   diffusion:
     overrideState: 0
-    value: 7
+    value: 5.15
   anamorphicRatio:
     overrideState: 0
     value: 0
