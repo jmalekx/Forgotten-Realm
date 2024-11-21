@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Wood
   m_EditorClassIdentifier: 
   itemName: Wood
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 2455c57a37b652b49aba6bb6050354e8, type: 3}
   count: 0
-  itemPrefab: {fileID: 2806829959780113856, guid: c859e6e66e9323e4cb69c75e9ce3ca44, type: 3}
+  itemPrefab: {fileID: 776301163477621125, guid: df60da65014e0ad4d936ce5c42ca54f9, type: 3}
   isConsumable: 0
   healthRestoreAmount: 0
   customDescription: wood+stone = dagger
