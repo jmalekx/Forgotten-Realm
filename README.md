@@ -51,6 +51,7 @@ The intended player experience is an immersive survival adventure where players 
 - [Mixamo](mixamo.com/#/) - Animations, Mixamo
 - [Jellyfish](https://sketchfab.com/3d-models/jellyfish-d06a5a553fe641ab92f720527b2278f3) - 3D Model, Sketchfab
 - [Fantasy Butterfly](https://sketchfab.com/3d-models/fantasy-butterfly-animation-0f24b085e8654e4db09c2fe681a79e3f) - 3D Model, Sketchfab
+- [Low Poly Wind](https://assetstore.unity.com/packages/vfx/shaders/low-poly-wind-182586) - Shader Script, Unity Asset Store
 
 ### Original Assets
 #### By Jessica
