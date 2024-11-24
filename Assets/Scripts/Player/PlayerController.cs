@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using TMPro;
 using System.Threading.Tasks;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -122,9 +123,10 @@ public class PlayerController : MonoBehaviour
             HealthBar.value -= Time.deltaTime * HealthDecreaseSpeed; // Change the rate (1) to make it slower or faster
         }
         if(HealthBar.value <= 0){
-            string displayText = "GAME OVER";
-            DeathText.text  = displayText;
-            enabled = false;
+           // string displayText = "GAME OVER";
+          //  DeathText.text  = displayText;
+          //  enabled = false;
+          SceneManager.LoadScene("GameOverScene");
         }
         GetInput();
         ControlSpeed();

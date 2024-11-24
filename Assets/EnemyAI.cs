@@ -9,8 +9,8 @@ public class EnemyAI : MonoBehaviour
     public Transform playerVariable;
     public float maxDistance = 1.5f;
     public float EnemyDetectionDistance = 20.0f;
-    public float enemyAttackAmount = 10f;
-    public float attackCooldown = 3.0f;  // Time before the enemy can attack again
+    public float enemyAttackAmount;
+    public float attackCooldown = 1.5f;  // Time before the enemy can attack again
     private float attackTimer = 0f;
     NavMeshAgent NavAgent;
     Animator animator;
@@ -24,6 +24,7 @@ public class EnemyAI : MonoBehaviour
         NavAgent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         playerHealthBar = playerVariable.GetComponent<PlayerController>().HealthBar;
+        enemyAttackAmount = MainMenu.ChosenenemyAttackAmount;
     }
 
     // Update is called once per frame
