@@ -85,11 +85,11 @@ Material:
     - _MBPhase: 1
     - _MBWindDir: 0
     - _MBWindDirOffset: 20
-    - _Metallic: 0
+    - _Metallic: 0.21
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _Smoothness: 0
+    - _Smoothness: 0.35
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
