@@ -18441,10 +18441,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1228010669}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 17, y: 17}
+  m_SizeDelta: {x: -1903, y: -1063}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1561996732
 MonoBehaviour:
@@ -22791,8 +22791,8 @@ MonoBehaviour:
   walkSpeed: 17
   cam: {fileID: 1711789845}
   sprintSpeed: 25
-  sprintDuration: 5
-  sprintCooldown: 4
+  sprintDuration: 6
+  sprintCooldown: 3
   regenDelay: 0
   jumpForce: 20
   jumpCooldown: 0.5
