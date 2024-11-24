@@ -76,15 +76,15 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.45384616
     - _GlossyReflections: 1
-    - _MBAmplitude: 1.5
-    - _MBAmplitudeOffset: 2
+    - _MBAmplitude: 0.6
+    - _MBAmplitudeOffset: 0.4
     - _MBDefaultBending: 0
-    - _MBFrequency: 1.11
+    - _MBFrequency: 0.1
     - _MBFrequencyOffset: 0
     - _MBMaxHeight: 10
     - _MBPhase: 1
     - _MBWindDir: 0
-    - _MBWindDirOffset: 20
+    - _MBWindDirOffset: 1
     - _Metallic: 0.28
     - _Mode: 0
     - _OcclusionStrength: 1
