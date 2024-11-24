@@ -121,6 +121,11 @@ public class PlayerController : MonoBehaviour
         {
             HealthBar.value -= Time.deltaTime * HealthDecreaseSpeed; // Change the rate (1) to make it slower or faster
         }
+        if(HealthBar.value <= 0){
+            string displayText = "GAME OVER";
+            DeathText.text  = displayText;
+            enabled = false;
+        }
         GetInput();
         ControlSpeed();
         UpdateSprintUI();
@@ -135,18 +140,18 @@ public class PlayerController : MonoBehaviour
         else
             rb.drag = 0;
     }
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("sword")) 
-        {
-            HealthBar.value -= enemyAttackAmount;
-            if(HealthBar.value <= 0){
-                string displayText = "GAME OVER";
-                DeathText.text  = displayText;
-                enabled = false;
-            }
-        }
-    }
+    // void OnCollisionEnter(Collision collision)
+    // {
+    //     if (collision.gameObject.CompareTag("fist")) 
+    //     {
+    //         HealthBar.value -= enemyAttackAmount;
+    //         if(HealthBar.value <= 0){
+    //             string displayText = "GAME OVER";
+    //             DeathText.text  = displayText;
+    //             enabled = false;
+    //         }
+    //     }
+    // }
     void FixedUpdate()
     {
         MovePlayer();

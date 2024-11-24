@@ -8,6 +8,7 @@ TagManager:
   - sword
   - Wood
   - Stone
+  - fist
   layers:
   - Default
   - TransparentFX
