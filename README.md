@@ -57,6 +57,8 @@ The intended player experience is an immersive survival adventure where players 
 #### By Jessica
 - Apple - 3D Model
 - Blue Tree - 3D Model
+- Magnolia Tree - 3D Model
+- Tall Tree - 3D Model
 - Bridge - 3D Model
 - Floating Island - 3D Model
 - Rocks - 3D Model
@@ -75,6 +77,7 @@ The intended player experience is an immersive survival adventure where players 
 - Skeleton - 3D Model
 - Clovers - 3D Model
 - Scroll - 3D Model + Texture, UI Design
+- Inventory Item UI Icons - 3D Render
   
 ## Collaborators
 
