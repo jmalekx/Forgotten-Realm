@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 04badedb008d855459188e87e43b5fe9
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 256019
+  packageName: PBR Animated Dinosaurs
+  packageVersion: 1.0
+  assetPath: Assets/FerociousIndustries/PBRDinosaurs/PBRVelociraptor/Materials/V12PBR/RaptorBodyE.mat
+  uploadId: 601879
