@@ -22803,7 +22803,6 @@ MonoBehaviour:
     m_Bits: 64
   playerBody: {fileID: 1554781247}
   attackDistance: 7
-  enemyAttackAmount: 0
 --- !u!54 &1892168051
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -25788,6 +25787,30 @@ PrefabInstance:
       propertyPath: playerVariable
       value: 
       objectReference: {fileID: 1892168048}
+    - target: {fileID: 6163598178610858568, guid: 49654afea7b12d941b0bce5fdbe8a064, type: 3}
+      propertyPath: m_Size.x
+      value: 3.2842445
+      objectReference: {fileID: 0}
+    - target: {fileID: 6163598178610858568, guid: 49654afea7b12d941b0bce5fdbe8a064, type: 3}
+      propertyPath: m_Size.y
+      value: 6.2113075
+      objectReference: {fileID: 0}
+    - target: {fileID: 6163598178610858568, guid: 49654afea7b12d941b0bce5fdbe8a064, type: 3}
+      propertyPath: m_Size.z
+      value: 2.4453735
+      objectReference: {fileID: 0}
+    - target: {fileID: 6163598178610858568, guid: 49654afea7b12d941b0bce5fdbe8a064, type: 3}
+      propertyPath: m_Center.x
+      value: -0.65050125
+      objectReference: {fileID: 0}
+    - target: {fileID: 6163598178610858568, guid: 49654afea7b12d941b0bce5fdbe8a064, type: 3}
+      propertyPath: m_Center.y
+      value: 2.6056538
+      objectReference: {fileID: 0}
+    - target: {fileID: 6163598178610858568, guid: 49654afea7b12d941b0bce5fdbe8a064, type: 3}
+      propertyPath: m_Center.z
+      value: 0.66949844
+      objectReference: {fileID: 0}
     - target: {fileID: 8107318106039408665, guid: 49654afea7b12d941b0bce5fdbe8a064, type: 3}
       propertyPath: m_Name
       value: Enemy1

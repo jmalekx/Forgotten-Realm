@@ -61,7 +61,6 @@ public class PlayerController : MonoBehaviour
 
     [Header("Attacking")]
     public float attackDistance = 7f;
-    public float enemyAttackAmount;
 
 
 
@@ -78,7 +77,7 @@ public class PlayerController : MonoBehaviour
         sprintSlider.value = sprintDuration;
         HealthBar.value = 100;
         HealthDecreaseSpeed = MainMenu.ChosenHealthDecreaseSpeed;
-        enemyAttackAmount = MainMenu.ChosenenemyAttackAmount;
+        
         
     }
     void Awake()
@@ -120,7 +119,7 @@ public class PlayerController : MonoBehaviour
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, ground); //checking if ground
         if (HealthBar.value > 0)
         {
-            HealthBar.value -= Time.deltaTime * HealthDecreaseSpeed; // Change the rate (1) to make it slower or faster
+            HealthBar.value -= Time.deltaTime * HealthDecreaseSpeed; 
         }
         if(HealthBar.value <= 0){
            // string displayText = "GAME OVER";
@@ -142,18 +141,7 @@ public class PlayerController : MonoBehaviour
         else
             rb.drag = 0;
     }
-    // void OnCollisionEnter(Collision collision)
-    // {
-    //     if (collision.gameObject.CompareTag("fist")) 
-    //     {
-    //         HealthBar.value -= enemyAttackAmount;
-    //         if(HealthBar.value <= 0){
-    //             string displayText = "GAME OVER";
-    //             DeathText.text  = displayText;
-    //             enabled = false;
-    //         }
-    //     }
-    // }
+
     void FixedUpdate()
     {
         MovePlayer();
