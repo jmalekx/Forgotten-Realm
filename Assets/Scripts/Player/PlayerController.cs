@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     public Slider sprintSlider;
     public Slider HealthBar; 
     public float HealthDecreaseSpeed;
+    
 
     [Header("Moving")]
     private float moveSpeed;
@@ -38,6 +39,8 @@ public class PlayerController : MonoBehaviour
     private bool isSprinting;
     private float regenTimer;
     private bool isSprintRegen;
+    public float sprintRegenMultiplier;
+    public float SprintDecreaseSpeed;
 
     [Header("Jumping")]
     public float jumpForce;
@@ -81,6 +84,8 @@ public class PlayerController : MonoBehaviour
         sprintSlider.value = sprintDuration;
         HealthBar.value = 100;
         HealthDecreaseSpeed = MainMenu.ChosenHealthDecreaseSpeed;
+        SprintDecreaseSpeed = MainMenu.ChosensSprintDecreaseSpeed;
+        sprintRegenMultiplier = MainMenu.ChosensSprintRegenSpeed;
         
         
     }
@@ -107,17 +112,17 @@ public class PlayerController : MonoBehaviour
         input.Sprint.canceled += ctx => SprintStop();
     }
 
-    public void easy(){
-        HealthDecreaseSpeed = 0.5f;
-    }
-    public void medium(){
-        HealthDecreaseSpeed = 1f;
+    // public void easy(){
+    //     HealthDecreaseSpeed = 0.5f;
+    // }
+    // public void medium(){
+    //     HealthDecreaseSpeed = 1f;
 
-    }
+    // }
     
-    public void hard(){
-        HealthDecreaseSpeed = 4f; 
-    }
+    // public void hard(){
+    //     HealthDecreaseSpeed = 4f; 
+    // }
     void Update()
     {
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, ground); //checking if ground
@@ -247,7 +252,7 @@ public class PlayerController : MonoBehaviour
         if (isSprinting && sprintTimer > 0 && !isCooldown)
         {
             moveSpeed = sprintSpeed;
-            sprintTimer -= Time.deltaTime;
+            sprintTimer -= Time.deltaTime * SprintDecreaseSpeed;
 
             if (sprintTimer <= 0)
             {
@@ -274,7 +279,7 @@ public class PlayerController : MonoBehaviour
         {
             if (regenTimer > 0)
             {
-                regenTimer -= Time.deltaTime; 
+                regenTimer -= Time.deltaTime * sprintRegenMultiplier; 
             }
             else if (isSprintRegen)
             {

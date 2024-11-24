@@ -6,12 +6,14 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    // Start is called before the first frame update
-    //work out public static float meaning 
+
     public Slider SensitivitySlider; 
     public static float ChosenHealthDecreaseSpeed = 1f;
+    public static float ChosensSprintDecreaseSpeed = 1f;
+    public static float ChosensSprintRegenSpeed = 1f;
     public static int ChosenenemyAttackAmount = 10;
     public static float ChosenSensitivity = 50;
+
     public void StartGame()
     {
         SceneManager.LoadScene("GAME");
@@ -21,21 +23,25 @@ public class MainMenu : MonoBehaviour
         ChosenenemyAttackAmount = 5;
         //enemyAmount
         //brighter night
-        //sprinttimer
+        ChosensSprintDecreaseSpeed = 0.5f;
+        ChosensSprintRegenSpeed = 1.3f;
     }
     public void medium(){
         ChosenHealthDecreaseSpeed = 1f; 
         ChosenenemyAttackAmount = 10;
         //enemyAmount
         //normal night
-        //sprinttimer
+        ChosensSprintDecreaseSpeed = 1f;
+        ChosensSprintRegenSpeed = 1f;
+
     }
     public void hard(){
         ChosenHealthDecreaseSpeed = 1.5f;
         ChosenenemyAttackAmount = 15;
         //enemyAmount
         //darker night
-        //sprinttimer
+        ChosensSprintDecreaseSpeed = 1.5f;
+        ChosensSprintRegenSpeed = 0.7f;
     }
 
     public void Quit(){
