@@ -3527,7 +3527,7 @@ GameObject:
   - component: {fileID: 270322890}
   - component: {fileID: 270322892}
   - component: {fileID: 270322891}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Terrain8(Village3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23325,7 +23325,7 @@ GameObject:
   - component: {fileID: 1952732743}
   - component: {fileID: 1952732745}
   - component: {fileID: 1952732744}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Terrain7(Bg)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
