@@ -50,6 +50,10 @@ public class PlayerController : MonoBehaviour
     public LayerMask ground;
     bool grounded;
 
+    [Header("Slope")]
+    public float maxSlopeAngle;
+    private RaycastHit slopeHit;
+
     public Transform playerBody;
 
     float horizontalInput;
@@ -157,6 +161,9 @@ public class PlayerController : MonoBehaviour
     {
         moveDirection = playerBody.forward * movementInput.y + playerBody.right * movementInput.x; //walk in direction youre looking
 
+        if (OnSlope()) //when on slope
+            rb.AddForce(GetSlopeDirection()*moveSpeed * 2f, ForceMode.Force);
+
         if (grounded) //when player on ground
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
 
@@ -175,6 +182,21 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private bool OnSlope()
+    {
+        if(Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f +0.3f))
+        {
+            float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
+            return angle < maxSlopeAngle && angle != 0;
+        }
+
+        return false;
+    }
+
+    private Vector3 GetSlopeDirection()
+    {
+        return Vector3.ProjectOnPlane(moveDirection, slopeHit.normal).normalized;
+    }
 
     //-----------------------JUMPING
     void JumpAttempt()

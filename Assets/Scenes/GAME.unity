@@ -22801,6 +22801,7 @@ MonoBehaviour:
   ground:
     serializedVersion: 2
     m_Bits: 64
+  maxSlopeAngle: 45
   playerBody: {fileID: 1554781247}
   attackDistance: 7
 --- !u!54 &1892168051
