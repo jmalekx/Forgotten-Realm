@@ -298,15 +298,14 @@ public class PlayerController : MonoBehaviour
         {
             if (hit.collider.CompareTag("Enemy"))
             {
-                GameObject EnemyHit = hit.collider.gameObject;
-                CharacterController EnemyMoveController = EnemyHit.GetComponent<CharacterController>();
-            if (EnemyMoveController != null)
+                GameObject enemyHit = hit.collider.gameObject;
+                Animator enemyAnimator = enemyHit.GetComponent<Animator>();
+            if (enemyAnimator  != null)
             {
-                EnemyMoveController.Move(Vector3.zero);
+                enemyAnimator.SetTrigger("Death");
             }
-                Rigidbody enemyRigidbody = EnemyHit.AddComponent<Rigidbody>();
-                enemyRigidbody.mass = 4f;
-                StartCoroutine(Destroyed(EnemyHit, 1f));
+
+                StartCoroutine(Destroyed(enemyHit, 5f));
             }
 
         }
