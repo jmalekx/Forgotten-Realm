@@ -10,15 +10,13 @@ public class EnemyAI : MonoBehaviour
     public float maxDistance = 1.5f;
     public float EnemyDetectionDistance = 20.0f;
     public float enemyAttackAmount;
-    public float attackCooldown = 1.5f;  // Time before the enemy can attack again
-    private float attackTimer = 0f;
+    public float attackCooldown = 1f; 
+    private float timeSinceLastAttack = 0f;
     NavMeshAgent NavAgent;
     Animator animator;
     bool AttackingState = false;
     private Slider playerHealthBar; 
-  //  public TMP_Text DeathText;
 
-    // Start is called before the first frame update
     void Start()
     {
         NavAgent = GetComponent<NavMeshAgent>();
@@ -27,10 +25,9 @@ public class EnemyAI : MonoBehaviour
         enemyAttackAmount = MainMenu.ChosenenemyAttackAmount;
     }
 
-    // Update is called once per frame
+ 
     void Update()
     {
-       // float distance = (playerVariable.position - NavAgent.destination).magnitude;
         float detectionDistance = Vector3.Distance(playerVariable.position, transform.position);
 
         if(detectionDistance < EnemyDetectionDistance){
@@ -47,21 +44,21 @@ public class EnemyAI : MonoBehaviour
                 animator.SetTrigger("Attack");
                 AttackingState = true;
                 playerHealthBar.value -= enemyAttackAmount;
-                attackTimer = attackCooldown;
+                timeSinceLastAttack = attackCooldown;
             }
         }
         else{
-            NavAgent.destination = transform.position; //stop moving
+            NavAgent.destination = transform.position; 
             animator.SetFloat("Speed", 0);
             AttackingState = false; 
         }
-        if (attackTimer > 0)
+        if (timeSinceLastAttack > 0)
         {
-            attackTimer -= Time.deltaTime;  // Reduce the timer by deltaTime
+            timeSinceLastAttack -= Time.deltaTime; 
         }
         else
         {
-            AttackingState = false;  // Reset the attack state after cooldown
+            AttackingState = false;  
         }
     
     }
@@ -69,18 +66,3 @@ public class EnemyAI : MonoBehaviour
     
 }
 
-
-
-
-    // void OnCollisionEnter(Collision collision)
-    // {
-    //     if (collision.gameObject.CompareTag("Player")) 
-    //     {
-    //         playerHealthBar.value -= enemyAttackAmount;
-    //         if(playerHealthBar.value <= 0){
-    //           //  string displayText = "GAME OVER";
-    //             //DeathText.text  = displayText;
-    //             enabled = false;
-    //         }
-    //     }
-    // }
