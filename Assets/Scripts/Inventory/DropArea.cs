@@ -9,7 +9,7 @@ public class DropArea : MonoBehaviour, IDropHandler
         if (draggableItem != null)
         {
             draggableItem.transform.SetParent(transform);
-            draggableItem.transform.position = transform.position;
+            draggableItem.transform.position = transform.position; // Align position to center of the new parent
         }
     }
 }

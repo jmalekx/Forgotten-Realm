@@ -70,8 +70,15 @@ public class PlayerController : MonoBehaviour
     [Header("Attacking")]
     public float attackDistance = 7f;
 
+    //[Header("Crafting")]
+    //public GameObject craftingPanel;
+
     [Header("Crafting")]
     public GameObject craftingPanel;
+    public Transform inventoryPanel; // Reference to the inventory panel
+    public Transform craftingSlotsParent; // Parent transform of crafting slots
+
+    private List<Transform> craftingSlots = new List<Transform>();
 
 
 

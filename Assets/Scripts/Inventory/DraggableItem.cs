@@ -1,4 +1,3 @@
-// Draggable.cs
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -7,6 +6,7 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
     private Canvas canvas;
+    private Transform originalParent;
 
     private void Awake()
     {
@@ -32,6 +32,7 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        originalParent = transform.parent; // Store the original parent
         canvasGroup.alpha = 0.6f;
         canvasGroup.blocksRaycasts = false;
     }
@@ -49,5 +50,12 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         canvasGroup.alpha = 1.0f;
         canvasGroup.blocksRaycasts = true;
+
+        // Check if the item is dropped in a valid drop area
+        if (transform.parent == originalParent)
+        {
+            // If the parent is still the same, revert the position
+            transform.localPosition = Vector3.zero;
+        }
     }
 }
