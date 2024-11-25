@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 75492ef517a79e94081caf04874e3d5f
+guid: 4f88092d816130045b083b3c8b2fa1af
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,7 +7,7 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: leaves.002
+      name: leaves.007
     second: {fileID: 2100000, guid: 87e78c39f5e99234abdd7f969116cf98, type: 2}
   - first:
       type: UnityEngine:Material
@@ -98,7 +98,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.012999999
+    globalScale: 1.3
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
