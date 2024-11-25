@@ -98,6 +98,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ToggleCrafting"",
+                    ""type"": ""Button"",
+                    ""id"": ""bca69232-8df1-4ed3-8a68-d809a2a069a6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -329,6 +338,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""SelectSlot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2dd7fcca-10ed-48ff-b973-f475556b0531"",
+                    ""path"": ""<Keyboard>/#(C)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""ToggleCrafting"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -924,6 +944,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Main_Interact = m_Main.FindAction("Interact", throwIfNotFound: true);
         m_Main_Use = m_Main.FindAction("Use", throwIfNotFound: true);
         m_Main_SelectSlot = m_Main.FindAction("SelectSlot", throwIfNotFound: true);
+        m_Main_ToggleCrafting = m_Main.FindAction("ToggleCrafting", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1005,6 +1026,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Main_Interact;
     private readonly InputAction m_Main_Use;
     private readonly InputAction m_Main_SelectSlot;
+    private readonly InputAction m_Main_ToggleCrafting;
     public struct MainActions
     {
         private @PlayerInput m_Wrapper;
@@ -1017,6 +1039,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @Interact => m_Wrapper.m_Main_Interact;
         public InputAction @Use => m_Wrapper.m_Main_Use;
         public InputAction @SelectSlot => m_Wrapper.m_Main_SelectSlot;
+        public InputAction @ToggleCrafting => m_Wrapper.m_Main_ToggleCrafting;
         public InputActionMap Get() { return m_Wrapper.m_Main; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1050,6 +1073,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @SelectSlot.started += instance.OnSelectSlot;
             @SelectSlot.performed += instance.OnSelectSlot;
             @SelectSlot.canceled += instance.OnSelectSlot;
+            @ToggleCrafting.started += instance.OnToggleCrafting;
+            @ToggleCrafting.performed += instance.OnToggleCrafting;
+            @ToggleCrafting.canceled += instance.OnToggleCrafting;
         }
 
         private void UnregisterCallbacks(IMainActions instance)
@@ -1078,6 +1104,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @SelectSlot.started -= instance.OnSelectSlot;
             @SelectSlot.performed -= instance.OnSelectSlot;
             @SelectSlot.canceled -= instance.OnSelectSlot;
+            @ToggleCrafting.started -= instance.OnToggleCrafting;
+            @ToggleCrafting.performed -= instance.OnToggleCrafting;
+            @ToggleCrafting.canceled -= instance.OnToggleCrafting;
         }
 
         public void RemoveCallbacks(IMainActions instance)
@@ -1268,6 +1297,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnInteract(InputAction.CallbackContext context);
         void OnUse(InputAction.CallbackContext context);
         void OnSelectSlot(InputAction.CallbackContext context);
+        void OnToggleCrafting(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

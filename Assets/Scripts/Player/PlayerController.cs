@@ -18,9 +18,10 @@ public class PlayerController : MonoBehaviour
     [Header("UI")]
     public TMP_Text DeathText;
     public Slider sprintSlider;
-    public Slider HealthBar; 
+    public Slider HealthBar;
     public float HealthDecreaseSpeed;
-    
+    public GameObject craftingPanel;
+
 
     [Header("Moving")]
     private float moveSpeed;
@@ -86,14 +87,22 @@ public class PlayerController : MonoBehaviour
         HealthDecreaseSpeed = MainMenu.ChosenHealthDecreaseSpeed;
         SprintDecreaseSpeed = MainMenu.ChosensSprintDecreaseSpeed;
         sprintRegenMultiplier = MainMenu.ChosensSprintRegenSpeed;
-        
-        
+
+        // Set crafting panel to be inactive by default
+        if (craftingPanel != null)
+        {
+            craftingPanel.SetActive(false);
+        }
+        else
+        {
+            Debug.LogError("Crafting panel is not set in the inspector.");
+        }
     }
     void Awake()
-    { 
+    {
         controller = GetComponent<CharacterController>();
         animator = GetComponentInChildren<Animator>();
-        
+
 
         playerInput = new PlayerInput();
         input = playerInput.Main;
@@ -110,6 +119,7 @@ public class PlayerController : MonoBehaviour
         input.Attack.started += ctx => Attack();
         input.Sprint.performed += ctx => SprintStart();
         input.Sprint.canceled += ctx => SprintStop();
+        input.ToggleCrafting.performed += ToggleCraftingPanel; // Assign the toggle crafting action
     }
 
     // public void easy(){
@@ -119,7 +129,7 @@ public class PlayerController : MonoBehaviour
     //     HealthDecreaseSpeed = 1f;
 
     // }
-    
+
     // public void hard(){
     //     HealthDecreaseSpeed = 4f; 
     // }
@@ -128,13 +138,14 @@ public class PlayerController : MonoBehaviour
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, ground); //checking if ground
         if (HealthBar.value > 0)
         {
-            HealthBar.value -= Time.deltaTime * HealthDecreaseSpeed; 
+            HealthBar.value -= Time.deltaTime * HealthDecreaseSpeed;
         }
-        if(HealthBar.value <= 0){
-           // string displayText = "GAME OVER";
-          //  DeathText.text  = displayText;
-          //  enabled = false;
-          SceneManager.LoadScene("GameOverScene");
+        if (HealthBar.value <= 0)
+        {
+            // string displayText = "GAME OVER";
+            //  DeathText.text  = displayText;
+            //  enabled = false;
+            SceneManager.LoadScene("GameOverScene");
         }
         GetInput();
         ControlSpeed();
@@ -143,7 +154,7 @@ public class PlayerController : MonoBehaviour
         HandleSprintRegen();
 
         if (input.Attack.IsPressed())
-        { Attack();}
+        { Attack(); }
 
         if (grounded)
             rb.drag = groundDrag;
@@ -167,7 +178,7 @@ public class PlayerController : MonoBehaviour
         moveDirection = playerBody.forward * movementInput.y + playerBody.right * movementInput.x; //walk in direction youre looking
 
         if (OnSlope()) //when on slope
-            rb.AddForce(GetSlopeDirection()*moveSpeed * 2f, ForceMode.Force);
+            rb.AddForce(GetSlopeDirection() * moveSpeed * 2f, ForceMode.Force);
 
         if (grounded) //when player on ground
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
@@ -189,7 +200,7 @@ public class PlayerController : MonoBehaviour
 
     private bool OnSlope()
     {
-        if(Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f +0.3f))
+        if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.3f))
         {
             float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
             return angle < maxSlopeAngle && angle != 0;
@@ -279,7 +290,7 @@ public class PlayerController : MonoBehaviour
         {
             if (regenTimer > 0)
             {
-                regenTimer -= Time.deltaTime * sprintRegenMultiplier; 
+                regenTimer -= Time.deltaTime * sprintRegenMultiplier;
             }
             else if (isSprintRegen)
             {
@@ -287,8 +298,8 @@ public class PlayerController : MonoBehaviour
 
                 if (sprintTimer >= sprintDuration)
                 {
-                    sprintTimer = sprintDuration; 
-                    isSprintRegen = false; 
+                    sprintTimer = sprintDuration;
+                    isSprintRegen = false;
                 }
             }
         }
@@ -305,7 +316,8 @@ public class PlayerController : MonoBehaviour
         sprintSlider.value = sprintTimer;
     }
 
-    void Attack(){
+    void Attack()
+    {
 
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
@@ -314,27 +326,53 @@ public class PlayerController : MonoBehaviour
             if (hit.collider.CompareTag("Enemy"))
             {
                 GameObject enemyHit = hit.collider.gameObject;
-                
+
                 UnityEngine.AI.NavMeshAgent enemyNavAgent = enemyHit.GetComponent<UnityEngine.AI.NavMeshAgent>();
                 if (enemyNavAgent != null)
                 {
                     enemyNavAgent.isStopped = true; // Disable movement
                 }
                 Animator enemyAnimator = enemyHit.GetComponent<Animator>();
-                if (enemyAnimator  != null)
+                if (enemyAnimator != null)
                 {
                     enemyAnimator.SetTrigger("Death");
                 }
 
-                    StartCoroutine(Destroyed(enemyHit, 5f));
+                StartCoroutine(Destroyed(enemyHit, 5f));
             }
 
         }
 
     }
-    IEnumerator Destroyed(GameObject TargetedEnemy, float delay){
+    IEnumerator Destroyed(GameObject TargetedEnemy, float delay)
+    {
         yield return new WaitForSeconds(delay);
         Destroy(TargetedEnemy);
     }
+
+
+    //-----------------------TOGGLE CRAFTING PANEL
+    void ToggleCraftingPanel(InputAction.CallbackContext context)
+    {
+        if (craftingPanel != null)
+        {
+            bool isActive = craftingPanel.activeSelf;
+            Debug.Log($"Crafting panel is currently {(isActive ? "active" : "inactive")}.");
+            craftingPanel.SetActive(!isActive);
+            Debug.Log($"Crafting panel is now {(craftingPanel.activeSelf ? "active" : "inactive")}.");
+        }
+        else
+        {
+            Debug.LogError("Crafting panel is not assigned in the inspector.");
+        }
+    }
 }
+
+
+
+
+
+  
+  
+   
 
