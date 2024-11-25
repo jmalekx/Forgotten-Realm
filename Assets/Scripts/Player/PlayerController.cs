@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     public Slider sprintSlider;
     public Slider HealthBar;
     public float HealthDecreaseSpeed;
-    public GameObject craftingPanel;
+   
 
 
     [Header("Moving")]
@@ -69,6 +69,9 @@ public class PlayerController : MonoBehaviour
 
     [Header("Attacking")]
     public float attackDistance = 7f;
+
+    [Header("Crafting")]
+    public GameObject craftingPanel;
 
 
 
@@ -357,14 +360,20 @@ public class PlayerController : MonoBehaviour
         if (craftingPanel != null)
         {
             bool isActive = craftingPanel.activeSelf;
-            Debug.Log($"Crafting panel is currently {(isActive ? "active" : "inactive")}.");
             craftingPanel.SetActive(!isActive);
+            SetCursorState(!isActive);
             Debug.Log($"Crafting panel is now {(craftingPanel.activeSelf ? "active" : "inactive")}.");
         }
         else
         {
             Debug.LogError("Crafting panel is not assigned in the inspector.");
         }
+    }
+
+    void SetCursorState(bool isVisible)
+    {
+        Cursor.visible = isVisible;
+        Cursor.lockState = isVisible ? CursorLockMode.None : CursorLockMode.Locked;
     }
 }
 
