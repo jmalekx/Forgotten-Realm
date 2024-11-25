@@ -8,11 +8,13 @@ public class MainMenu : MonoBehaviour
 {
 
     public Slider SensitivitySlider; 
+    public Slider QualitySlider;
     public static float ChosenHealthDecreaseSpeed = 1f;
     public static float ChosensSprintDecreaseSpeed = 1f;
     public static float ChosensSprintRegenSpeed = 1f;
     public static int ChosenenemyAttackAmount = 10;
     public static float ChosenSensitivity = 50;
+    public static int ChosenQuality = 4;
 
     public void StartGame()
     {
@@ -55,6 +57,10 @@ public class MainMenu : MonoBehaviour
     }
     public void setNightBrightness(){
 
+    }
+    public void setQuality(){
+        ChosenQuality = Mathf.RoundToInt(QualitySlider.value);
+        QualitySettings.SetQualityLevel(ChosenQuality);
     }
 
 }
