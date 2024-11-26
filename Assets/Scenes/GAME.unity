@@ -3227,7 +3227,7 @@ GameObject:
   - component: {fileID: 224947055}
   - component: {fileID: 224947054}
   m_Layer: 5
-  m_Name: Checkbox
+  m_Name: Checkbox2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5390,7 +5390,7 @@ GameObject:
   - component: {fileID: 419416479}
   - component: {fileID: 419416478}
   m_Layer: 5
-  m_Name: Checkbox
+  m_Name: Checkbox5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6279,7 +6279,7 @@ GameObject:
   - component: {fileID: 466113270}
   - component: {fileID: 466113269}
   m_Layer: 5
-  m_Name: ObjectiveText
+  m_Name: ObjectiveText3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6992,7 +6992,7 @@ GameObject:
   - component: {fileID: 509376787}
   - component: {fileID: 509376786}
   m_Layer: 5
-  m_Name: Checkbox
+  m_Name: Checkbox3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7749,7 +7749,7 @@ GameObject:
   - component: {fileID: 581163526}
   - component: {fileID: 581163525}
   m_Layer: 5
-  m_Name: ObjectiveText
+  m_Name: ObjectiveText5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8324,7 +8324,7 @@ GameObject:
   - component: {fileID: 641561010}
   - component: {fileID: 641561009}
   m_Layer: 5
-  m_Name: ObjectiveText
+  m_Name: ObjectiveText7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9374,7 +9374,7 @@ GameObject:
   - component: {fileID: 718142351}
   - component: {fileID: 718142350}
   m_Layer: 5
-  m_Name: ObjectiveText
+  m_Name: ObjectiveText8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10300,7 +10300,7 @@ GameObject:
   - component: {fileID: 773227636}
   - component: {fileID: 773227635}
   m_Layer: 5
-  m_Name: Checkbox
+  m_Name: Checkbox6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10844,7 +10844,7 @@ GameObject:
   - component: {fileID: 838217433}
   - component: {fileID: 838217432}
   m_Layer: 5
-  m_Name: Checkbox
+  m_Name: Checkbox9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13009,7 +13009,7 @@ GameObject:
   - component: {fileID: 1040986698}
   - component: {fileID: 1040986697}
   m_Layer: 5
-  m_Name: ObjectiveText
+  m_Name: ObjectiveText1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14334,7 +14334,7 @@ GameObject:
   - component: {fileID: 1142436150}
   - component: {fileID: 1142436149}
   m_Layer: 5
-  m_Name: ObjectiveText
+  m_Name: ObjectiveText4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15756,6 +15756,7 @@ GameObject:
   - component: {fileID: 1277045303}
   - component: {fileID: 1277045307}
   - component: {fileID: 1277045306}
+  - component: {fileID: 1277045308}
   m_Layer: 5
   m_Name: objectiveCanvas
   m_TagString: Untagged
@@ -15896,6 +15897,60 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &1277045308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1277045301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 018b97e97db2da743bb4cba48800d2de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectives:
+  - description: 1
+    isComplete: 0
+    objectiveText: {fileID: 1040986697}
+    checkBox: {fileID: 1536908103}
+  - description: 2
+    isComplete: 0
+    objectiveText: {fileID: 1424946378}
+    checkBox: {fileID: 224947052}
+  - description: 3
+    isComplete: 0
+    objectiveText: {fileID: 466113269}
+    checkBox: {fileID: 509376784}
+  - description: 4
+    isComplete: 0
+    objectiveText: {fileID: 1142436149}
+    checkBox: {fileID: 2027395185}
+  - description: 5
+    isComplete: 0
+    objectiveText: {fileID: 581163525}
+    checkBox: {fileID: 419416476}
+  - description: 6
+    isComplete: 0
+    objectiveText: {fileID: 1676358060}
+    checkBox: {fileID: 773227633}
+  - description: 7
+    isComplete: 0
+    objectiveText: {fileID: 641561009}
+    checkBox: {fileID: 1667886975}
+  - description: 8
+    isComplete: 0
+    objectiveText: {fileID: 718142350}
+    checkBox: {fileID: 1887584675}
+  - description: 9
+    isComplete: 0
+    objectiveText: {fileID: 1690815070}
+    checkBox: {fileID: 838217430}
+  - description: 10
+    isComplete: 0
+    objectiveText: {fileID: 1988389904}
+    checkBox: {fileID: 2118318482}
+  popupManager: {fileID: 0}
 --- !u!1 &1280605355
 GameObject:
   m_ObjectHideFlags: 0
@@ -17884,7 +17939,7 @@ GameObject:
   - component: {fileID: 1424946379}
   - component: {fileID: 1424946378}
   m_Layer: 5
-  m_Name: ObjectiveText
+  m_Name: ObjectiveText2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24051,7 +24106,7 @@ GameObject:
   - component: {fileID: 1536908106}
   - component: {fileID: 1536908105}
   m_Layer: 5
-  m_Name: Checkbox
+  m_Name: Checkbox1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25297,7 +25352,7 @@ GameObject:
   - component: {fileID: 1667886978}
   - component: {fileID: 1667886977}
   m_Layer: 5
-  m_Name: Checkbox
+  m_Name: Checkbox7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25454,7 +25509,7 @@ GameObject:
   - component: {fileID: 1676358061}
   - component: {fileID: 1676358060}
   m_Layer: 5
-  m_Name: ObjectiveText
+  m_Name: ObjectiveText6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25926,7 +25981,7 @@ GameObject:
   - component: {fileID: 1690815071}
   - component: {fileID: 1690815070}
   m_Layer: 5
-  m_Name: ObjectiveText
+  m_Name: ObjectiveText9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28625,7 +28680,7 @@ GameObject:
   - component: {fileID: 1887584678}
   - component: {fileID: 1887584677}
   m_Layer: 5
-  m_Name: Checkbox
+  m_Name: Checkbox8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29813,7 +29868,7 @@ GameObject:
   - component: {fileID: 1988389905}
   - component: {fileID: 1988389904}
   m_Layer: 5
-  m_Name: ObjectiveText
+  m_Name: ObjectiveText10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30290,7 +30345,7 @@ GameObject:
   - component: {fileID: 2027395188}
   - component: {fileID: 2027395187}
   m_Layer: 5
-  m_Name: Checkbox
+  m_Name: Checkbox4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31431,7 +31486,7 @@ GameObject:
   - component: {fileID: 2118318485}
   - component: {fileID: 2118318484}
   m_Layer: 5
-  m_Name: Checkbox
+  m_Name: Checkbox10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
