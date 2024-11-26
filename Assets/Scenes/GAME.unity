@@ -3304,7 +3304,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3238372375054580709, guid: df60da65014e0ad4d936ce5c42ca54f9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.6849823
+      value: -10.12
       objectReference: {fileID: 0}
     - target: {fileID: 3238372375054580709, guid: df60da65014e0ad4d936ce5c42ca54f9, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3312,7 +3312,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3238372375054580709, guid: df60da65014e0ad4d936ce5c42ca54f9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 9.237999
+      value: 10.59
       objectReference: {fileID: 0}
     - target: {fileID: 3238372375054580709, guid: df60da65014e0ad4d936ce5c42ca54f9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3866,6 +3866,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 731146649}
+  - {fileID: 648971965}
   m_Father: {fileID: 1218681692}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!154 &270322891
@@ -5268,7 +5269,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3238372375054580709, guid: df60da65014e0ad4d936ce5c42ca54f9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.4749184
+      value: -8.909935
       objectReference: {fileID: 0}
     - target: {fileID: 3238372375054580709, guid: df60da65014e0ad4d936ce5c42ca54f9, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5276,7 +5277,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3238372375054580709, guid: df60da65014e0ad4d936ce5c42ca54f9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 8.945274
+      value: 10.297279
       objectReference: {fileID: 0}
     - target: {fileID: 3238372375054580709, guid: df60da65014e0ad4d936ce5c42ca54f9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5547,6 +5548,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1123732370}
+  - {fileID: 1825441586}
   m_Father: {fileID: 1218681692}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!154 &424958080
@@ -8198,15 +8200,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2711240294163304829, guid: db0da2f8df9eb5c45bfa57b842024c5d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.18779
+      value: 1.9936905
       objectReference: {fileID: 0}
     - target: {fileID: 2711240294163304829, guid: db0da2f8df9eb5c45bfa57b842024c5d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.21819687
+      value: 0.063
       objectReference: {fileID: 0}
     - target: {fileID: 2711240294163304829, guid: db0da2f8df9eb5c45bfa57b842024c5d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 7.3360214
+      value: 4.460243
       objectReference: {fileID: 0}
     - target: {fileID: 2711240294163304829, guid: db0da2f8df9eb5c45bfa57b842024c5d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -8446,6 +8448,59 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 641561007}
   m_CullTransparentMesh: 1
+--- !u!1 &648971964
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 648971965}
+  - component: {fileID: 648971966}
+  m_Layer: 6
+  m_Name: Village3Trigger
+  m_TagString: Village
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &648971965
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 648971964}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 261.1, y: 55.549988, z: 274.9}
+  m_LocalScale: {x: 7, y: 7, z: 7}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 270322890}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &648971966
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 648971964}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 20, y: 1, z: 20}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &649835427
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10501,15 +10556,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1775832282030252105, guid: 069c9cbc336ac3542b6be681742e4035, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.7488594
+      value: -9.16
       objectReference: {fileID: 0}
     - target: {fileID: 1775832282030252105, guid: 069c9cbc336ac3542b6be681742e4035, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.31134796
+      value: -0.06
       objectReference: {fileID: 0}
     - target: {fileID: 1775832282030252105, guid: 069c9cbc336ac3542b6be681742e4035, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 9.614319
+      value: 15.39
       objectReference: {fileID: 0}
     - target: {fileID: 1775832282030252105, guid: 069c9cbc336ac3542b6be681742e4035, type: 3}
       propertyPath: m_LocalRotation.w
@@ -14562,6 +14617,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1572153185}
+  - {fileID: 1401713888}
   m_Father: {fileID: 1218681692}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!154 &1149422766
@@ -15910,47 +15966,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectives:
-  - description: 1
+  - description: Collect an apple
     isComplete: 0
     objectiveText: {fileID: 1040986697}
-    checkBox: {fileID: 1536908103}
-  - description: 2
+  - description: Collect stone
     isComplete: 0
     objectiveText: {fileID: 1424946378}
-    checkBox: {fileID: 224947052}
-  - description: 3
+  - description: Consume an apple
     isComplete: 0
     objectiveText: {fileID: 466113269}
-    checkBox: {fileID: 509376784}
-  - description: 4
+  - description: Locate a village
     isComplete: 0
     objectiveText: {fileID: 1142436149}
-    checkBox: {fileID: 2027395185}
-  - description: 5
+  - description: Craft a dagger
     isComplete: 0
     objectiveText: {fileID: 581163525}
-    checkBox: {fileID: 419416476}
-  - description: 6
+  - description: Fight off an enemy
     isComplete: 0
     objectiveText: {fileID: 1676358060}
-    checkBox: {fileID: 773227633}
-  - description: 7
+  - description: Locate the mushroom man
     isComplete: 0
     objectiveText: {fileID: 641561009}
-    checkBox: {fileID: 1667886975}
   - description: 8
     isComplete: 0
     objectiveText: {fileID: 718142350}
-    checkBox: {fileID: 1887584675}
   - description: 9
     isComplete: 0
     objectiveText: {fileID: 1690815070}
-    checkBox: {fileID: 838217430}
   - description: 10
     isComplete: 0
     objectiveText: {fileID: 1988389904}
-    checkBox: {fileID: 2118318482}
-  popupManager: {fileID: 0}
+  popupManager: {fileID: 185827247}
 --- !u!1 &1280605355
 GameObject:
   m_ObjectHideFlags: 0
@@ -16305,15 +16351,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1775832282030252105, guid: 069c9cbc336ac3542b6be681742e4035, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.1488953
+      value: -10.04
       objectReference: {fileID: 0}
     - target: {fileID: 1775832282030252105, guid: 069c9cbc336ac3542b6be681742e4035, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.34521866
+      value: 0.29
       objectReference: {fileID: 0}
     - target: {fileID: 1775832282030252105, guid: 069c9cbc336ac3542b6be681742e4035, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 11.063408
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1775832282030252105, guid: 069c9cbc336ac3542b6be681742e4035, type: 3}
       propertyPath: m_LocalRotation.w
@@ -17595,6 +17641,59 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a1d70c5b3ee5f95428dd4a5c5e04de64, type: 3}
+--- !u!1 &1401713887
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1401713888}
+  - component: {fileID: 1401713889}
+  m_Layer: 6
+  m_Name: Village1Trigger
+  m_TagString: Village
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1401713888
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1401713887}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 243.52301, y: 74.85182, z: 263.1566}
+  m_LocalScale: {x: 7, y: 10, z: 7}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1149422765}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1401713889
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1401713887}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 20, y: 1, z: 20}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1401833204
 GameObject:
   m_ObjectHideFlags: 0
@@ -24449,15 +24548,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2711240294163304829, guid: db0da2f8df9eb5c45bfa57b842024c5d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.8814812
+      value: 2.3
       objectReference: {fileID: 0}
     - target: {fileID: 2711240294163304829, guid: db0da2f8df9eb5c45bfa57b842024c5d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.040130615
+      value: 0.78
       objectReference: {fileID: 0}
     - target: {fileID: 2711240294163304829, guid: db0da2f8df9eb5c45bfa57b842024c5d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 9.3057785
+      value: 6.43
       objectReference: {fileID: 0}
     - target: {fileID: 2711240294163304829, guid: db0da2f8df9eb5c45bfa57b842024c5d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -27878,6 +27977,59 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5749593799638602629, guid: a9992a3b3802b4050b7af805c9c6e95c, type: 3}
   m_PrefabInstance: {fileID: 1823646876}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1825441585
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1825441586}
+  - component: {fileID: 1825441587}
+  m_Layer: 6
+  m_Name: Village2Trigger
+  m_TagString: Village
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1825441586
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1825441585}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.81430197, z: -0, w: 0.58044153}
+  m_LocalPosition: {x: 293.4, y: 58.009995, z: 63.4}
+  m_LocalScale: {x: 7, y: 10, z: 7}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 424958079}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1825441587
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1825441585}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 20, y: 1, z: 20}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1829622109
 GameObject:
   m_ObjectHideFlags: 0

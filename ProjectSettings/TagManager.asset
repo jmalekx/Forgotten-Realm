@@ -9,6 +9,7 @@ TagManager:
   - Wood
   - Stone
   - fist
+  - Village
   layers:
   - Default
   - TransparentFX

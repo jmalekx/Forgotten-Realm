@@ -382,13 +382,22 @@ public class PlayerController : MonoBehaviour
         Cursor.visible = isVisible;
         Cursor.lockState = isVisible ? CursorLockMode.None : CursorLockMode.Locked;
     }
+
+    //-----------------------OBJECTIVE COLLIDER
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Village"))
+        {
+            ObjectiveManager.Instance.TrackObjective("Locate a village");
+        }
+    }
 }
 
 
 
 
 
-  
-  
-   
+
+
+
 

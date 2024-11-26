@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class ObjectiveManager : MonoBehaviour
 {
+    public static ObjectiveManager Instance;
     [System.Serializable]
     public class Objective
     {
@@ -16,11 +17,20 @@ public class ObjectiveManager : MonoBehaviour
     public Objective[] objectives; //array for objectives
     public PopupManager popupManager; //ref popupmanager
 
+    void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject); //ensure only one isnatnce of script
+    }
+
     void Start()
     {
         foreach (Objective obj in objectives)
         {
             obj.isComplete = false;
+            obj.objectiveText.color = new Color32(0x1D, 0x1C, 0x73, 0xFF);
             obj.objectiveText.fontStyle = FontStyles.Normal;
         }
     }
@@ -29,6 +39,7 @@ public class ObjectiveManager : MonoBehaviour
         if (index >= 0 && index < objectives.Length && !objectives[index].isComplete)
         {
             objectives[index].isComplete = true;
+            objectives[index].objectiveText.color = Color.white;
             objectives[index].objectiveText.fontStyle = FontStyles.Strikethrough; //crossed out text
 
             //display popup

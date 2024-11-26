@@ -24,6 +24,11 @@ public class Inventory : MonoBehaviour
     {
         if (itemToUse.count >0)
         {
+            if (itemToUse.itemName == "Apple")
+            {
+                ObjectiveManager.Instance.TrackObjective("Consume an apple");
+            }
+
             HealthBar.value = Mathf.Min(HealthBar.maxValue, HealthBar.value + itemToUse.healthRestoreAmount);
             itemToUse.count--;
 
@@ -61,8 +66,21 @@ public class Inventory : MonoBehaviour
 
         }
 
+        TrackObjective(itemToAdd.itemName);
         OnInventoryChanged?.Invoke(); // notify the UI to update
         Debug.Log(itemToAdd.itemName + " added to inventory. Total count: " + itemToAdd.count);
+    }
+
+    private void TrackObjective(string itemName)
+    {
+        if (itemName == "Apple")
+        {
+            ObjectiveManager.Instance.TrackObjective("Collect an apple");
+        }
+        else if (itemName == "Stone")
+        {
+            ObjectiveManager.Instance.TrackObjective("Collect stone");
+        }
     }
 
     //------------------------------------------------------------------------------------------------------------

@@ -63,6 +63,7 @@ public class MushroomMan : MonoBehaviour
         {
             _animator.SetBool("isReact", true);
             //pause and do dialogue if the player nearby
+            ObjectiveManager.Instance.TrackObjective("Locate the mushroom man");
             SaySomething();
         }
         else if (!dialogueActivated)
