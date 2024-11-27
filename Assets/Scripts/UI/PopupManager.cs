@@ -30,12 +30,19 @@ public class PopupManager : MonoBehaviour
         }
     }
 
-    // Method to display hints
+    //method to display hints
     public void ShowPopup(string message)
     {
+
+        //ensure popup canvas active before showing (to prevent corouritne error)
+        if (!gameObject.activeSelf)
+        {
+            gameObject.SetActive(true);
+        }
+
         popupText.text = message;
         popupAnim.ShowPopup();
-        Invoke(nameof(HidePopup), displayTime); //hide after 3s
+        Invoke(nameof(HidePopup), displayTime); // hide after 3s
     }
 
     private void HidePopup()

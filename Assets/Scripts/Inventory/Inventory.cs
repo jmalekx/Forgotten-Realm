@@ -7,6 +7,7 @@ public class Inventory : MonoBehaviour
     public static Inventory Instance;
 
     public List<ItemData> items = new List<ItemData>();
+    public bool ScrollObtained { get; private set; }
 
     public event Action OnInventoryChanged; // Event to notify inventory changes
 
@@ -18,6 +19,7 @@ public class Inventory : MonoBehaviour
         else
             Instance = this;
         items.Clear();
+        ScrollObtained = false;
     }
 
     public void UseItem(ItemData itemToUse)
@@ -68,22 +70,29 @@ public class Inventory : MonoBehaviour
 
         TrackObjective(itemToAdd.itemName);
         OnInventoryChanged?.Invoke(); // notify the UI to update
+
+        if (itemToAdd.itemName == "Scroll")
+        {
+            // Set a flag or perform an action to mark that the scroll is now obtained
+            ScrollObtained = true;  // Add a flag to track the scroll's acquisition
+        }
+
         Debug.Log(itemToAdd.itemName + " added to inventory. Total count: " + itemToAdd.count);
     }
 
     private void TrackObjective(string itemName)
     {
-        if (itemName == "Apple")
+        var objectiveMap = new Dictionary<string, string>
         {
-            ObjectiveManager.Instance.TrackObjective("Collect an apple");
-        }
-        else if (itemName == "Stone")
+            { "Apple", "Collect an apple" },
+            { "Stone", "Collect stone" },
+            { "Wood", "Collect wood" }
+        };
+
+        // Check if the dictionary contains the itemName and call TrackObjective if found
+        if (objectiveMap.TryGetValue(itemName, out string objectiveDescription))
         {
-            ObjectiveManager.Instance.TrackObjective("Collect stone");
-        }
-        else if (itemName == "Wood")
-        {
-            ObjectiveManager.Instance.TrackObjective("Collect wood");
+            ObjectiveManager.Instance.TrackObjective(objectiveDescription);
         }
     }
 

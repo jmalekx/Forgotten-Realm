@@ -31,14 +31,21 @@ public class ObjectiveManager : MonoBehaviour
         {
             obj.isComplete = false;
         }
-        UpdateObjectiveUI(); //initial state
+        UpdateObjectiveUI();
     }
     public void CompleteObjective(int index)
     {
+        //check if has objective scroll before compelting objectives
+        if (!Inventory.Instance.ScrollObtained)
+        {
+            return;
+        }
+
         if (index >= 0 && index < objectives.Length && !objectives[index].isComplete)
         {
             objectives[index].isComplete = true;
-            UpdateObjectiveUI(); //reflect ui canvas change
+            UpdateObjectiveUI();
+
             //display popup
             popupManager.ShowPopup($"Objective Completed: {objectives[index].description}");
         }
@@ -54,8 +61,7 @@ public class ObjectiveManager : MonoBehaviour
             }
         }
     }
-
-    public void UpdateObjectiveUI()//to track and update scroll even if scroll not picked up yet
+    public void UpdateObjectiveUI() //track and update scroll
     {
         foreach (Objective obj in objectives)
         {
@@ -71,5 +77,4 @@ public class ObjectiveManager : MonoBehaviour
             }
         }
     }
-
 }
