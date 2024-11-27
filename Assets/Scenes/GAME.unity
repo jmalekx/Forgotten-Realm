@@ -29032,7 +29032,7 @@ MonoBehaviour:
   ground:
     serializedVersion: 2
     m_Bits: 64
-  maxSlopeAngle: 0
+  maxSlopeAngle: 45
   playerBody: {fileID: 1554781247}
   attackDistance: 7
   craftingPanel: {fileID: 1796822663}
