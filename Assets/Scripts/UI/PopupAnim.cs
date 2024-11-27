@@ -31,6 +31,13 @@ public class PopupAnim : MonoBehaviour
 
     public void HidePopup()
     {
+        //check if GameObject active before starting the coroutine
+        if (!gameObject.activeSelf)
+        {
+            Debug.LogWarning("PopupCanvas is inactive, cannot start coroutine.");
+            return;
+        }
+
         if (currentAnimation != null) StopCoroutine(currentAnimation);
         currentAnimation = StartCoroutine(AnimatePopup(false));
     }
@@ -59,6 +66,7 @@ public class PopupAnim : MonoBehaviour
 
         if (!show)
         {
+            yield return new WaitForSeconds(0.1f);
             gameObject.SetActive(false); //disable the popup after hiding
         }
     }

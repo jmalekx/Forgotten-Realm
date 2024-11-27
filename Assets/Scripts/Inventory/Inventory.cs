@@ -73,13 +73,17 @@ public class Inventory : MonoBehaviour
 
     private void TrackObjective(string itemName)
     {
-        if (itemName == "Apple")
+        var objectiveMap = new Dictionary<string, string>
         {
-            ObjectiveManager.Instance.TrackObjective("Collect an apple");
-        }
-        else if (itemName == "Stone")
+            { "Apple", "Collect an apple" },
+            { "Stone", "Collect stone" },
+            { "Wood", "Collect wood" }
+        };
+
+        // Check if the dictionary contains the itemName and call TrackObjective if found
+        if (objectiveMap.TryGetValue(itemName, out string objectiveDescription))
         {
-            ObjectiveManager.Instance.TrackObjective("Collect stone");
+            ObjectiveManager.Instance.TrackObjective(objectiveDescription);
         }
     }
 
