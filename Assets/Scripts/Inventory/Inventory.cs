@@ -7,6 +7,7 @@ public class Inventory : MonoBehaviour
     public static Inventory Instance;
 
     public List<ItemData> items = new List<ItemData>();
+    public bool ScrollObtained { get; private set; }
 
     public event Action OnInventoryChanged; // Event to notify inventory changes
 
@@ -18,6 +19,7 @@ public class Inventory : MonoBehaviour
         else
             Instance = this;
         items.Clear();
+        ScrollObtained = false;
     }
 
     public void UseItem(ItemData itemToUse)
@@ -68,6 +70,13 @@ public class Inventory : MonoBehaviour
 
         TrackObjective(itemToAdd.itemName);
         OnInventoryChanged?.Invoke(); // notify the UI to update
+
+        if (itemToAdd.itemName == "Scroll")
+        {
+            // Set a flag or perform an action to mark that the scroll is now obtained
+            ScrollObtained = true;  // Add a flag to track the scroll's acquisition
+        }
+
         Debug.Log(itemToAdd.itemName + " added to inventory. Total count: " + itemToAdd.count);
     }
 

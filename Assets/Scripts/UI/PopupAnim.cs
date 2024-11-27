@@ -34,7 +34,6 @@ public class PopupAnim : MonoBehaviour
         //check if GameObject active before starting the coroutine
         if (!gameObject.activeSelf)
         {
-            Debug.LogWarning("PopupCanvas is inactive, cannot start coroutine.");
             return;
         }
 

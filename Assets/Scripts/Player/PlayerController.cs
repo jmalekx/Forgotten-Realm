@@ -346,6 +346,7 @@ public class PlayerController : MonoBehaviour
                 if (enemyAnimator != null)
                 {
                     enemyAnimator.SetTrigger("Death");
+                    ObjectiveManager.Instance.TrackObjective("Fight off an enemy");
                 }
 
                 StartCoroutine(Destroyed(enemyHit, 5f));
