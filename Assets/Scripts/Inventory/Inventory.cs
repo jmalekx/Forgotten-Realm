@@ -81,6 +81,10 @@ public class Inventory : MonoBehaviour
         {
             ObjectiveManager.Instance.TrackObjective("Collect stone");
         }
+        else if (itemName == "Wood")
+        {
+            ObjectiveManager.Instance.TrackObjective("Collect wood");
+        }
     }
 
     //------------------------------------------------------------------------------------------------------------
