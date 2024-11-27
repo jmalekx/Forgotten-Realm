@@ -112,7 +112,6 @@ public class InventoryManager : MonoBehaviour
             if (selectedItem.itemName == "Scroll")
             {
                 objectivePopupAnim.ShowPopup(); //show objectives while pressed
-                ObjectiveManager.Instance.UpdateObjectiveUI(); //refresh
             }
         }
     }
