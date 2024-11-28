@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1396489414}
-  m_IndirectSpecularColor: {r: 0.04874265, g: 0.05005028, b: 0.15467876, a: 1}
+  m_IndirectSpecularColor: {r: 0.048923593, g: 0.05018138, b: 0.15484357, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -29034,7 +29034,7 @@ MonoBehaviour:
     m_Bits: 64
   maxSlopeAngle: 45
   playerBody: {fileID: 1554781247}
-  attackDistance: 7
+  attackDistance: 1.6
   craftingPanel: {fileID: 1796822663}
   inventoryPanel: {fileID: 758164736}
   craftingSlotsParent: {fileID: 1796822664}

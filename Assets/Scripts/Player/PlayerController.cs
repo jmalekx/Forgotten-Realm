@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody rb;
 
     [Header("Attacking")]
-    public float attackDistance = 7f;
+    public float attackDistance = 2.5f;
 
     //[Header("Crafting")]
     //public GameObject craftingPanel;
@@ -153,7 +153,7 @@ public class PlayerController : MonoBehaviour
         if (HealthBar.value <= 0)
         {
             SceneManager.LoadScene("GameOverScene");
-            
+
         }
         GetInput();
         ControlSpeed();
@@ -329,6 +329,7 @@ public class PlayerController : MonoBehaviour
 
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
+        Debug.DrawRay(ray.origin, ray.direction * attackDistance, Color.red, 1f);
         if (Physics.Raycast(ray, out hit, attackDistance))
         {
             if (hit.collider.CompareTag("Enemy"))
