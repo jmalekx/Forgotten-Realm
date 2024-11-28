@@ -152,10 +152,8 @@ public class PlayerController : MonoBehaviour
         }
         if (HealthBar.value <= 0)
         {
-            // string displayText = "GAME OVER";
-            //  DeathText.text  = displayText;
-            //  enabled = false;
             SceneManager.LoadScene("GameOverScene");
+            
         }
         GetInput();
         ControlSpeed();
