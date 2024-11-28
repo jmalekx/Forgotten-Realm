@@ -16,4 +16,8 @@ public class DeathScene : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu");
     }
+    public void Quit()
+    {
+        Application.Quit();
+    }
 }
