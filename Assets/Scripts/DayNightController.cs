@@ -1,59 +1,172 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using Unity.VisualScripting;
 
-public class DayNightCycle : MonoBehaviour
+public class DayNightController : MonoBehaviour
 {
-    public Light sun;  // Assign the directional light as the "sun"
-    public Light moon; // Assign a directional light as the "moon"
-    public float dayLength = 120f;  // Full day duration in seconds
-    public Gradient lightColor;  // Controls the sun's color over time
-    public Gradient moonColor;  // Controls the moon's color over time
-    public AnimationCurve moonIntensityCurve; // Optional: Curve to control moonlight intensity
 
-    private float time = 0f;  // Keeps track of the current time of day
+    [Header("Skybox")]
+    public Material skyboxMaterial; 
+    public AnimationCurve skyboxTintCurve;
+
+    [Header("Cycle durations")]
+    public float timeSpeed = 2000f; //speed of time
+    public float start = 12f; //starting time
+    public float sunrise = 6f; //sunrise time
+    public float sunset= 20f; //sunset time
+
+    [Header("Light")]
+    public Light sun;
+    public Light moon;
+
+    [Header("Colour")]
+    public Color dayAmbience = new Color(0.627f, 0.765f, 0.537f); //ambience colours
+    public Color nightAmbience = new Color(0.604f, 0.565f, 0.737f);
+
+    [Header("Intensity")]
+    public AnimationCurve lightCurve; //light transition curve
+    public float maxSun = 1f; //max sun intentisty
+    public float maxMoon = 0.8f;
+
+    [Header("Fog")]
+    public float normalFogDensity = 0.002f;
+    public float thickerFogDensity = 0.01f;
+    public AnimationCurve fogTransitionCurve;
+
+    private DateTime currentTime; //track times
+    private TimeSpan sunriseTime; 
+    private TimeSpan sunsetTime;
+    private bool isDay;
+
+    void Start()
+    {
+        currentTime = DateTime.Now.Date + TimeSpan.FromHours(start);
+        sunriseTime = TimeSpan.FromHours(sunrise);
+        sunsetTime = TimeSpan.FromHours(sunset);
+
+        RenderSettings.fog = true;
+        RenderSettings.fogDensity = normalFogDensity;
+    }
 
     void Update()
     {
-        // Increment time based on real-time progression
-        time += Time.deltaTime;
+        UpdateTimeOfDay();
+        RotateSun();
+        RotateMoon();
+        AdjustLight();
+        AdjustFog();
+    }
 
-        // Normalize time value (0 = start of day, 1 = end of day)
-        float dayProgress = time / dayLength;
+    void UpdateTimeOfDay()
+    {
+        currentTime = currentTime.AddSeconds(Time.deltaTime * timeSpeed);
+    }
 
-        // Reset the time to start a new day after a full cycle
-        if (dayProgress >= 1f)
+    void RotateSun()
+    {
+        float sunRotation;
+
+        if (currentTime.TimeOfDay > sunriseTime && currentTime.TimeOfDay < sunsetTime)
         {
-            time = 0f;
-            dayProgress = 0f;
+            isDay = true;
+            TimeSpan dayDuration = sunsetTime - sunriseTime;
+            TimeSpan elapsedTime = currentTime.TimeOfDay - sunriseTime;
+
+            float timeProgress = (float)(elapsedTime.TotalMinutes / dayDuration.TotalMinutes);
+            sunRotation = Mathf.Lerp(0f, 180f, timeProgress);
+        }
+        else
+        {
+            isDay = false;
+            TimeSpan nightDuration = CalculateTimeDifference(sunsetTime, sunriseTime);
+            TimeSpan elapsedTime = currentTime.TimeOfDay - sunsetTime;
+
+            float timeProgress = (float)(elapsedTime.TotalMinutes / nightDuration.TotalMinutes);
+            sunRotation = Mathf.Lerp(180f, 360f, timeProgress);
         }
 
-        // Calculate sun angle (0 to 180 degrees from mid-morning to sunset)
-        float sunAngle = Mathf.Lerp(0f, 180f, dayProgress);
-        sun.transform.rotation = Quaternion.Euler(sunAngle, 170f, 0f);
+        sun.transform.rotation = Quaternion.AngleAxis(sunRotation, Vector3.right);
+    }
+    void RotateMoon()
+    {
+        float moonRotation = 0f;
 
-        // Change sun's color and intensity over the day
-        sun.color = lightColor.Evaluate(dayProgress);
-        sun.intensity = Mathf.Clamp01(Mathf.Cos(dayProgress * Mathf.PI));
-
-        // Moon setup
-        if (moon != null)
+        if (currentTime.TimeOfDay >= sunsetTime || currentTime.TimeOfDay <= sunriseTime)
         {
-            // Calculate moon angle (opposite to the sun's path)
-            float moonAngle = Mathf.Lerp(180f, 360f, dayProgress);
-            moon.transform.rotation = Quaternion.Euler(moonAngle, -170f, 0f);
+            TimeSpan nightDuration = CalculateTimeDifference(sunsetTime, sunriseTime);
+            TimeSpan elapsedTime = currentTime.TimeOfDay - sunsetTime;
 
-            // Adjust moon's color and intensity dynamically
-            moon.color = moonColor.Evaluate(dayProgress);
-            moon.intensity = moonIntensityCurve.Evaluate(dayProgress);
+            if (elapsedTime.TotalSeconds < 0)
+            {
+                elapsedTime += TimeSpan.FromHours(24);//adjust when crosses midnight
+            }
 
-            // Enable moon only at night
-            moon.enabled = dayProgress > 0.25f && dayProgress < 0.75f;
+            float timeProgress = (float)(elapsedTime.TotalMinutes / nightDuration.TotalMinutes);
+            moonRotation = Mathf.Lerp(0f, 180f, timeProgress);
         }
 
-        // Optional: Adjust ambient light
-        RenderSettings.ambientLight = Color.Lerp(
-            new Color(0.02f, 0.02f, 0.1f), // Dark blue for night
-            Color.white,                  // Bright white for day
-            Mathf.Clamp01(sun.intensity)
-        );
+        moon.transform.rotation = Quaternion.AngleAxis(moonRotation, Vector3.right);
+    }
+
+    void AdjustLight()
+    {
+        float sunlightDotProduct = Vector3.Dot(sun.transform.forward, Vector3.down);
+        float lightFactor = lightCurve.Evaluate(sunlightDotProduct);
+        sun.intensity = Mathf.Lerp(0f, maxSun, lightCurve.Evaluate(sunlightDotProduct));
+        moon.intensity = Mathf.Lerp(maxMoon, maxSun, lightCurve.Evaluate(sunlightDotProduct));
+        RenderSettings.ambientLight = Color.Lerp(nightAmbience, dayAmbience, lightCurve.Evaluate(sunlightDotProduct));
+
+        if (skyboxMaterial != null)
+        {
+            //exposure range for day (0.8) and night (2.0)
+            float exposure = Mathf.Lerp(0.5f, 0.9f, lightFactor);
+            skyboxMaterial.SetFloat("_Exposure", exposure);
+        }
+    }
+
+    void AdjustFog()
+    {
+        float timeProgress = 0f;
+        //night
+        if (currentTime.TimeOfDay > sunsetTime || currentTime.TimeOfDay < sunriseTime)
+        {
+            //increase fog gradually
+            TimeSpan nightDuration = CalculateTimeDifference(sunsetTime, sunriseTime);
+            TimeSpan elapsedTime = currentTime.TimeOfDay - sunsetTime;
+
+            //wrap around midnight
+            if (elapsedTime.TotalSeconds < 0)
+            {
+                elapsedTime += TimeSpan.FromHours(24);
+            }
+
+            //calc from sunset to sunrise
+            timeProgress = (float)(elapsedTime.TotalMinutes / nightDuration.TotalMinutes);
+            RenderSettings.fogDensity = Mathf.Lerp(normalFogDensity, thickerFogDensity, fogTransitionCurve.Evaluate(timeProgress));
+        }
+        else if (currentTime.TimeOfDay >= sunriseTime && currentTime.TimeOfDay < sunsetTime)
+        {
+            //before sun, decrease
+            TimeSpan dayDuration = CalculateTimeDifference(sunriseTime, sunsetTime);
+            TimeSpan elapsedTime = currentTime.TimeOfDay - sunriseTime;
+
+            timeProgress = (float)(elapsedTime.TotalMinutes / dayDuration.TotalMinutes);
+            RenderSettings.fogDensity = Mathf.Lerp(thickerFogDensity, normalFogDensity, fogTransitionCurve.Evaluate(timeProgress));
+        }
+    }
+
+    TimeSpan CalculateTimeDifference(TimeSpan startTime, TimeSpan endTime)
+    {
+        TimeSpan difference = endTime - startTime;
+
+        if (difference.TotalSeconds < 0)
+        {
+            difference += TimeSpan.FromHours(24);
+        }
+
+        return difference;
     }
 }
