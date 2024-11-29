@@ -15,19 +15,25 @@ public class PlayerController : MonoBehaviour
     Animator animator;
 
 
-    [Header("UI")]
+    [Header("Health UI")]
     public TMP_Text DeathText;
-    public Slider sprintSlider;
     public Slider HealthBar;
     public float HealthDecreaseSpeed;
+    public Image healthFill;
+    public Color healthBarColor = new Color(0.498f, 0.866f, 0.913f);
+    public Color health50 = new Color(0f, 0.574f, 0.745f);
+    public Color health25 = new Color(0f, 0.239f, 0.471f);
+    private float healthFlashTimer = 0f;
+    private bool isHFlashing = false;
 
-    [Header("Sprint feedback")]
+    [Header("Sprint UI")]
+    public Slider sprintSlider;
     public Image sprintBg;
     public float flashTime = 0.3f;
     public Color flashingColor = new Color(0.725f, 0.725f, 0.725f);
     public Color normalColor = Color.white;
-    private float flashTimer = 0f;
-    private bool isFlashing = false;
+    private float sprintFlashTimer = 0f;
+    private bool isSFlashing = false;
 
     [Header("Movement")]
     public float groundDrag;
@@ -156,6 +162,50 @@ public class PlayerController : MonoBehaviour
         {
             HealthBar.value -= Time.deltaTime * HealthDecreaseSpeed;
         }
+
+        float healthPercentage = HealthBar.value / 100f; //health as fraction
+        //ui flashing feedback timer
+        if (healthPercentage < 0.22f || (sprintSlider.value < sprintSlider.maxValue && isHFlashing))
+        {
+            healthFlashTimer -= Time.deltaTime;
+            if (healthFlashTimer <= 0f)
+            {
+                isHFlashing = !isHFlashing;
+                healthFlashTimer = flashTime;
+            }
+        }
+
+        //health bar color updaye
+        if (healthPercentage < 0.22f)
+        {
+            healthFill.color = isHFlashing ? health25 : healthBarColor;
+        }
+        else if (healthPercentage < 0.6f)
+        {
+            healthFill.color = health50;
+        }
+        else
+        {
+            healthFill.color = healthBarColor;
+        }
+
+        //sprint bar color update
+        if (isCooldown)
+        {
+            sprintFlashTimer -= Time.deltaTime;
+            if (sprintFlashTimer <= 0f)
+            {
+                isSFlashing = !isSFlashing;
+                sprintFlashTimer = flashTime;
+            }
+            sprintBg.color = isSFlashing ? flashingColor : normalColor;
+        }
+        else
+        {
+            sprintBg.color = normalColor;
+        }
+
+
         if (HealthBar.value <= 0)
         {
             SceneManager.LoadScene("GameOverScene");
@@ -285,20 +335,23 @@ public class PlayerController : MonoBehaviour
                 isSprinting = false;
                 isCooldown = true;
                 moveSpeed = walkSpeed;
-                flashTimer = flashTime;
+                sprintFlashTimer = flashTime;
                 Invoke(nameof(ResetCooldown), sprintCooldown);
             }
         }
-        if (isCooldown && flashTimer > 0f)
+        else if (isCooldown)
         {
-            flashTimer -= Time.deltaTime;
-            if (flashTimer <= 0f)
+            sprintFlashTimer -= Time.deltaTime;
+
+            if (sprintFlashTimer <= 0f)
             {
-                isFlashing = !isFlashing;
-                flashTimer = flashTime;
-                sprintBg.color = isFlashing ? flashingColor : normalColor;
+                isSFlashing = !isSFlashing;
+                sprintFlashTimer = flashTime;
             }
+
+            sprintBg.color = isSFlashing ? flashingColor : normalColor;
         }
+
 
         if (!isSprinting && !isCooldown && sprintTimer < sprintDuration && regenTimer <= 0 && !isSprintRegen)
         {

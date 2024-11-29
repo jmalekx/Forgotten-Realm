@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1396489414}
-  m_IndirectSpecularColor: {r: 0.06243874, g: 0.06411412, b: 0.19813669, a: 1}
+  m_IndirectSpecularColor: {r: 0.017278196, g: 0.017740805, b: 0.054830324, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -29136,9 +29136,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DeathText: {fileID: 379335369}
-  sprintSlider: {fileID: 1855608981}
   HealthBar: {fileID: 821993093}
   HealthDecreaseSpeed: 0
+  healthFill: {fileID: 190012522}
+  healthBarColor: {r: 0.498, g: 0.866, b: 0.913, a: 1}
+  health50: {r: 0, g: 0.57183903, b: 0.745283, a: 1}
+  health25: {r: 0, g: 0.23910864, b: 0.4716981, a: 1}
+  sprintSlider: {fileID: 1855608981}
   sprintBg: {fileID: 191390131}
   flashTime: 0.3
   flashingColor: {r: 0.7264151, g: 0.7264151, b: 0.7264151, a: 1}
