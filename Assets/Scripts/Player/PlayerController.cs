@@ -20,13 +20,19 @@ public class PlayerController : MonoBehaviour
     public Slider sprintSlider;
     public Slider HealthBar;
     public float HealthDecreaseSpeed;
-   
 
+    [Header("Sprint feedback")]
+    public Image sprintBg;
+    public float flashTime = 0.3f;
+    public Color flashingColor = new Color(0.725f, 0.725f, 0.725f);
+    public Color normalColor = Color.white;
+    private float flashTimer = 0f;
+    private bool isFlashing = false;
 
-    [Header("Moving")]
-    private float moveSpeed;
+    [Header("Movement")]
     public float groundDrag;
     public float walkSpeed;
+    private float moveSpeed;
 
     public Camera cam;
 
@@ -279,7 +285,18 @@ public class PlayerController : MonoBehaviour
                 isSprinting = false;
                 isCooldown = true;
                 moveSpeed = walkSpeed;
+                flashTimer = flashTime;
                 Invoke(nameof(ResetCooldown), sprintCooldown);
+            }
+        }
+        if (isCooldown && flashTimer > 0f)
+        {
+            flashTimer -= Time.deltaTime;
+            if (flashTimer <= 0f)
+            {
+                isFlashing = !isFlashing;
+                flashTimer = flashTime;
+                sprintBg.color = isFlashing ? flashingColor : normalColor;
             }
         }
 
@@ -303,6 +320,7 @@ public class PlayerController : MonoBehaviour
             else if (isSprintRegen)
             {
                 sprintTimer += (sprintDuration / sprintCooldown) * Time.deltaTime; //smooth gradual bar
+                sprintBg.color = normalColor;
 
                 if (sprintTimer >= sprintDuration)
                 {
