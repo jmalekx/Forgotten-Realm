@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class MushroomMan : MonoBehaviour
 {
@@ -7,12 +8,8 @@ public class MushroomMan : MonoBehaviour
     public float moveSpeed;
     public float moveDistance; //max distance to move per move
     public float noiseScale = 0.1f; //scale of Perlin noise for movement
-    public float minRange; //range to move
-    public float maxRange;
-
-    [Header("Ground detection")]
-    public LayerMask ground;
-    public float objectHeight;
+    public float minWait;
+    public float maxWait;
 
     [Header("Animation")]
     [SerializeField]
@@ -38,7 +35,7 @@ public class MushroomMan : MonoBehaviour
     private float stopTimer;
     private bool isNearPlayer = false;  //track if player nearby
 
-    private CharacterController characterController;
+    private NavMeshAgent navAgent;
 
     //variables for perlin noise
     private float noiseOffsetX;
@@ -46,7 +43,8 @@ public class MushroomMan : MonoBehaviour
 
     void Start()
     {
-        characterController = GetComponent<CharacterController>();
+        navAgent = GetComponent<NavMeshAgent>();
+        navAgent.speed = moveSpeed;
         StopAndWait();
         dialogueText.gameObject.SetActive(false); //disable dialogue text
 
@@ -55,7 +53,7 @@ public class MushroomMan : MonoBehaviour
         noiseOffsetZ = Random.Range(0f, 100f);
     }
 
-    void FixedUpdate() //for consistent physics calculations
+    void Update() //for consistent physics calculations
     {
         CheckPlayerDistance();
 
@@ -70,9 +68,9 @@ public class MushroomMan : MonoBehaviour
         {
             _animator.SetBool("isReact", false);
             //normal random movement if the player not nearby
-            if (isMoving)
+            if (isMoving && !moveToVillage)
             {
-                MoveTowardsTarget();
+                CheckIfReachedDestination();
             }
             else if (!moveToVillage)
             {
@@ -96,7 +94,7 @@ public class MushroomMan : MonoBehaviour
 
         if (moveToVillage && isMoving)
         {
-            MoveTowardsTarget();
+            CheckIfReachedDestination();
         }
     }
     void CheckPlayerDistance()
@@ -107,6 +105,7 @@ public class MushroomMan : MonoBehaviour
     void SaySomething()
     {
         _animator.SetBool("isMoving", false);
+        navAgent.isStopped = true;
         dialogueText.text = dialogue;
         dialogueText.gameObject.SetActive(true);
         dialogueTimer = dialogueDuration;
@@ -117,12 +116,15 @@ public class MushroomMan : MonoBehaviour
     {
         dialogueText.gameObject.SetActive(false);
         _animator.SetBool("isReact", false);
+        navAgent.isStopped = false;
     }
     void MoveToVillage()
     {
         targetPosition = new Vector3(targetX, transform.position.y, targetZ);
-        SetTargetPositionToGround();
+        navAgent.SetDestination(targetPosition);
         moveToVillage = true;
+        isMoving = true;
+        _animator.SetBool("isMoving", true);
     }
 
     void ChooseNewTargetPosition()
@@ -132,91 +134,44 @@ public class MushroomMan : MonoBehaviour
 
         Vector3 randomDirection = new Vector3(offsetX, 0, offsetZ) * moveDistance;
         targetPosition = transform.position + randomDirection;
-        SetTargetPositionToGround();
-    }
 
-    void SetTargetPositionToGround()
-    {
-        RaycastHit hit;
-        if (Physics.Raycast(targetPosition + Vector3.up * 10f, Vector3.down, out hit, Mathf.Infinity, ground))
+        if (NavMesh.SamplePosition(targetPosition, out NavMeshHit hit, moveDistance, NavMesh.AllAreas))
         {
-            targetPosition = hit.point + Vector3.up * objectHeight; //ensure object stays above the terrain
+            targetPosition = hit.position;
+            navAgent.SetDestination(targetPosition);
             isMoving = true;
             _animator.SetBool("isMoving", true);
         }
         else
         {
-            isMoving = false;
-            _animator.SetBool("isMoving", false);
+            StopAndWait();
         }
     }
 
-    void MoveTowardsTarget()
+    void CheckIfReachedDestination()
     {
-        Vector3 targetXZ = new Vector3(targetPosition.x, transform.position.y, targetPosition.z);
-        Vector3 direction = (targetXZ - transform.position).normalized;
-        float distanceToTarget = Vector3.Distance(transform.position, targetXZ);
-
-        //rotation towards target for more natural movement
-        if (direction != Vector3.zero) //ensure direction
-        {
-            Quaternion targetRotation = Quaternion.LookRotation(direction);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.fixedDeltaTime * 5f); //5f=rotation speed
-        }
-
-        if (distanceToTarget > 0.1f)
-        {
-            Vector3 movement = direction * moveSpeed * Time.fixedDeltaTime;
-            //custom gravity to keep the character grounded
-            if (!characterController.isGrounded)
-            {
-                movement.y -= 9.81f * Time.fixedDeltaTime;
-            }
-            characterController.Move(movement);
-        }
-        else
+        if (!navAgent.pathPending && navAgent.remainingDistance <= navAgent.stoppingDistance)
         {
             isMoving = false;
             _animator.SetBool("isMoving", false);
-            StopAndWait();
 
             if (moveToVillage)
             {
                 moveToVillage = false;
             }
-        }
-
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position + Vector3.up * 10f, Vector3.down, out hit, Mathf.Infinity, ground))
-        {
-            transform.position = new Vector3(transform.position.x, hit.point.y + objectHeight, transform.position.z);
+            else
+            {
+                StopAndWait();
+            }
         }
     }
-
-
 
     void StopAndWait()
     {
-        stopDuration = Random.Range(minRange, maxRange);
+        stopDuration = Random.Range(minWait, maxWait);
         stopTimer = stopDuration;
         isMoving = false;
         _animator.SetBool("isMoving", false);
-    }
-
-    void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-        //only react to collisions with objects that are not ground
-        if ((ground & (1 << hit.collider.gameObject.layer)) == 0)
-        {
-            //currently moving to village
-            if (moveToVillage)
-            {
-                MoveToVillage(); //re-route to village
-            }
-            else
-            {
-                ChooseNewTargetPosition(); //choose new position
-            }
-        }
+        navAgent.ResetPath();
     }
 }
