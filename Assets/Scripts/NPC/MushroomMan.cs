@@ -28,6 +28,10 @@ public class MushroomMan : MonoBehaviour
     public float targetX; 
     public float targetZ;
 
+    [Header("Patrol Area")]
+    public Vector3 patrolCenter;  //center
+    public float patrolRadius = 10f;  //area radius
+
     private Vector3 targetPosition;
     private bool isMoving = false;
     private bool moveToVillage = false;
@@ -97,11 +101,13 @@ public class MushroomMan : MonoBehaviour
             CheckIfReachedDestination();
         }
     }
+
     void CheckPlayerDistance()
     {
         float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
         isNearPlayer = distanceToPlayer <= dialogueRange;
     }
+
     void SaySomething()
     {
         _animator.SetBool("isMoving", false);
@@ -112,12 +118,14 @@ public class MushroomMan : MonoBehaviour
 
         dialogueActivated = true;
     }
+
     void HideDialogue()
     {
         dialogueText.gameObject.SetActive(false);
         _animator.SetBool("isReact", false);
         navAgent.isStopped = false;
     }
+
     void MoveToVillage()
     {
         targetPosition = new Vector3(targetX, transform.position.y, targetZ);
@@ -127,25 +135,40 @@ public class MushroomMan : MonoBehaviour
         _animator.SetBool("isMoving", true);
     }
 
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.green; //to see visually
+        Gizmos.DrawWireSphere(patrolCenter, patrolRadius);
+    }
+
     void ChooseNewTargetPosition()
     {
-        float offsetX = (Mathf.PerlinNoise(Time.time * noiseScale + noiseOffsetX, 0) - 0.5f) * 2.0f;
-        float offsetZ = (Mathf.PerlinNoise(0, Time.time * noiseScale + noiseOffsetZ) - 0.5f) * 2.0f;
-
-        Vector3 randomDirection = new Vector3(offsetX, 0, offsetZ) * moveDistance;
-        targetPosition = transform.position + randomDirection;
-
-        if (NavMesh.SamplePosition(targetPosition, out NavMeshHit hit, moveDistance, NavMesh.AllAreas))
+        for (int i = 0; i < 10; i++) //try up to 10 times to find a valid position
         {
-            targetPosition = hit.position;
-            navAgent.SetDestination(targetPosition);
-            isMoving = true;
-            _animator.SetBool("isMoving", true);
+            float offsetX = (Mathf.PerlinNoise(Time.time * noiseScale + noiseOffsetX, 0) - 0.5f) * 2.0f;
+            float offsetZ = (Mathf.PerlinNoise(0, Time.time * noiseScale + noiseOffsetZ) - 0.5f) * 2.0f;
+
+            Vector3 randomDirection = new Vector3(offsetX, 0, offsetZ) * moveDistance;
+            Vector3 potentialPosition = transform.position + randomDirection;
+     
+            //check if within the circular patrol area
+            if (Vector3.Distance(patrolCenter, potentialPosition) > patrolRadius)
+                continue; // skip pos if outside
+    
+
+            //check if pos valid navmesh
+            if (NavMesh.SamplePosition(potentialPosition, out NavMeshHit hit, moveDistance, NavMesh.AllAreas))
+            {
+                targetPosition = hit.position;
+                navAgent.SetDestination(targetPosition);
+                isMoving = true;
+                _animator.SetBool("isMoving", true);
+                return;
+            }
         }
-        else
-        {
-            StopAndWait();
-        }
+
+        //if none valid
+        StopAndWait();
     }
 
     void CheckIfReachedDestination()
