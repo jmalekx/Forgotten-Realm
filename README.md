@@ -78,6 +78,7 @@ The intended player experience is an immersive survival adventure where players 
 - Clovers - 3D Model
 - Scroll - 3D Model + Texture, UI Design
 - Inventory Item UI Icons - 3D Render
+- Signpost - 3D Model
   
 ## Collaborators
 
