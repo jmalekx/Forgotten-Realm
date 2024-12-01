@@ -13,7 +13,9 @@ public class PlayerController : MonoBehaviour
     PlayerInput.MainActions input;
     CharacterController controller;
     Animator animator;
-
+    [Header("Audio")]
+    public AudioClip HitSound; 
+    private AudioSource audioSource;
 
     [Header("Health UI")]
     public TMP_Text DeathText;
@@ -124,7 +126,7 @@ public class PlayerController : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         animator = GetComponentInChildren<Animator>();
-
+        audioSource = GetComponent<AudioSource>();
 
         playerInput = new PlayerInput();
         input = playerInput.Main;
@@ -400,6 +402,7 @@ public class PlayerController : MonoBehaviour
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         Debug.DrawRay(ray.origin, ray.direction * attackDistance, Color.red, 1f);
+        audioSource.PlayOneShot(HitSound); // Play the attack sound once
         if (Physics.Raycast(ray, out hit, attackDistance))
         {
             if (hit.collider.CompareTag("Enemy"))
