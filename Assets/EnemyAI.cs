@@ -10,7 +10,7 @@ public class EnemyAI : MonoBehaviour
     public float maxDistance = 2f;
     public float EnemyDetectionDistance = 20.0f;
     public float enemyAttackAmount;
-    public float attackCooldown = 1f; 
+    public float attackCooldown = 2f; 
     private float timeSinceLastAttack = 0f;
     NavMeshAgent NavAgent;
     Animator animator;

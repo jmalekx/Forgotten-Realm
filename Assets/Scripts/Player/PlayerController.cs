@@ -397,7 +397,6 @@ public class PlayerController : MonoBehaviour
 
     void Attack()
     {
-
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         Debug.DrawRay(ray.origin, ray.direction * attackDistance, Color.red, 1f);
