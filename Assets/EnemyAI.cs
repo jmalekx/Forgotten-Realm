@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class EnemyAI : MonoBehaviour
 {
     public Transform playerVariable;
-    public float maxDistance = 1.5f;
+    public float maxDistance = 2f;
     public float EnemyDetectionDistance = 20.0f;
     public float enemyAttackAmount;
     public float attackCooldown = 1f; 
@@ -25,7 +25,7 @@ public class EnemyAI : MonoBehaviour
         enemyAttackAmount = MainMenu.ChosenenemyAttackAmount;
     }
 
- 
+
     void Update()
     {
         float detectionDistance = Vector3.Distance(playerVariable.position, transform.position);
