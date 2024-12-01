@@ -417,7 +417,7 @@ public class PlayerController : MonoBehaviour
                 Animator enemyAnimator = enemyHit.GetComponent<Animator>();
                 if (enemyAnimator != null)
                 {
-                    enemyAnimator.SetTrigger("Death");
+                    enemyAnimator.Play("Death", 0, 0f);
                     ObjectiveManager.Instance.TrackObjective("Fight off an enemy");
                 }
 
