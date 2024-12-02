@@ -83,6 +83,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Attacking")]
     public float attackDistance = 2.5f;
+    private bool AttackingState = false;
 
     //[Header("Crafting")]
     //public GameObject craftingPanel;
@@ -399,31 +400,33 @@ public class PlayerController : MonoBehaviour
 
     void Attack()
     {
-        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        Debug.DrawRay(ray.origin, ray.direction * attackDistance, Color.red, 1f);
-        audioSource.PlayOneShot(HitSound); // Play the attack sound once
-        if (Physics.Raycast(ray, out hit, attackDistance))
-        {
-            if (hit.collider.CompareTag("Enemy"))
+        if(!AttackingState){
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            Debug.DrawRay(ray.origin, ray.direction * attackDistance, Color.red, 1f);
+            audioSource.PlayOneShot(HitSound); // Play the attack sound once
+            AttackingState = true;
+            StartCoroutine(ChangeAttackState(1f));
+            if (Physics.Raycast(ray, out hit, attackDistance))
             {
-                GameObject enemyHit = hit.collider.gameObject;
-
-                UnityEngine.AI.NavMeshAgent enemyNavAgent = enemyHit.GetComponent<UnityEngine.AI.NavMeshAgent>();
-                if (enemyNavAgent != null)
+                if (hit.collider.CompareTag("Enemy"))
                 {
-                    enemyNavAgent.isStopped = true; // Disable movement
-                }
-                Animator enemyAnimator = enemyHit.GetComponent<Animator>();
-                if (enemyAnimator != null)
-                {
-                    enemyAnimator.Play("Death", 0, 0f);
-                    ObjectiveManager.Instance.TrackObjective("Fight off an enemy");
-                }
+                    GameObject enemyHit = hit.collider.gameObject;
 
-                StartCoroutine(Destroyed(enemyHit, 5f));
+                    UnityEngine.AI.NavMeshAgent enemyNavAgent = enemyHit.GetComponent<UnityEngine.AI.NavMeshAgent>();
+                    if (enemyNavAgent != null)
+                    {
+                        enemyNavAgent.isStopped = true; // Disable movement
+                    }
+                    Animator enemyAnimator = enemyHit.GetComponent<Animator>();
+                    if (enemyAnimator != null)
+                    {
+                        enemyAnimator.Play("Death", 0, 0f);
+                        ObjectiveManager.Instance.TrackObjective("Fight off an enemy");
+                    }
+                    StartCoroutine(Destroyed(enemyHit, 5f));
+                }
             }
-
         }
 
     }
@@ -432,6 +435,14 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(delay);
         Destroy(TargetedEnemy);
     }
+    
+    IEnumerator ChangeAttackState(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        AttackingState = false;
+    }
+    
+
 
 
     //-----------------------TOGGLE CRAFTING PANEL
