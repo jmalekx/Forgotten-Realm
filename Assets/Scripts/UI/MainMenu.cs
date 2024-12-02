@@ -9,6 +9,7 @@ public class MainMenu : MonoBehaviour
 
     public Slider SensitivitySlider; 
     public Slider QualitySlider;
+    public Slider VolumeSlider;
     public static float ChosenHealthDecreaseSpeed = 1f;
     public static float ChosensSprintDecreaseSpeed = 1f;
     public static float ChosensSprintRegenSpeed = 1f;
@@ -16,6 +17,10 @@ public class MainMenu : MonoBehaviour
     public static float ChosenSensitivity = 50;
     public static int ChosenQuality = 4;
 
+    void Start()
+    {
+        AudioListener.volume = VolumeSlider.value;
+    }
     public void StartGame()
     {
         SceneManager.LoadScene("GAME");
@@ -50,7 +55,7 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
     public void setVolume(){
-
+        AudioListener.volume = VolumeSlider.value;
     }
     public void setSensitivity(){
         ChosenSensitivity = SensitivitySlider.value;
