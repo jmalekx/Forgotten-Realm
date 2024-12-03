@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1396489414}
-  m_IndirectSpecularColor: {r: 0.06356157, g: 0.065265745, b: 0.20170207, a: 1}
+  m_IndirectSpecularColor: {r: 0.062536635, g: 0.064213455, b: 0.19845468, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -11166,6 +11166,8 @@ GameObject:
   m_Component:
   - component: {fileID: 860306682}
   - component: {fileID: 860306683}
+  - component: {fileID: 860306684}
+  - component: {fileID: 860306685}
   m_Layer: 0
   m_Name: NPCSpawner
   m_TagString: Untagged
@@ -11201,11 +11203,47 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcPrefab: {fileID: 2088514144}
+  spawnCenter: {x: -500, y: 50, z: 300}
+  spawnRadius: 80
+  spawnCount: 25
+  minY: 43
+  maxY: 80
+--- !u!114 &860306684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 860306681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f91972402c477da479f34454e875744d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcPrefab: {fileID: 2088514144}
   spawnCenter: {x: -340, y: 50, z: -20}
   spawnRadius: 80
   spawnCount: 25
   minY: 43
   maxY: 80
+--- !u!114 &860306685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 860306681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f91972402c477da479f34454e875744d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcPrefab: {fileID: 2088514144}
+  spawnCenter: {x: 50, y: 50, z: -130}
+  spawnRadius: 30
+  spawnCount: 5
+  minY: 40
+  maxY: 65
 --- !u!1 &868964613 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 3b90a1c5cd9f3de48b0dea91c9cea79d, type: 3}
