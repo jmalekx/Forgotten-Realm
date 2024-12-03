@@ -22,9 +22,15 @@ public class JellyfishMovement : MonoBehaviour
     private float driftTimer;
     private float nextDriftTime;
 
+    private float randomPulseOffset;
+    private float randomDriftTimeOffset;
+
     void Start()
     {
         startPosition = transform.position;
+        randomPulseOffset = Random.Range(0f, Mathf.PI * 2f);  //randomise pulse start
+        randomDriftTimeOffset = Random.Range(0f, maxDriftInterval);  //randomise drift start
+
         ChooseNewDriftTarget();
         SetNextDriftTime();
     }
@@ -32,7 +38,7 @@ public class JellyfishMovement : MonoBehaviour
     void Update()
     {
         //vertical pusle, smooth oscillation
-        float verticalOffset = Mathf.Sin(pulseTime * pulseSpeed) * pulseStrength;
+        float verticalOffset = Mathf.Sin((pulseTime + randomPulseOffset) * pulseSpeed) * pulseStrength;
         pulseTime += Time.deltaTime;
 
         //move towards target
@@ -67,6 +73,6 @@ public class JellyfishMovement : MonoBehaviour
     {
         //randomise interval
         driftTimer = 0f;
-        nextDriftTime = Random.Range(minDriftInterval, maxDriftInterval);
+        nextDriftTime = Random.Range(minDriftInterval, maxDriftInterval) + randomDriftTimeOffset;
     }
 }
