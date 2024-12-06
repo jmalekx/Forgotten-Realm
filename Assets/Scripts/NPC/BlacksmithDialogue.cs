@@ -12,6 +12,9 @@ public class BlacksmithDialogue : MonoBehaviour
     public Button option2Button; // Button for the second option
     public string interactKey = "e"; // Which key to press to interact with the villager
 
+    public GameObject daggerPrefab; // Reference to the dagger object prefab
+    public Transform playerInventory; // Optional: if you have an inventory system, store the player's inventory transform
+
     private bool playerInRange = false; // Tracks if the player is in range
     private bool isInteracting = false; // Tracks if the player is currently interacting
     private int dialogueIndex = 0; // Tracks the current line of dialogue
@@ -67,17 +70,48 @@ public class BlacksmithDialogue : MonoBehaviour
     public void OnOption1Selected()
     {
         Debug.Log("Option 1 selected: I need tools");
-        ResetDialogue(); // Reset the dialogue and options
+
+        // Instantiate the dagger in front of the player or attach it to the player's hand/inventory
+        if (daggerPrefab != null)
+        {
+            // If you want to give the dagger to the player directly, instantiate it at the player's position
+            GameObject dagger = Instantiate(daggerPrefab, playerInventory.position, Quaternion.identity);
+
+            // Optionally, you can adjust the dagger's position or parent it to the player's hand or inventory slot
+            // For example, if you want to attach it to the player's hand:
+            // dagger.transform.SetParent(playerHandTransform); // Replace with the actual hand transform
+
+            Debug.Log("Dagger given to the player.");
+        }
+        else
+        {
+            Debug.LogWarning("Dagger prefab is not assigned!");
+        }
+
+        // Reset dialogue and hide options
+        ResetDialogue();
     }
 
     public void OnOption2Selected()
     {
-        Debug.Log("Option 2 selected: I’m not sure");
-        ResetDialogue(); // Reset the dialogue and options
-        optionButtons.SetActive(false); // Hide the options
-        dialogueUI.SetActive(false); // Hide the dialogue UI
-        isInteracting = false; // Reset interaction state
-        dialogueIndex = 0; // Reset the dialogue index
+        Debug.Log("Option 2 selected: Nevermind");
+
+        // Hide the options panel and dialogue panel
+        optionButtons.SetActive(false);  // Hide the options panel
+        dialogueUI.SetActive(false);     // Hide the dialogue UI
+
+        // Reset the interaction state and dialogue index
+        isInteracting = false;          // Set interaction flag to false
+        dialogueIndex = 0;              // Reset the dialogue index
+        
+        // Reset the prompt to allow future interactions
+        Etext.text = "Press E to interact with the villager";
+
+        // If player leaves during the interaction, make sure the interaction is reset
+        if (playerInRange)  // Optionally, check if player is still in range
+        {
+            // You can reset additional states here if necessary (like enabling player controls, etc.)
+        }
     }
 
     void ResetDialogue()
@@ -87,6 +121,10 @@ public class BlacksmithDialogue : MonoBehaviour
         isInteracting = false; // Reset interaction state
         dialogueIndex = 0; // Reset the dialogue index
         Etext.text = "Press E to interact with the villager"; // Reset the Etext prompt
+
+        // Unlock the cursor (if it was locked) and make it visible again
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     void OnTriggerEnter(Collider other)
@@ -94,7 +132,7 @@ public class BlacksmithDialogue : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInRange = true; // Player is in range
-            Debug.Log("Player entered range.");
+            Debug.Log("Player entered range.");  // Check if player enters the range
             Etext.text = "Press E to interact with the villager"; // Show the prompt
         }
     }
@@ -104,7 +142,7 @@ public class BlacksmithDialogue : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInRange = false; // Player is no longer in range
-            Debug.Log("Player exited range.");
+            Debug.Log("Player exited range.");  // Check if player exits the range
             Etext.text = ""; // Clear the prompt
             if (isInteracting)
             {
