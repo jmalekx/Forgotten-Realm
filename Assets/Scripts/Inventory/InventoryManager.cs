@@ -126,7 +126,7 @@ public class InventoryManager : MonoBehaviour
 
     void OnUseItem(InputAction.CallbackContext context)
     {
-        if (inventory.items.Count > 0 && selectedItemIndex < inventory.items.Count)
+        if (inventory.items.Count > 0 && selectedItemIndex >= 0 && selectedItemIndex < inventory.items.Count)
         {
             ItemData selectedItem = inventory.items[selectedItemIndex];
             if (selectedItem.isConsumable)
@@ -139,16 +139,26 @@ public class InventoryManager : MonoBehaviour
                 objectivePopupAnim.ShowPopup(); //show objectives while pressed
             }
         }
+        else
+        {
+            Debug.LogWarning("Invalid selected item index or empty inventory.");
+        }
     }
     void OnUseItemReleased(InputAction.CallbackContext context)
     {
-        ItemData selectedItem = inventory.items[selectedItemIndex];
-        if (selectedItem.itemName == "Scroll")
+        if (selectedItemIndex >= 0 && selectedItemIndex < inventory.items.Count)
         {
-            //hide popup when not clicking anymore
-            objectivePopupAnim.HidePopup();
+            ItemData selectedItem = inventory.items[selectedItemIndex];
+            if (selectedItem.itemName == "Scroll")
+            {
+                //hide popup when right-click is released
+                objectivePopupAnim.HidePopup();
+            }
         }
-      
+        else
+        {
+            Debug.LogWarning("Invalid selected item index on release.");
+        }
     }
 
     void UpdateInventoryUI()
