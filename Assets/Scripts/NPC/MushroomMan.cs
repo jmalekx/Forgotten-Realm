@@ -78,7 +78,7 @@ public class MushroomMan : MonoBehaviour
             }
             else if (!moveToVillage)
             {
-                stopTimer -= Time.fixedDeltaTime;
+                stopTimer -= Time.deltaTime;
                 if (stopTimer <= 0f)
                 {
                     ChooseNewTargetPosition();
@@ -102,13 +102,13 @@ public class MushroomMan : MonoBehaviour
         }
     }
 
-    void CheckPlayerDistance()
+    void CheckPlayerDistance() //if player close, do reaction
     {
         float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
         isNearPlayer = distanceToPlayer <= dialogueRange;
     }
 
-    void SaySomething()
+    void SaySomething() //display text
     {
         _animator.SetBool("isMoving", false);
         navAgent.isStopped = true;
@@ -195,6 +195,26 @@ public class MushroomMan : MonoBehaviour
         stopTimer = stopDuration;
         isMoving = false;
         _animator.SetBool("isMoving", false);
+
+        int randomIdleIndex = GetWeightedRandomIdleIndex();
+        _animator.SetInteger("IdleIndex", randomIdleIndex); 
+
         navAgent.ResetPath();
+
+    }
+
+    //weighted random
+    int GetWeightedRandomIdleIndex()
+    {
+        int[] weights = { 50, 40, 10 }; //idle0 chance, idle1, idle2 respectively
+        int randomValue = Random.Range(0, 100); //sum of weight
+
+        //idle anim to reutrn based on weight
+        if (randomValue < weights[0])
+            return 0; 
+        else if (randomValue < weights[0] + weights[1])
+            return 1;
+        else
+            return 2; 
     }
 }
