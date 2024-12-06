@@ -12,6 +12,7 @@ public class InventoryManager : MonoBehaviour
     public GameObject inventoryMenu;
     public GameObject itemPanelPrefab;
     public GameObject itemPanelGrid;
+    public TextMeshProUGUI holdingText;
 
     public Camera playerCamera;
 
@@ -25,6 +26,8 @@ public class InventoryManager : MonoBehaviour
     private int selectedItemIndex = 0;
 
     private PopupAnim objectivePopupAnim;
+    private Coroutine holdingTextCoroutine; 
+
 
     void Start()
     {
@@ -34,6 +37,7 @@ public class InventoryManager : MonoBehaviour
 
         objectivePopupAnim = GameObject.Find("objectiveCanvas").GetComponent<PopupAnim>();
         objectivePopupAnim.gameObject.SetActive(false);
+        holdingText.gameObject.SetActive(false);
     }
 
     void Awake()
@@ -99,6 +103,27 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
+    void ShowHoldingText(string itemName)
+    {
+        //if coroutine already running stop to reset timer
+        if (holdingTextCoroutine != null)
+        {
+            StopCoroutine(holdingTextCoroutine);
+        }
+
+        holdingText.text = $"Holding: {itemName}";
+        holdingText.gameObject.SetActive(true);
+
+        //start new
+        holdingTextCoroutine = StartCoroutine(FadeHoldingText());
+    }
+
+    IEnumerator FadeHoldingText()
+    {
+        yield return new WaitForSeconds(2f);
+        holdingText.gameObject.SetActive(false); //hide after 3s
+    }
+
     void OnUseItem(InputAction.CallbackContext context)
     {
         if (inventory.items.Count > 0 && selectedItemIndex < inventory.items.Count)
@@ -145,16 +170,19 @@ public class InventoryManager : MonoBehaviour
             {
                 if (i < inventory.items.Count)
                 {
-
                     itemSlot.UpdateSlot(inventory.items[i]);
+
+                    //update text for selecteditem to be displayed
+                    if (i == selectedItemIndex)
+                    {
+                        ShowHoldingText(inventory.items[i].itemName);
+                    }
 
                 }
                 else
                 {
                     itemSlot.ClearSlot();
-          
                 }
-
                 itemSlot.SetSelected(i == selectedItemIndex);
             }
         }
@@ -167,11 +195,11 @@ public class InventoryManager : MonoBehaviour
         int maxSlots = 10;
         if (scrollValue.y > 0)
         {
-            selectedItemIndex = (selectedItemIndex - 1 + maxSlots) % maxSlots; // Scroll up
+            selectedItemIndex = (selectedItemIndex - 1 + maxSlots) % maxSlots; //scroll up
         }
         else if (scrollValue.y < 0)
         {
-            selectedItemIndex = (selectedItemIndex + 1) % maxSlots; // Scroll down
+            selectedItemIndex = (selectedItemIndex + 1) % maxSlots; //scroll down
         }
 
         UpdateInventoryUI();
@@ -206,13 +234,13 @@ public class InventoryManager : MonoBehaviour
         //prefab exists
         if (item.itemPrefab != null)
         {
-            //position in fron of player camera
+            //position in front of player camera
             Vector3 dropPosition = playerCamera.transform.position + playerCamera.transform.forward * 3.5f; // can adjust distance
             GameObject droppedItem = Instantiate(item.itemPrefab, dropPosition, item.itemPrefab.transform.rotation);
 
-            // Optionally, add a Rigidbody component for physics interactions
+            //rb for physics
             Rigidbody rb = droppedItem.AddComponent<Rigidbody>();
-            rb.AddForce(playerCamera.transform.up * 5f, ForceMode.Impulse); // Add some upward force to the item
+            rb.AddForce(playerCamera.transform.up * 5f, ForceMode.Impulse); //upward force
 
             CraftingManager craftingManager = droppedItem.AddComponent<CraftingManager>();
             if (item.itemName == "Wood")
@@ -225,7 +253,6 @@ public class InventoryManager : MonoBehaviour
                 droppedItem.tag = "Stone";
                 craftingManager.stone = item;
             }
-
 
             //log
             Debug.Log("Dropped " + item.itemName + " into the world.");
