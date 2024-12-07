@@ -146,7 +146,11 @@ public class FootstepAudio : MonoBehaviour
         //reset
         if (surfaceFootsteps.ContainsKey(other.tag))
         {
-            currentSurfaceTag = "DefaultSound";
+            //update surface tag only if the new tag is different
+            if (currentSurfaceTag != other.tag)
+            {
+                currentSurfaceTag = other.tag;
+            }
         }
     }
 }
