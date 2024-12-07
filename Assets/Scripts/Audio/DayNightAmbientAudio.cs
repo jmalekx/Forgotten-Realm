@@ -7,9 +7,12 @@ public class DayNightAmbientAudio : MonoBehaviour
     [Header("Day/Night Ambient Audio")]
     public AudioClip dayAudioClip;
     public AudioClip nightAudioClip;
+
+    public AudioClip musicClip;
     public float fadeDuration = 2f;
 
     private AudioSource audioSource;
+    private AudioSource gameaudio;
     private bool isDay = true;
 
     void Start()
@@ -17,6 +20,11 @@ public class DayNightAmbientAudio : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         audioSource.loop = true;
         audioSource.playOnAwake = false;
+
+        gameaudio = gameObject.AddComponent<AudioSource>();
+        gameaudio.volume = 0.08f;
+        gameaudio.clip = musicClip;
+        gameaudio.Play();
 
         //play day ambient
         audioSource.clip = dayAudioClip;
