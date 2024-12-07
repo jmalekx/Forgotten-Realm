@@ -14,12 +14,12 @@ public class ProximityAudio : MonoBehaviour
     }
 
     public AudioArea[] audioAreas;  //array of areas and audios
-    public AudioSource audioSource;
+    private AudioSource audioSource;
     private AudioArea currentAudioArea;
 
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.loop = true;
         audioSource.playOnAwake = false;
     }
