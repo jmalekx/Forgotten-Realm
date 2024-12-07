@@ -20,7 +20,7 @@ public class FootstepAudio : MonoBehaviour
     private float stepTimer;
     private bool isPlayerMoving = false;
     private bool wasGroundedLastFrame = true;
-    private float footstepVolume = 0.5f; //default vol
+    private float footstepVolume = 0.4f; //default vol
     private string currentSurfaceTag = "DefaultSound";
 
     private bool isJumping = false;

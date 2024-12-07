@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1396489414}
-  m_IndirectSpecularColor: {r: 0.06355041, g: 0.065253615, b: 0.201666, a: 1}
+  m_IndirectSpecularColor: {r: 0.017278196, g: 0.017740805, b: 0.054830324, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -10937,7 +10937,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd7230a7581a89d45906aa9860c05c5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dayAudioClip: {fileID: 0}
+  dayAudioClip: {fileID: 8300000, guid: b49190b0761ef904b97f502e7298f401, type: 3}
   nightAudioClip: {fileID: 8300000, guid: 5d4faa06c78ffe5418bade7ce7c4fe08, type: 3}
   fadeDuration: 2
 --- !u!224 &724910266 stripped
