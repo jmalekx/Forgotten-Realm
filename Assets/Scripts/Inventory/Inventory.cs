@@ -12,6 +12,11 @@ public class Inventory : MonoBehaviour
     public event Action OnInventoryChanged; // Event to notify inventory changes
 
     public Slider HealthBar;
+
+
+    [Header("Audio")]
+    public AudioClip pickupSound;
+    public AudioSource audioSource;
     void Awake()
     {
         if (Instance != null)
@@ -70,6 +75,8 @@ public class Inventory : MonoBehaviour
 
         TrackObjective(itemToAdd.itemName);
         OnInventoryChanged?.Invoke(); // notify the UI to update
+
+        audioSource.PlayOneShot(pickupSound,1.0f);
 
         if (itemToAdd.itemName == "Scroll")
         {

@@ -99,6 +99,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        audioSource = gameObject.AddComponent<AudioSource>();
         rb = GetComponent<Rigidbody>();
         rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
         rb.freezeRotation = true;
@@ -127,7 +128,6 @@ public class PlayerController : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         animator = GetComponentInChildren<Animator>();
-        audioSource = GetComponent<AudioSource>();
 
         playerInput = new PlayerInput();
         input = playerInput.Main;

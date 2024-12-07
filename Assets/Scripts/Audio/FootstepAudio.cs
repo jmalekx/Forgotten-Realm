@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(AudioSource))]
 public class FootstepAudio : MonoBehaviour
 {
     public LayerMask groundMask;
@@ -16,8 +15,8 @@ public class FootstepAudio : MonoBehaviour
     public List<AudioClip> swimFootsteps;
     public List<AudioClip> defaultFootsteps;
     public AudioClip jumpSound;
-
     private AudioSource audioSource;
+
     private float stepTimer;
     private bool isPlayerMoving = false;
     private bool wasGroundedLastFrame = true;
@@ -33,8 +32,8 @@ public class FootstepAudio : MonoBehaviour
     void Start()
     {
         playerController = GetComponent<PlayerController>();
-        audioSource = GetComponent<AudioSource>();
         stepTimer = stepInterval;
+        audioSource = gameObject.AddComponent<AudioSource>();
 
         surfaceFootsteps = new Dictionary<string, List<AudioClip>>()
         {
