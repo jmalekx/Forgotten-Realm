@@ -64,6 +64,22 @@ public class DayNightController : MonoBehaviour
     {
         currentTime = currentTime.AddSeconds(Time.deltaTime * timeSpeed);
     }
+    public static DayNightController Instance { get; private set; }
+    public bool IsDay { get { return currentTime.TimeOfDay > sunriseTime && currentTime.TimeOfDay < sunsetTime; } }
+    private void Awake()
+    {
+        //only one instance of script
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this; //singleton instance
+            DontDestroyOnLoad(gameObject); //keep across scenes
+        }
+    }
+
 
     void RotateSun()
     {
