@@ -241,18 +241,28 @@ public class InventoryManager : MonoBehaviour
 
     private void DropItemToWorld(ItemData item)
     {
-        //prefab exists
         if (item.itemPrefab != null)
         {
-            //position in front of player camera
-            Vector3 dropPosition = playerCamera.transform.position + playerCamera.transform.forward * 3.5f; // can adjust distance
-            GameObject droppedItem = Instantiate(item.itemPrefab, dropPosition, item.itemPrefab.transform.rotation);
+            //drop position in front of the player camera
+            Vector3 dropPosition = playerCamera.transform.position + playerCamera.transform.forward * 3.5f;
+            GameObject droppedItem = Instantiate(item.itemPrefab, dropPosition, Quaternion.identity);
 
-            //rb for physics
-            Rigidbody rb = droppedItem.AddComponent<Rigidbody>();
+            //rb attached and config
+            Rigidbody rb = droppedItem.GetComponent<Rigidbody>();
+            if (rb == null)
+            {
+                rb = droppedItem.AddComponent<Rigidbody>();
+            }
+
+            rb.isKinematic = false;
             rb.AddForce(playerCamera.transform.up * 5f, ForceMode.Impulse); //upward force
 
-            CraftingManager craftingManager = droppedItem.AddComponent<CraftingManager>();
+            CraftingManager craftingManager = droppedItem.GetComponent<CraftingManager>();
+            if (craftingManager == null)
+            {
+                craftingManager = droppedItem.AddComponent<CraftingManager>();
+            }
+
             if (item.itemName == "Wood")
             {
                 droppedItem.tag = "Wood";
@@ -264,8 +274,12 @@ public class InventoryManager : MonoBehaviour
                 craftingManager.stone = item;
             }
 
-            //log
             Debug.Log("Dropped " + item.itemName + " into the world.");
         }
+        else
+        {
+            Debug.LogError("Item prefab is null. Cannot drop item into the world.");
+        }
     }
+
 }
