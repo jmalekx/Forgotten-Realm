@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1396489414}
-  m_IndirectSpecularColor: {r: 0.061005935, g: 0.062640786, b: 0.19359416, a: 1}
+  m_IndirectSpecularColor: {r: 0.063507125, g: 0.06520827, b: 0.20152856, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -17437,6 +17437,7 @@ MonoBehaviour:
   holdingText: {fileID: 1082359412}
   dropSound: {fileID: 8300000, guid: fc550c74e1f0a3a46b28e629ae5d6ae4, type: 3}
   eatSound: {fileID: 8300000, guid: e826078cf40d18c45a22ff49999dde58, type: 3}
+  paperSound: {fileID: 8300000, guid: 07930971972d362488f67c45eb9b04c5, type: 3}
   playerCamera: {fileID: 1711789845}
 --- !u!114 &1228010666
 MonoBehaviour:

@@ -17,6 +17,7 @@ public class InventoryManager : MonoBehaviour
     [Header("Audio")]
     public AudioClip dropSound;
     public AudioClip eatSound;
+    public AudioClip paperSound;
     private AudioSource audioSource;
 
     public Camera playerCamera;
@@ -143,6 +144,7 @@ public class InventoryManager : MonoBehaviour
             }
             if (selectedItem.itemName == "Scroll")
             {
+                audioSource.PlayOneShot(paperSound, 1f);
                 objectivePopupAnim.ShowPopup(); //show objectives while pressed
             }
         }
