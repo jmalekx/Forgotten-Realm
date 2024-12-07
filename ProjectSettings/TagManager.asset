@@ -10,6 +10,10 @@ TagManager:
   - Stone
   - fist
   - Village
+  - WoodSound
+  - WaterSound
+  - StoneSound
+  - SwimSound
   layers:
   - Default
   - TransparentFX

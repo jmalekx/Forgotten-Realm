@@ -398,6 +398,11 @@ public class PlayerController : MonoBehaviour
         sprintSlider.value = sprintTimer;
     }
 
+    public bool IsSprinting
+    {
+        get { return isSprinting; }
+    }
+
     void Attack()
     {
         if(!AttackingState){
