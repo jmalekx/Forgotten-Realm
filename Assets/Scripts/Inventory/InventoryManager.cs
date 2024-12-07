@@ -137,7 +137,7 @@ public class InventoryManager : MonoBehaviour
             ItemData selectedItem = inventory.items[selectedItemIndex];
             if (selectedItem.isConsumable)
             {
-                audioSource.PlayOneShot(eatSound, 0.8f);
+                audioSource.PlayOneShot(eatSound, 1.6f);
                 inventory.UseItem(selectedItem);
                 UpdateInventoryUI();
             }

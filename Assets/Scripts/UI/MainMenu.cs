@@ -10,7 +10,7 @@ public class MainMenu : MonoBehaviour
     public Slider SensitivitySlider; 
     public Slider QualitySlider;
     public Slider VolumeSlider;
-    public static float ChosenHealthDecreaseSpeed = 1f;
+    public static float ChosenHealthDecreaseSpeed = 0.05f;
     public static float ChosensSprintDecreaseSpeed = 1f;
     public static float ChosensSprintRegenSpeed = 1f;
     public static int ChosenenemyAttackAmount = 10;
@@ -26,7 +26,7 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("GAME");
     }
     public void easy(){
-        ChosenHealthDecreaseSpeed = 0.5f;
+        ChosenHealthDecreaseSpeed = 0.05f;
         ChosenenemyAttackAmount = 5;
         //enemyAmount
         //brighter night
@@ -34,7 +34,7 @@ public class MainMenu : MonoBehaviour
         ChosensSprintRegenSpeed = 1.3f;
     }
     public void medium(){
-        ChosenHealthDecreaseSpeed = 1f; 
+        ChosenHealthDecreaseSpeed = 0.1f; 
         ChosenenemyAttackAmount = 10;
         //enemyAmount
         //normal night
@@ -43,7 +43,7 @@ public class MainMenu : MonoBehaviour
 
     }
     public void hard(){
-        ChosenHealthDecreaseSpeed = 1.5f;
+        ChosenHealthDecreaseSpeed = 0.5f;
         ChosenenemyAttackAmount = 15;
         //enemyAmount
         //darker night
