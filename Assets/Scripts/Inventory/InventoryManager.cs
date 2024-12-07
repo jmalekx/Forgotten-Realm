@@ -16,6 +16,7 @@ public class InventoryManager : MonoBehaviour
 
     [Header("Audio")]
     public AudioClip dropSound;
+    public AudioClip eatSound;
     private AudioSource audioSource;
 
     public Camera playerCamera;
@@ -136,6 +137,7 @@ public class InventoryManager : MonoBehaviour
             ItemData selectedItem = inventory.items[selectedItemIndex];
             if (selectedItem.isConsumable)
             {
+                audioSource.PlayOneShot(eatSound, 0.8f);
                 inventory.UseItem(selectedItem);
                 UpdateInventoryUI();
             }
@@ -238,7 +240,7 @@ public class InventoryManager : MonoBehaviour
                     inventory.RemoveItem(selectedItem);
                 }
 
-                audioSource.PlayOneShot(dropSound, 0.5f);
+                audioSource.PlayOneShot(dropSound, 0.65f);
                 //place the item back into the world
                 DropItemToWorld(selectedItem);
             }
