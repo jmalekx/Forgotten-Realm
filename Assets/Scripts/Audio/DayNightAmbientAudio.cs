@@ -24,6 +24,7 @@ public class DayNightAmbientAudio : MonoBehaviour
         gameaudio = gameObject.AddComponent<AudioSource>();
         gameaudio.volume = 0.08f;
         gameaudio.clip = musicClip;
+        gameaudio.loop = true;
         gameaudio.Play();
 
         //play day ambient
