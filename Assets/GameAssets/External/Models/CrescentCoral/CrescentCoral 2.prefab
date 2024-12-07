@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5973242839217144896}
   - component: {fileID: 517938663852319087}
   - component: {fileID: 72064305142534014}
+  - component: {fileID: 3560972599221097800}
   m_Layer: 0
   m_Name: twistybridges_cliffplant_medium_forward_03_Combined_LOD0_Material.001_0
   m_TagString: Untagged
@@ -83,6 +84,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &3560972599221097800
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2533847419529732432}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 4551f6926a90da04ea531a225ce0bd76, type: 2}
 --- !u!1 &5203622986471396556
 GameObject:
   m_ObjectHideFlags: 0

@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 3629670034083420769}
   - component: {fileID: 7049905743042991571}
   - component: {fileID: 1290564169325587976}
+  - component: {fileID: 4469531102109871368}
   m_Layer: 0
   m_Name: mesh_LOD1_0.004_Material.002_0
   m_TagString: Untagged
@@ -115,6 +116,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &4469531102109871368
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2702619842770765677}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 6e354c3ecb781734aa8c37ca1a1badcb, type: 2}
 --- !u!1 &6221351744172591224
 GameObject:
   m_ObjectHideFlags: 0
@@ -158,6 +181,7 @@ GameObject:
   - component: {fileID: 5907984399772723284}
   - component: {fileID: 1162053363225176104}
   - component: {fileID: 4563889665017281742}
+  - component: {fileID: 277618194063620795}
   m_Layer: 0
   m_Name: mesh_LOD1_0.008_Material.001_0
   m_TagString: Untagged
@@ -230,6 +254,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &277618194063620795
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7224180406784742311}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 5d0c514582ab6234697659c96cdda705, type: 2}
 --- !u!1 &8648125464438865520
 GameObject:
   m_ObjectHideFlags: 0

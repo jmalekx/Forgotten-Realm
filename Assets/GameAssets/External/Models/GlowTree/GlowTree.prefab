@@ -382,6 +382,7 @@ GameObject:
   - component: {fileID: 559249632925219236}
   - component: {fileID: 8337647404373286905}
   - component: {fileID: 3001609762059062245}
+  - component: {fileID: 7379793782500992607}
   m_Layer: 0
   m_Name: Land_tree_01_LOD0_Material.001_0
   m_TagString: Untagged
@@ -454,6 +455,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &7379793782500992607
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4217303500315926821}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 0528c30d63e1e5047b3e2dc2b3f4e793, type: 2}
 --- !u!1 &4376879969538556445
 GameObject:
   m_ObjectHideFlags: 0
