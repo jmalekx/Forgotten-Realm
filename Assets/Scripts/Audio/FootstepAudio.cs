@@ -53,7 +53,6 @@ public class FootstepAudio : MonoBehaviour
         //check if moving
         isPlayerMoving = IsPlayerMoving() && IsGrounded();
 
-
         //detect if the player jumps
         if (wasGroundedLastFrame && !IsGrounded())
         {
@@ -107,7 +106,10 @@ public class FootstepAudio : MonoBehaviour
         //stop auido on player stop
         if (!isPlayerMoving && audioSource.isPlaying && !isJumping)
         {
-            audioSource.Stop();
+            if (!hasLanded)
+            {
+                audioSource.Stop();
+            }
         }
 
         //check if player exited valid trigger
