@@ -15,12 +15,17 @@ public class FootstepAudio : MonoBehaviour
     public List<AudioClip> waterFootsteps;
     public List<AudioClip> swimFootsteps;
     public List<AudioClip> defaultFootsteps;
+    public AudioClip jumpSound;
 
     private AudioSource audioSource;
     private float stepTimer;
     private bool isPlayerMoving = false;
-    private float footstepVolume = 0.7f; //default vol
+    private bool wasGroundedLastFrame = true;
+    private float footstepVolume = 0.5f; //default vol
     private string currentSurfaceTag = "DefaultSound";
+
+    private bool isJumping = false;
+    private bool hasLanded = false;
 
     private PlayerController playerController;
     private Dictionary<string, List<AudioClip>> surfaceFootsteps;
@@ -48,6 +53,29 @@ public class FootstepAudio : MonoBehaviour
         //check if moving
         isPlayerMoving = IsPlayerMoving() && IsGrounded();
 
+
+        //detect if the player jumps
+        if (wasGroundedLastFrame && !IsGrounded())
+        {
+            //player just jumped
+            isJumping = true;
+            hasLanded = false;
+        }
+        //detect if the player lands
+        else if (!wasGroundedLastFrame && IsGrounded() && isJumping)
+        {
+            //play the jump sound when landing
+            if (!hasLanded)
+            {
+                PlayJumpSound();
+                hasLanded = true; //mark as landed
+                isJumping = false; //reset jump state
+            }
+        }
+
+        wasGroundedLastFrame = IsGrounded(); //update to current ground status
+
+
         //check if sprinting
         if (playerController != null && playerController.IsSprinting)
         {
@@ -59,7 +87,7 @@ public class FootstepAudio : MonoBehaviour
         }
 
 
-        if (isPlayerMoving)
+        if (isPlayerMoving && !isJumping)
         {
             stepTimer -= Time.deltaTime; //coutndown until next step audio
 
@@ -77,7 +105,7 @@ public class FootstepAudio : MonoBehaviour
         }
 
         //stop auido on player stop
-        if (!isPlayerMoving && audioSource.isPlaying)
+        if (!isPlayerMoving && audioSource.isPlaying && !isJumping)
         {
             audioSource.Stop();
         }
@@ -129,6 +157,13 @@ public class FootstepAudio : MonoBehaviour
                 audioSource.pitch = Random.Range(0.8f, 1f);
                 audioSource.PlayOneShot(clipToPlay, footstepVolume);
             }
+        }
+    }
+    private void PlayJumpSound()
+    {
+        if (jumpSound != null)
+        {
+            audioSource.PlayOneShot(jumpSound, footstepVolume); //play jump sound when player jumps
         }
     }
 
