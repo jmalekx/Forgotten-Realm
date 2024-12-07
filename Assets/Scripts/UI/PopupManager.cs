@@ -9,7 +9,7 @@ public class PopupManager : MonoBehaviour
 
     [Header("Audio")]
     public AudioClip popupSound;
-    public AudioSource audioSource;
+    private AudioSource audioSource;
 
     private TMP_Text popupText;
     private PopupAnim popupAnim;
@@ -29,6 +29,7 @@ public class PopupManager : MonoBehaviour
             Instance = this;
             popupText = GetComponentInChildren<TMP_Text>();
             popupAnim = GetComponent<PopupAnim>();
+            audioSource = gameObject.AddComponent<AudioSource>();
 
             gameObject.SetActive(false);
         }

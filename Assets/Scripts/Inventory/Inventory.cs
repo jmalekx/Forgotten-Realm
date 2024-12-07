@@ -13,16 +13,16 @@ public class Inventory : MonoBehaviour
 
     public Slider HealthBar;
 
-
     [Header("Audio")]
     public AudioClip pickupSound;
-    public AudioSource audioSource;
+    private AudioSource audioSource;
     void Awake()
     {
         if (Instance != null)
             Destroy(gameObject);
         else
             Instance = this;
+        audioSource = gameObject.AddComponent<AudioSource>();
         items.Clear();
         ScrollObtained = false;
     }

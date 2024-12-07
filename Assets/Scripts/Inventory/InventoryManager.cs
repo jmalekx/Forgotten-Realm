@@ -14,6 +14,10 @@ public class InventoryManager : MonoBehaviour
     public GameObject itemPanelGrid;
     public TextMeshProUGUI holdingText;
 
+    [Header("Audio")]
+    public AudioClip dropSound;
+    private AudioSource audioSource;
+
     public Camera playerCamera;
 
     private PlayerInput playerInput;
@@ -38,6 +42,7 @@ public class InventoryManager : MonoBehaviour
         objectivePopupAnim = GameObject.Find("objectiveCanvas").GetComponent<PopupAnim>();
         objectivePopupAnim.gameObject.SetActive(false);
         holdingText.gameObject.SetActive(false);
+        audioSource = gameObject.AddComponent<AudioSource>();
     }
 
     void Awake()
@@ -233,6 +238,7 @@ public class InventoryManager : MonoBehaviour
                     inventory.RemoveItem(selectedItem);
                 }
 
+                audioSource.PlayOneShot(dropSound, 0.5f);
                 //place the item back into the world
                 DropItemToWorld(selectedItem);
             }
