@@ -7,6 +7,10 @@ public class PopupManager : MonoBehaviour
     public static PopupManager Instance;
     public int displayTime = 3;
 
+    [Header("Audio")]
+    public AudioClip popupSound;
+    public AudioSource audioSource;
+
     private TMP_Text popupText;
     private PopupAnim popupAnim;
 
@@ -42,7 +46,15 @@ public class PopupManager : MonoBehaviour
 
         popupText.text = message;
         popupAnim.ShowPopup();
+        PlayPopupSound();
         Invoke(nameof(HidePopup), displayTime); // hide after 3s
+    }
+    private void PlayPopupSound()
+    {
+        if (popupSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(popupSound, 0.5f);
+        }
     }
 
     private void HidePopup()
