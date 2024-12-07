@@ -81,6 +81,25 @@ public class FootstepAudio : MonoBehaviour
         {
             audioSource.Stop();
         }
+
+        //check if player exited valid trigger
+        if (isPlayerMoving && currentSurfaceTag == "DefaultSound" && !IsInAnySurface())
+        {
+            currentSurfaceTag = "DefaultSound";  //reset to default if no valid surface found
+        }
+    }
+    private bool IsInAnySurface()
+    {
+        //check if in valid tiregger
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, rayDistance, groundMask);
+        foreach (Collider col in hitColliders)
+        {
+            if (surfaceFootsteps.ContainsKey(col.tag))
+            {
+                return true; //if hit any surface with a valid tag
+            }
+        }
+        return false; //no valid surface found
     }
 
     private bool IsPlayerMoving()
@@ -146,11 +165,7 @@ public class FootstepAudio : MonoBehaviour
         //reset
         if (surfaceFootsteps.ContainsKey(other.tag))
         {
-            //update surface tag only if the new tag is different
-            if (currentSurfaceTag != other.tag)
-            {
-                currentSurfaceTag = other.tag;
-            }
+            currentSurfaceTag = "DefaultSound";
         }
     }
 }

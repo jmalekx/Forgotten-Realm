@@ -31110,7 +31110,7 @@ Transform:
   m_GameObject: {fileID: 1859524867}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -246, y: 21.21, z: 106}
+  m_LocalPosition: {x: -246, y: 22.3, z: 106}
   m_LocalScale: {x: 1000, y: 40, z: 1000}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -31728,7 +31728,7 @@ MonoBehaviour:
   ground:
     serializedVersion: 2
     m_Bits: 64
-  maxSlopeAngle: 45
+  maxSlopeAngle: 55
   playerBody: {fileID: 1554781247}
   attackDistance: 1.6
   craftingPanel: {fileID: 1796822663}
