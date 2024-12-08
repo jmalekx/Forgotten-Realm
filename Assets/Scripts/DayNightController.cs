@@ -15,15 +15,15 @@ public class DayNightController : MonoBehaviour
     [Header("Cycle durations")]
     public float timeSpeed = 2000f; //speed of time
     public float start = 12f; //starting time
-    public float sunrise = 6f; //sunrise time
-    public float sunset= 20f; //sunset time
+    public float sunrise;  //sunrise time
+    public float sunset; //sunset time
 
     [Header("Light")]
     public Light sun;
     public Light moon;
 
     [Header("Colour")]
-    public Color dayAmbience = new Color(0.627f, 0.765f, 0.537f); //ambience colours
+    public Color dayAmbience = new Color(0.627f, 0.765f, 0.537f);
     public Color nightAmbience = new Color(0.604f, 0.565f, 0.737f);
 
     [Header("Intensity")]
@@ -46,9 +46,10 @@ public class DayNightController : MonoBehaviour
         currentTime = DateTime.Now.Date + TimeSpan.FromHours(start);
         sunriseTime = TimeSpan.FromHours(sunrise);
         sunsetTime = TimeSpan.FromHours(sunset);
-
         RenderSettings.fog = true;
         RenderSettings.fogDensity = normalFogDensity;
+        sunrise = MainMenu.ChosenSunrise;
+        sunset = MainMenu.ChosenSunset;
     }
 
     void Update()

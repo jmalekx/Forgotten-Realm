@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     PlayerInput.MainActions input;
     CharacterController controller;
     Animator animator;
+    
     [Header("Audio")]
     public AudioClip HitSound; 
     private AudioSource audioSource;
