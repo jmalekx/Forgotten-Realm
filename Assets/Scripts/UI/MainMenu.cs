@@ -7,11 +7,10 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
 
-    public Slider SensitivitySlider; 
+    public Slider SensitivitySlider;
     public Slider QualitySlider;
     public Slider VolumeSlider;
-    private GameObject LoadingScreen;
-    private GameObject Canvas;
+    public Slider LoadingSlider;
     public static float ChosenHealthDecreaseSpeed = 0.05f;
     public static float ChosensSprintDecreaseSpeed = 1f;
     public static float ChosensSprintRegenSpeed = 1f;
@@ -24,8 +23,18 @@ public class MainMenu : MonoBehaviour
         AudioListener.volume = VolumeSlider.value;
     }
     public void StartGame()
-    {
-        SceneManager.LoadScene("GAME");
+    {   
+        StartCoroutine(Loading());
+        
+        //SceneManager.LoadScene("GAME");
+    }
+    IEnumerator Loading(){
+        AsyncOperation load = SceneManager.LoadSceneAsync("GAME");
+        while(!load.isDone){
+            float progressing = Mathf.Clamp01(load.progress / 0.95f);
+            LoadingSlider.value = progressing;
+            yield return null ;
+        }
     }
     public void easy(){
         ChosenHealthDecreaseSpeed = 0.05f;
