@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1396489414}
-  m_IndirectSpecularColor: {r: 0.063777104, g: 0.06537027, b: 0.2018471, a: 1}
+  m_IndirectSpecularColor: {r: 0.06356157, g: 0.065265745, b: 0.20170207, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -12958,7 +12958,7 @@ Transform:
   m_GameObject: {fileID: 849860327}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -720.2328, y: 56.9, z: 336.5018}
+  m_LocalPosition: {x: -720.2328, y: 53.615, z: 336.5018}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -19369,15 +19369,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7641600409262435663, guid: 87d21bcb16883d746ab8cdf124ef34d0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -244.1
+      value: -242.08
       objectReference: {fileID: 0}
     - target: {fileID: 7641600409262435663, guid: 87d21bcb16883d746ab8cdf124ef34d0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 46.43013
+      value: 47.37
       objectReference: {fileID: 0}
     - target: {fileID: 7641600409262435663, guid: 87d21bcb16883d746ab8cdf124ef34d0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -180.5
+      value: -175.91
       objectReference: {fileID: 0}
     - target: {fileID: 7641600409262435663, guid: 87d21bcb16883d746ab8cdf124ef34d0, type: 3}
       propertyPath: m_LocalRotation.w
@@ -27181,6 +27181,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9096597567602120781, guid: 87d21bcb16883d746ab8cdf124ef34d0, type: 3}
+      propertyPath: playerVariable
+      value: 
+      objectReference: {fileID: 1892168048}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -31731,7 +31735,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7641600409262435663, guid: 87d21bcb16883d746ab8cdf124ef34d0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 46.865715
+      value: 54.91
       objectReference: {fileID: 0}
     - target: {fileID: 7641600409262435663, guid: 87d21bcb16883d746ab8cdf124ef34d0, type: 3}
       propertyPath: m_LocalPosition.z
