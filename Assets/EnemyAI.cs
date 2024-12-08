@@ -19,6 +19,7 @@ public class EnemyAI : MonoBehaviour
     Animator animator;
     bool AttackingState = false;
     private Slider playerHealthBar; 
+    public Slider EnemyHealthBar; 
 
     void Start()
     {
@@ -26,11 +27,13 @@ public class EnemyAI : MonoBehaviour
         animator = GetComponent<Animator>();
         playerHealthBar = playerVariable.GetComponent<PlayerController>().HealthBar;
         enemyAttackAmount = MainMenu.ChosenenemyAttackAmount;
+        EnemyHealthBar.value = EnemyHealthPoints; // Set the current value
     }
 
 
     void Update()
     {
+        if (!EnemyAlive) return;
         float detectionDistance = Vector3.Distance(playerVariable.position, transform.position);
 
         if(detectionDistance < EnemyDetectionDistance){
@@ -70,6 +73,7 @@ public class EnemyAI : MonoBehaviour
     {
         if (!EnemyAlive) return;
         EnemyHealthPoints--;
+        EnemyHealthBar.value = EnemyHealthPoints;
 
         if (EnemyHealthPoints <= 0) // Check if the enemy has been hit enough times
         {
@@ -82,6 +86,7 @@ public class EnemyAI : MonoBehaviour
     IEnumerator Destroyed()
     {
         animator.Play("Death", 0, 0f); // Play death animation
+        ObjectiveManager.Instance.TrackObjective("Fight off an enemy");
         NavAgent.isStopped = true; // Stop enemy movement
         yield return new WaitForSeconds(5f); // Wait for the animation or any delay
         Destroy(gameObject); // Destroy the enemy
