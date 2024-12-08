@@ -83,7 +83,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody rb;
 
     [Header("Attacking")]
-    public float attackDistance = 2.5f;
+    public float attackDistance = 2f;
     private bool AttackingState = false;
 
     //[Header("Crafting")]

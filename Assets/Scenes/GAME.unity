@@ -32184,7 +32184,7 @@ MonoBehaviour:
     m_Bits: 64
   maxSlopeAngle: 70
   playerBody: {fileID: 1554781247}
-  attackDistance: 1.6
+  attackDistance: 2
   craftingPanel: {fileID: 1796822663}
   inventoryPanel: {fileID: 758164736}
   craftingSlotsParent: {fileID: 1796822664}
