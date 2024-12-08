@@ -12,6 +12,8 @@ public class EnemyAI : MonoBehaviour
     public float enemyAttackAmount;
     public float attackCooldown = 2f; 
     private float timeSinceLastAttack = 0f;
+    public int hitAmount;
+     private int currentHits = 0; // Track the current hit count
     NavMeshAgent NavAgent;
     Animator animator;
     bool AttackingState = false;
@@ -61,6 +63,24 @@ public class EnemyAI : MonoBehaviour
             AttackingState = false;  
         }
     
+    }
+
+    public void TakeHit()
+    {
+        currentHits++;
+
+        if (currentHits >= hitAmount) // Check if the enemy has been hit enough times
+        {
+            StartCoroutine(Destroyed());
+        }
+    }
+
+    IEnumerator Destroyed()
+    {
+        animator.Play("Death", 0, 0f); // Play death animation
+        NavAgent.isStopped = true; // Stop enemy movement
+        yield return new WaitForSeconds(5f); // Wait for the animation or any delay
+        Destroy(gameObject); // Destroy the enemy
     }
 
     
