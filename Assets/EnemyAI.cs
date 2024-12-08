@@ -12,8 +12,9 @@ public class EnemyAI : MonoBehaviour
     public float enemyAttackAmount;
     public float attackCooldown = 2f; 
     private float timeSinceLastAttack = 0f;
-    public int hitAmount;
-     private int currentHits = 0; // Track the current hit count
+    private int EnemyHealthPoints = 3;
+    private bool EnemyAlive = true;
+    //private int currentHits = 0; // Track the current hit count
     NavMeshAgent NavAgent;
     Animator animator;
     bool AttackingState = false;
@@ -67,12 +68,15 @@ public class EnemyAI : MonoBehaviour
 
     public void TakeHit()
     {
-        currentHits++;
+        if (!EnemyAlive) return;
+        EnemyHealthPoints--;
 
-        if (currentHits >= hitAmount) // Check if the enemy has been hit enough times
+        if (EnemyHealthPoints <= 0) // Check if the enemy has been hit enough times
         {
+            EnemyAlive = false;
             StartCoroutine(Destroyed());
         }
+        //healthslider
     }
 
     IEnumerator Destroyed()
