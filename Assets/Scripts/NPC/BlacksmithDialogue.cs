@@ -133,7 +133,7 @@ public class BlacksmithDialogue : MonoBehaviour
         {
             playerInRange = true; // Player is in range
             Debug.Log("Player entered range.");  // Check if player enters the range
-            Etext.text = "Press E to interact with the villager"; // Show the prompt
+            Etext.text = "Press E to spawn your dagger"; // Show the prompt
         }
     }
 

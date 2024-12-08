@@ -17,5 +17,8 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/PrototypeScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/GameCompleted.unity
+    guid: 255ccf88de21c4eb3b2208aef7366149
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

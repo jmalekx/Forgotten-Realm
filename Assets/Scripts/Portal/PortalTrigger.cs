@@ -16,6 +16,6 @@ public class PortalTrigger : MonoBehaviour
     void EndGame()
     {
         // Load the Game Over scene
-        SceneManager.LoadScene("GameOverScene"); // Replace with your actual scene name
+        SceneManager.LoadScene("GameCompleted"); // Replace with your actual scene name
     }
 }
