@@ -10,6 +10,8 @@ public class MainMenu : MonoBehaviour
     public Slider SensitivitySlider; 
     public Slider QualitySlider;
     public Slider VolumeSlider;
+    private GameObject LoadingScreen;
+    private GameObject Canvas;
     public static float ChosenHealthDecreaseSpeed = 0.05f;
     public static float ChosensSprintDecreaseSpeed = 1f;
     public static float ChosensSprintRegenSpeed = 1f;
