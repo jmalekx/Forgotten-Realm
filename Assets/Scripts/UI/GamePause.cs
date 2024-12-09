@@ -8,7 +8,7 @@ public class PauseGame : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.P)) // Toggle pause with 'P' key
         {
             if (isPaused)
                 ResumeGame();
@@ -19,24 +19,29 @@ public class PauseGame : MonoBehaviour
 
     public void Pause()
     {
-        pauseMenu.SetActive(true);
+        pauseMenu.SetActive(true); // Show the pause menu
         Time.timeScale = 0f; // Stops the game
+        Cursor.lockState = CursorLockMode.None; // Unlock the cursor
+        Cursor.visible = true; // Make the cursor visible
         isPaused = true;
     }
 
     public void ResumeGame()
-{
-    Debug.Log("Resume button clicked!"); // Add this line
-    pauseMenu.SetActive(false);
-    Time.timeScale = 1f;
-    isPaused = false;
-}
+    {
+        Debug.Log("Resume button clicked!"); // Log for debugging
+        pauseMenu.SetActive(false); // Hide the pause menu
+        Time.timeScale = 1f; // Resume the game
+        Cursor.lockState = CursorLockMode.Locked; // Lock the cursor to the center
+        Cursor.visible = false; // Hide the cursor
+        isPaused = false;
+    }
 
-public void LoadMainMenu()
-{
-    Debug.Log("Main Menu button clicked!"); // Add this line
-    Time.timeScale = 1f;
-    SceneManager.LoadScene("MainMenu");
-}
-
+    public void LoadMainMenu()
+    {
+        Debug.Log("Main Menu button clicked!"); // Log for debugging
+        Time.timeScale = 1f; // Reset time scale to normal
+        Cursor.lockState = CursorLockMode.None; // Unlock the cursor
+        Cursor.visible = true; // Ensure cursor visibility
+        SceneManager.LoadScene("MainMenu"); // Load the MainMenu scene
+    }
 }

@@ -13,35 +13,41 @@ public class BlacksmithDialogue : MonoBehaviour
     public string interactKey = "e"; // Which key to press to interact with the villager
 
     public GameObject daggerPrefab; // Reference to the dagger object prefab
-    public Transform playerInventory; // Optional: if you have an inventory system, store the player's inventory transform
+    public Transform spawnPoint; // Assign this in the Inspector to the empty GameObject representing the spawn point
 
     private bool playerInRange = false; // Tracks if the player is in range
     private bool isInteracting = false; // Tracks if the player is currently interacting
     private int dialogueIndex = 0; // Tracks the current line of dialogue
+    private bool awaitingPlayerInput = false; // Tracks if waiting for player input to end the dialogue
 
     private string[] dialogueLines = {
         "Hello, welcome to my blacksmith!",
         "How can I help you today?"
     };
 
+    private string daggerExplanation = "This dagger will help you kill enemies faster. Use it wisely!";
+
     void Update()
     {
-        // Check for interaction when the player is in range
         if (playerInRange && Input.GetKeyDown(interactKey))
         {
-            if (!isInteracting)
+            if (awaitingPlayerInput)
             {
-                StartInteraction(); // Start the interaction
+                EndInteraction(); // End the interaction if we're waiting for player input
+            }
+            else if (!isInteracting)
+            {
+                StartInteraction();
             }
             else
             {
                 if (dialogueIndex < dialogueLines.Length)
                 {
-                    ShowNextDialogue(); // Show the next line of dialogue
+                    ShowNextDialogue();
                 }
                 else
                 {
-                    ShowOptions(); // Show options after all dialogue lines
+                    ShowOptions();
                 }
             }
         }
@@ -49,91 +55,94 @@ public class BlacksmithDialogue : MonoBehaviour
 
     void StartInteraction()
     {
-        isInteracting = true; // Mark the interaction as started
-        dialogueUI.SetActive(true); // Show the dialogue UI
-        Etext.text = ""; // Hide the Etext prompt
-        ShowNextDialogue(); // Display the first line of dialogue
+        isInteracting = true;
+        dialogueUI.SetActive(true);
+        Etext.text = "";
+        ShowNextDialogue();
+
+        // Unlock the cursor for interaction
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     void ShowNextDialogue()
     {
-        dialogueText.text = dialogueLines[dialogueIndex]; // Display the current dialogue line
+        dialogueText.text = dialogueLines[dialogueIndex];
         dialogueIndex++;
     }
 
     void ShowOptions()
     {
-        dialogueUI.SetActive(false); // Hide the dialogue text panel
-        optionButtons.SetActive(true); // Show the options panel
+        dialogueUI.SetActive(false);
+        optionButtons.SetActive(true);
     }
 
     public void OnOption1Selected()
     {
         Debug.Log("Option 1 selected: I need tools");
 
-        // Instantiate the dagger in front of the player or attach it to the player's hand/inventory
-        if (daggerPrefab != null)
+        if (daggerPrefab != null && spawnPoint != null)
         {
-            // If you want to give the dagger to the player directly, instantiate it at the player's position
-            GameObject dagger = Instantiate(daggerPrefab, playerInventory.position, Quaternion.identity);
-
-            // Optionally, you can adjust the dagger's position or parent it to the player's hand or inventory slot
-            // For example, if you want to attach it to the player's hand:
-            // dagger.transform.SetParent(playerHandTransform); // Replace with the actual hand transform
-
-            Debug.Log("Dagger given to the player.");
+            // Spawn the dagger at the specified spawn point
+            Instantiate(daggerPrefab, spawnPoint.position, spawnPoint.rotation);
+            Debug.Log("Dagger spawned at the spawn point.");
         }
         else
         {
-            Debug.LogWarning("Dagger prefab is not assigned!");
+            Debug.LogWarning("Dagger prefab or spawn point is not assigned!");
         }
 
-        // Reset dialogue and hide options
-        ResetDialogue();
+        // Show the dagger explanation dialogue
+        ShowDaggerExplanation();
+    }
+
+    void ShowDaggerExplanation()
+    {
+        optionButtons.SetActive(false); // Hide the options panel
+        dialogueUI.SetActive(true); // Show the dialogue UI
+        dialogueText.text = daggerExplanation; // Display the dagger explanation
+
+        // Wait for player input to end dialogue
+        awaitingPlayerInput = true;
     }
 
     public void OnOption2Selected()
     {
         Debug.Log("Option 2 selected: Nevermind");
 
-        // Hide the options panel and dialogue panel
-        optionButtons.SetActive(false);  // Hide the options panel
-        dialogueUI.SetActive(false);     // Hide the dialogue UI
+        optionButtons.SetActive(false);
+        dialogueUI.SetActive(false);
 
-        // Reset the interaction state and dialogue index
-        isInteracting = false;          // Set interaction flag to false
-        dialogueIndex = 0;              // Reset the dialogue index
-        
-        // Reset the prompt to allow future interactions
-        Etext.text = "Press E to interact with the villager";
+        ResetDialogue();
+    }
 
-        // If player leaves during the interaction, make sure the interaction is reset
-        if (playerInRange)  // Optionally, check if player is still in range
-        {
-            // You can reset additional states here if necessary (like enabling player controls, etc.)
-        }
+    void EndInteraction()
+    {
+        Debug.Log("Ending interaction.");
+        ResetDialogue();
     }
 
     void ResetDialogue()
     {
-        optionButtons.SetActive(false); // Hide the options
-        dialogueUI.SetActive(false); // Hide the dialogue UI
-        isInteracting = false; // Reset interaction state
-        dialogueIndex = 0; // Reset the dialogue index
-        Etext.text = "Press E to interact with the villager"; // Reset the Etext prompt
+        dialogueUI.SetActive(false);
+        optionButtons.SetActive(false);
+        isInteracting = false;
+        awaitingPlayerInput = false;
+        dialogueIndex = 0;
+        Etext.text = "Press E to interact with the villager";
 
-        // Unlock the cursor (if it was locked) and make it visible again
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        // Lock the cursor back after interaction
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            playerInRange = true; // Player is in range
-            Debug.Log("Player entered range.");  // Check if player enters the range
-            Etext.text = "Press E to spawn your dagger"; // Show the prompt
+            playerInRange = true;
+            Debug.Log("Player entered range.");
+            Etext.text = "Press E to interact with the villager";
         }
     }
 
@@ -141,12 +150,12 @@ public class BlacksmithDialogue : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            playerInRange = false; // Player is no longer in range
-            Debug.Log("Player exited range.");  // Check if player exits the range
-            Etext.text = ""; // Clear the prompt
-            if (isInteracting)
+            playerInRange = false;
+            Debug.Log("Player exited range.");
+            Etext.text = "";
+            if (isInteracting || awaitingPlayerInput)
             {
-                ResetDialogue(); // Reset the dialogue if the player leaves while interacting
+                ResetDialogue();
             }
         }
     }
