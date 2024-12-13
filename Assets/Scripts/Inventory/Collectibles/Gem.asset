@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a7b9a8f2addc0b4da3ed82d21bcd89f, type: 3}
   m_Name: Gem
   m_EditorClassIdentifier: 
-  itemName: 
+  itemName: Gem
   icon: {fileID: 0}
-  count: 0
+  count: 1
   itemPrefab: {fileID: 0}
   isConsumable: 0
   healthRestoreAmount: 0
