@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
@@ -37,6 +38,8 @@ public class InventoryManager : MonoBehaviour
 
     void Start()
     {
+      
+
         inventory = Inventory.Instance;
         inventory.OnInventoryChanged += UpdateInventoryUI;
         UpdateInventoryUI();
@@ -97,13 +100,11 @@ public class InventoryManager : MonoBehaviour
             "5" => 4,
             "6" => 5,
             "7" => 6,
-            "8" => 7,
-            "9" => 8,
-            "0" => 9,
+         
             _ => -1, //handle invalid
         };
 
-        if (slot >= 0 && slot < 10) //inventory range
+        if (slot >= 0 && slot < 7) //inventory range
         {
             selectedItemIndex = slot;
             UpdateInventoryUI();
@@ -179,7 +180,7 @@ public class InventoryManager : MonoBehaviour
         }
 
         //create new item panel for each item in the inventory
-        int maxSlots = 10;
+        int maxSlots = 7;
         for (int i = 0; i < maxSlots; i++)
         {
             GameObject newItemPanel = Instantiate(itemPanelPrefab, itemPanelGrid.transform);
@@ -201,8 +202,15 @@ public class InventoryManager : MonoBehaviour
                 else
                 {
                     itemSlot.ClearSlot();
+
                 }
                 itemSlot.SetSelected(i == selectedItemIndex);
+
+
+                //call OnDrop(PointerEventData eventData)
+
+
+
             }
         }
     }
@@ -211,7 +219,7 @@ public class InventoryManager : MonoBehaviour
     private void OnScroll(InputAction.CallbackContext context)
     {
         Vector2 scrollValue = context.ReadValue<Vector2>();
-        int maxSlots = 10;
+        int maxSlots = 7;
         if (scrollValue.y > 0)
         {
             selectedItemIndex = (selectedItemIndex - 1 + maxSlots) % maxSlots; //scroll up
@@ -273,16 +281,16 @@ public class InventoryManager : MonoBehaviour
                 craftingManager = droppedItem.AddComponent<CraftingManager>();
             }
 
-            if (item.itemName == "Wood")
-            {
-                droppedItem.tag = "Wood";
-                craftingManager.wood = item;
-            }
-            else if (item.itemName == "Stone")
-            {
-                droppedItem.tag = "Stone";
-                craftingManager.stone = item;
-            }
+            //if (item.itemName == "Wood")
+            //{
+            //    droppedItem.tag = "Wood";
+            //    craftingManager.wood = item;
+            //}
+            //else if (item.itemName == "Stone")
+            //{
+            //    droppedItem.tag = "Stone";
+            //    craftingManager.stone = item;
+            //}
 
             Debug.Log("Dropped " + item.itemName + " into the world.");
         }
@@ -291,5 +299,14 @@ public class InventoryManager : MonoBehaviour
             Debug.LogError("Item prefab is null. Cannot drop item into the world.");
         }
     }
+
+
+    public void AddItemToInventory(ItemData item)
+    {
+        // Assuming you have an inventory list or system
+        inventory.items.Add(item);
+        UpdateInventoryUI();  // Update the UI to reflect the changes
+    }
+
 
 }
