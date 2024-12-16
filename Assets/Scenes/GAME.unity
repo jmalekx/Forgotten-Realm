@@ -34883,7 +34883,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentItem: {fileID: 0}
-  daggerItemData: {fileID: 0}
+  daggerItemData: {fileID: 11400000, guid: aac3ca4828ef5c54a808dd3a262dd36a, type: 2}
   customCursor: {fileID: 1561996732}
   craftingSlots:
   - {fileID: 1561142201}
