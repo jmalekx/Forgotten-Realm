@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1396489414}
-  m_IndirectSpecularColor: {r: 0.06289409, g: 0.064437695, b: 0.19927463, a: 1}
+  m_IndirectSpecularColor: {r: 0.06372635, g: 0.065293685, b: 0.20191301, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -22079,6 +22079,17 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &1459460367 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5728545642248044002, guid: 0fa069cfbf8f0874dbb2ee2f29bd33f0, type: 3}
+  m_PrefabInstance: {fileID: 1459460362}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1459460364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76f85fe6d6a851f48babd9b9a606ed61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1460611190
 GameObject:
   m_ObjectHideFlags: 0
@@ -34872,12 +34883,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentItem: {fileID: 0}
+  daggerItemData: {fileID: 0}
   customCursor: {fileID: 1561996732}
   craftingSlots:
   - {fileID: 1561142201}
   - {fileID: 22416089}
   craftingSlot1: {fileID: 1561142201}
   craftingSlot2: {fileID: 22416089}
+  craftingSlot3: {fileID: 1459460367}
 --- !u!1001 &2026524664
 PrefabInstance:
   m_ObjectHideFlags: 0
