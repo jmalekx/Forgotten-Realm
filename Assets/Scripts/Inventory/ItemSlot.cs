@@ -17,6 +17,7 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     public TMP_Text countText;
     public TMP_Text itemNameText;
     private CraftingManager craftingManager;
+    public InventoryManager inventoryManager;
 
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
@@ -40,6 +41,8 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             Debug.LogError("CraftingManager not found in the scene.");
         }
     }
+
+    //--------------------------------------------------------------------------------------------------------------
 
     public void UpdateSlot(ItemData itemData)
     {
@@ -68,16 +71,27 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         }
     }
 
+
+
+    //--------------------------------------------------------------------------------------------------------------
+
     // Clear the slot when no item is assigned
     public void ClearSlot()
     {
+
         item = null;
         iconImage.sprite = null;
         iconImage.color = new Color(0f, 0f, 0f, 0f);
         countText.text = "";
         itemNameText.enabled = false;
         tintOverlay.enabled = false;
+
+        //inventoryManager.RemoveItemFromInventory(item);
     }
+
+
+    //--------------------------------------------------------------------------------------------------------------
+
 
     public void SetSelected(bool isSelected)
     {
@@ -91,6 +105,8 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             tintOverlay.enabled = false;
         }
     }
+
+    //--------------------------------------------------------------------------------------------------------------
 
     // Start dragging the item
     public void OnBeginDrag(PointerEventData eventData)
@@ -135,6 +151,9 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         }
     }
 
+
+    //--------------------------------------------------------------------------------------------------------------
+
     // While dragging the item
     public void OnDrag(PointerEventData eventData)
     {
@@ -144,6 +163,9 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             draggedItemImage.GetComponent<RectTransform>().anchoredPosition = localPoint;
         }
     }
+
+
+    //--------------------------------------------------------------------------------------------------------------
 
     public void OnEndDrag(PointerEventData eventData)
     {
@@ -175,52 +197,57 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         }
     }
 
+
+    //--------------------------------------------------------------------------------------------------------------
+
     public void OnDrop(PointerEventData eventData)
     {
         // Get the source slot from the event data
         ItemSlot sourceSlot = eventData.pointerDrag?.GetComponent<ItemSlot>();
 
-        // Ensure the sourceSlot is not null and that it contains an item
+        
         if (sourceSlot != null && sourceSlot.item != null)
         {
-            // Attempt to place the item into this slot
+            
             UpdateSlot(sourceSlot.item);
-
-            // Update the crafting manager with the item
             craftingManager.OnItemDropped(sourceSlot.item, this);
 
             // Check if both crafting slots are occupied
             ItemSlot slot1 = craftingManager.GetCraftingSlot1();
             ItemSlot slot2 = craftingManager.GetCraftingSlot2();
 
-            // Ensure that both crafting slots are assigned
+            
             if (slot1 == null || slot2 == null)
             {
                 Debug.LogError("One or both crafting slots are not assigned!");
                 return;
             }
 
-            // Ensure that both crafting slots are filled
+            
             if (slot1.item == null || slot2.item == null)
             {
                 Debug.Log("Both crafting slots must be occupied before crafting.");
                 return;
             }
 
-            // Now check for valid combinations when both slots are filled
+           
             bool validCombination = craftingManager.CheckForValidCombination(slot1.item, slot2.item);
 
             if (validCombination)
             {
-                // Process the crafting result (e.g., create dagger)
+                
                 craftingManager.CraftItem(slot1.item, slot2.item);
 
-                // Clear the source slots only after confirming a valid combination
                 slot1.ClearSlot();
                 slot2.ClearSlot();
 
 
                 craftingManager.ClearCraftingSlots();
+                //craftingManager.OnDaggerDroppedIntoInventory();
+                //inventoryManager.AddItemToInventory(craftingManager.craftedDagger.GetComponent<ItemData>());
+
+
+
             }
             else
             {
@@ -244,8 +271,7 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     }
 
 
-
-
+    //--------------------------------------------------------------------------------------------------------------
 
 
     private bool IsValidDrop(GameObject dropTarget)

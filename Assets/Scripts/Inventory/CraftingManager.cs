@@ -13,7 +13,7 @@ public class CraftingManager : MonoBehaviour
 {
     public ItemData currentItem;
     public ItemData daggerItemData; // Reference to the dagger's ItemData (assign in inspector)
-    private GameObject craftedDagger = null; // Reference to track the crafted dagger
+    public GameObject craftedDagger = null; // Reference to track the crafted dagger
 
 
 
@@ -22,7 +22,7 @@ public class CraftingManager : MonoBehaviour
 
     private Vector2 originalPosition;
     private RectTransform draggingRectTransform;
-
+   
     // Track items in the crafting slots
     private ItemData itemInSlot1 = null;
     private ItemData itemInSlot2 = null;
@@ -55,15 +55,13 @@ public class CraftingManager : MonoBehaviour
     {
         if (itemInSlot1 != null)
         {
-            // Return itemInSlot1 to the inventory (implement as per your game logic)
             Debug.Log("Returning item1 to inventory: " + itemInSlot1.itemName);
         }
         if (itemInSlot2 != null)
         {
-            // Return itemInSlot2 to the inventory (implement as per your game logic)
             Debug.Log("Returning item2 to inventory: " + itemInSlot2.itemName);
         }
-        // Clear the crafting slots
+
         ClearCraftingSlots();
     }
 
@@ -110,14 +108,11 @@ public class CraftingManager : MonoBehaviour
                 // Only check the combination once both slots are filled
                 if (itemInSlot1 != null && itemInSlot2 != null)
                 {
-                    // Check if the combination is valid
                     bool validCombination = CheckForValidCombination(itemInSlot1, itemInSlot2);
                     if (validCombination)
                     {
-                        // Process the crafting result (e.g., create dagger)
                         CraftItem(itemInSlot1, itemInSlot2);
 
-                        // Clear the crafting slots after confirming a valid combination
                         ClearCraftingSlots();
                     }
                     else
@@ -147,21 +142,16 @@ public class CraftingManager : MonoBehaviour
 {
     Debug.Log("Crafting Dagger");
 
-    // Check if craftingSlot3 is assigned
     if (craftingSlot3 != null)
     {
         // Ensure only one dagger is crafted
         if (!daggerCrafted)
         {
-            // Get the dagger ItemData (make sure you have a valid reference to it)
             ItemData daggerItem = GetDaggerItem();
 
             if (daggerItem != null && daggerItem.itemPrefab != null)
             {
-                // Instantiate the dagger prefab in craftingSlot3 position
-                GameObject craftedDagger = Instantiate(daggerItem.itemPrefab, craftingSlot3.transform.position, Quaternion.identity);
-
-                // Optionally, if you want to update the slot with the crafted dagger item
+               
                 craftingSlot3.UpdateSlot(daggerItem);
 
                 // Set the flag to prevent multiple daggers from being crafted
@@ -185,23 +175,17 @@ public class CraftingManager : MonoBehaviour
     }
 }
 
-
-    // Method to get the dagger ItemData (this is just an example, adjust to your game logic)
     private ItemData GetDaggerItem()
     {
-        // You should return the actual ItemData for the dagger.
-        // For example, if you have a predefined dagger ItemData:
         return daggerItemData;
     }
 
 
-    // Method to get CraftingSlot1
     public ItemSlot GetCraftingSlot1()
     {
         return craftingSlot1;
     }
 
-    // Method to get CraftingSlot2
     public ItemSlot GetCraftingSlot2()
     {
         return craftingSlot2;
@@ -213,6 +197,10 @@ public class CraftingManager : MonoBehaviour
     {
         if (craftedDagger != null)
         {
+
+            //  Add the dagger to the inventory
+            //  Inventory.Instance.AddItem(daggerItemData);
+
             // Clear craftingSlot3 when the dagger is placed into the inventory
             craftedDagger.GetComponent<DraggableItem>().enabled = false;  // Disable dragging of the dagger
             craftedDagger = null;  // Reset the dagger reference

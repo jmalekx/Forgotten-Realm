@@ -308,5 +308,12 @@ public class InventoryManager : MonoBehaviour
         UpdateInventoryUI();  // Update the UI to reflect the changes
     }
 
+    public void RemoveItemFromInventory(ItemData item)
+    {
+        // Assuming you have an inventory list or system
+        inventory.items.Remove(item);
+        UpdateInventoryUI();  // Update the UI to reflect the changes
+    }
+
 
 }
