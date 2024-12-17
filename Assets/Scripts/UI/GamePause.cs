@@ -10,10 +10,7 @@ public class PauseGame : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.P)) // Toggle pause with 'P' key
         {
-            if (isPaused)
-                ResumeGame();
-            else
-                Pause();
+            Pause(); // Pause the game when 'P' is pressed
         }
     }
 
