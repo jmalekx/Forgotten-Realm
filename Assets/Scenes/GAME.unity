@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1396489414}
-  m_IndirectSpecularColor: {r: 0.032426316, g: 0.033235084, b: 0.10262492, a: 1}
+  m_IndirectSpecularColor: {r: 0.063760534, g: 0.06539899, b: 0.20179999, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -30647,10 +30647,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c7f2f28fb5aa484c9f40bfdb72d249a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSensitivity: 100
-  playerBody: {fileID: 1554781247}
-  xRotation: 0
-  canLook: 1
 --- !u!114 &1711789851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30663,9 +30659,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 956fa38f4daf8454284664fd7acd4888, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSensitivity: 100
-  playerBody: {fileID: 1554781247}
-  xRotation: 0
 --- !u!1001 &1713439625
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37248,7 +37241,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2792645535503622206, guid: e57931aae8c7d86469f0d8cc835cff29, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6919238954757934252, guid: e57931aae8c7d86469f0d8cc835cff29, type: 3}
+      propertyPath: m_LocalScale.z
+      value: -1.1909
       objectReference: {fileID: 0}
     - target: {fileID: 6919238954757934252, guid: e57931aae8c7d86469f0d8cc835cff29, type: 3}
       propertyPath: m_LocalPosition.x
@@ -37260,7 +37257,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6919238954757934252, guid: e57931aae8c7d86469f0d8cc835cff29, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 99.70193
+      value: 99.87
       objectReference: {fileID: 0}
     - target: {fileID: 6919238954757934252, guid: e57931aae8c7d86469f0d8cc835cff29, type: 3}
       propertyPath: m_LocalRotation.w
