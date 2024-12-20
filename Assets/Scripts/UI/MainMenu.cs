@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class MainMenu : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class MainMenu : MonoBehaviour
     public static int ChosenenemyAttackAmount = 10;
     public static float ChosenSensitivity = 50;
     public static int ChosenQuality = 4;
+    public TextMeshProUGUI modeInfo; 
 
     void Start()
     {
@@ -45,7 +47,16 @@ public class MainMenu : MonoBehaviour
         ChosenenemyAttackAmount = 5;
         ChosensSprintDecreaseSpeed = 0.5f;
         ChosensSprintRegenSpeed = 1.3f;
+                // Update modeInfo text
+        modeInfo.text = "Difficulty: Easy\n" +
+                        "Sunrise: 4 AM\n" +
+                        "Sunset: 10 PM\n" +
+                        "Enemy Attack Amount: 5\n" +
+                        "Health Decrease Speed: 0.05\n" +
+                        "Sprint Decrease Speed: 0.5\n" +
+                        "Sprint Regen Speed: 1.3";
     }
+    
     public void medium(){
         ChosenSunrise = 6f; 
         ChosenSunset = 20f;        
@@ -53,7 +64,14 @@ public class MainMenu : MonoBehaviour
         ChosenenemyAttackAmount = 10;
         ChosensSprintDecreaseSpeed = 1f;
         ChosensSprintRegenSpeed = 1f;
-
+        // Update modeInfo text
+        modeInfo.text = "Difficulty: Medium\n" +
+                        "Sunrise: 6 AM\n" +
+                        "Sunset: 8 PM\n" +
+                        "Enemy Attack Amount: 10\n" +
+                        "Health Decrease Speed: 0.1\n" +
+                        "Sprint Decrease Speed: 1.0\n" +
+                        "Sprint Regen Speed: 1.0";
     }
     public void hard(){
         ChosenSunrise = 7f;
@@ -62,6 +80,13 @@ public class MainMenu : MonoBehaviour
         ChosenenemyAttackAmount = 15;
         ChosensSprintDecreaseSpeed = 1.5f;
         ChosensSprintRegenSpeed = 0.7f;
+                modeInfo.text = "Difficulty: Hard\n" +
+                        "Sunrise: 7 AM\n" +
+                        "Sunset: 7 PM\n" +
+                        "Enemy Attack Amount: 15\n" +
+                        "Health Decrease Speed: 0.5\n" +
+                        "Sprint Decrease Speed: 1.5\n" +
+                        "Sprint Regen Speed: 0.7";
     }
 
     public void Quit(){
