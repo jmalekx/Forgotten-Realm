@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1396489414}
-  m_IndirectSpecularColor: {r: 0.063760534, g: 0.06539899, b: 0.20179999, a: 1}
+  m_IndirectSpecularColor: {r: 0.06379755, g: 0.06543679, b: 0.2019162, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -37232,6 +37232,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1487422632722274731, guid: e57931aae8c7d86469f0d8cc835cff29, type: 3}
+      propertyPath: maxDistance
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487422632722274731, guid: e57931aae8c7d86469f0d8cc835cff29, type: 3}
+      propertyPath: attackCooldown
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487422632722274731, guid: e57931aae8c7d86469f0d8cc835cff29, type: 3}
       propertyPath: playerVariable
       value: 
       objectReference: {fileID: 1892168048}
@@ -37241,7 +37249,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2792645535503622206, guid: e57931aae8c7d86469f0d8cc835cff29, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6919238954757934252, guid: e57931aae8c7d86469f0d8cc835cff29, type: 3}
       propertyPath: m_LocalScale.z
