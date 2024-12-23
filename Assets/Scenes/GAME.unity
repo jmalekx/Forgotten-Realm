@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1396489414}
-  m_IndirectSpecularColor: {r: 0.06379755, g: 0.06543679, b: 0.2019162, a: 1}
+  m_IndirectSpecularColor: {r: 0.0632194, g: 0.064844914, b: 0.20008339, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7030,6 +7030,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6640866189620513131, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: playerVariable
+      value: 
+      objectReference: {fileID: 1892168048}
     - target: {fileID: 7947731617784803582, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
       propertyPath: m_Name
       value: velociraptor prefab (2)
@@ -8924,6 +8928,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6640866189620513131, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: playerVariable
+      value: 
+      objectReference: {fileID: 1892168048}
     - target: {fileID: 7947731617784803582, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
       propertyPath: m_Name
       value: velociraptor prefab (4)
@@ -13533,6 +13541,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6640866189620513131, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: playerVariable
+      value: 
+      objectReference: {fileID: 1892168048}
     - target: {fileID: 7947731617784803582, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
       propertyPath: m_Name
       value: velociraptor prefab (3)
@@ -17761,6 +17773,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6640866189620513131, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: playerVariable
+      value: 
+      objectReference: {fileID: 1892168048}
     - target: {fileID: 7947731617784803582, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
       propertyPath: m_Name
       value: velociraptor prefab (1)
@@ -31365,6 +31381,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6640866189620513131, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: playerVariable
+      value: 
+      objectReference: {fileID: 1892168048}
     - target: {fileID: 7947731617784803582, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
       propertyPath: m_Name
       value: velociraptor prefab
