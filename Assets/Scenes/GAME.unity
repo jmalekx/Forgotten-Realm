@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1396489414}
-  m_IndirectSpecularColor: {r: 0.0614453, g: 0.06302407, b: 0.19446996, a: 1}
+  m_IndirectSpecularColor: {r: 0.06379755, g: 0.06543679, b: 0.2019162, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -33817,6 +33817,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HitSound: {fileID: 8300000, guid: 63805829b669921459d77748fc3b6e35, type: 3}
+  EnemyHitSound: {fileID: 8300000, guid: 0d53d6a202a1bf74fa82a2b532a872ba, type: 3}
   DeathText: {fileID: 379335369}
   HealthBar: {fileID: 821993093}
   HealthDecreaseSpeed: 0

@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Audio")]
     public AudioClip HitSound; 
+    public AudioClip EnemyHitSound;
     private AudioSource audioSource;
 
     [Header("Health UI")]
@@ -417,6 +418,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (hit.collider.CompareTag("Enemy"))
                 {
+                    audioSource.PlayOneShot(EnemyHitSound); // Play the attack sound once
                     GameObject enemyHit = hit.collider.gameObject;
                     EnemyAI enemyAI = enemyHit.GetComponent<EnemyAI>();
                     if (enemyAI != null)
