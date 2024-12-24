@@ -26,5 +26,7 @@ public class ItemData : ScriptableObject
     [Header("Display Info")]
     public string customDescription;
 
+    
+
 }
 

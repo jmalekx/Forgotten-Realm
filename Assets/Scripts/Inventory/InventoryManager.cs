@@ -35,6 +35,8 @@ public class InventoryManager : MonoBehaviour
     private PopupAnim objectivePopupAnim;
     private Coroutine holdingTextCoroutine; 
 
+    
+
 
     void Start()
     {
