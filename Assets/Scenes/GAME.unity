@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1396489414}
-  m_IndirectSpecularColor: {r: 0.06372635, g: 0.065293685, b: 0.20191301, a: 1}
+  m_IndirectSpecularColor: {r: 0.06372102, g: 0.06528874, b: 0.20189404, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -35395,7 +35395,6 @@ MonoBehaviour:
   currentItem: {fileID: 0}
   daggerItemData: {fileID: 11400000, guid: aac3ca4828ef5c54a808dd3a262dd36a, type: 2}
   craftedDagger: {fileID: 3781618474913775520, guid: 1cc4721bb827e0243bbbd60f05f1fa5f, type: 3}
-  customCursor: {fileID: 1561996732}
   craftingSlots:
   - {fileID: 1561142201}
   - {fileID: 22416089}
