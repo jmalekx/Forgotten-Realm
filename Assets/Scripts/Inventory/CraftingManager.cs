@@ -150,7 +150,7 @@ public class CraftingManager : MonoBehaviour
 
         }
 
-
+        Inventory.Instance.RemoveItem(droppedItem);
 
 
     }
