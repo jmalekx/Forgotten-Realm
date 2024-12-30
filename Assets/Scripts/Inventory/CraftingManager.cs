@@ -33,20 +33,15 @@ public class CraftingManager : MonoBehaviour
 
 
     private bool daggerCrafted = false;
-
     
-
-
-
-
-    public void OnMouseDownItem(ItemData item)
-    {
-        if (currentItem == null)
-        {
-            currentItem = item;
+    //public void OnMouseDownItem(ItemData item)
+    //{
+    //    if (currentItem == null)
+    //    {
+    //        currentItem = item;
             
-        }
-    }
+    //    }
+    //}
 
     // Method to handle returning items to inventory if the combination is invalid
     private void ReturnItemsToInventory()
@@ -83,12 +78,11 @@ public class CraftingManager : MonoBehaviour
         {
             // If the targetSlot is empty, assign the dropped item to it
 
-            if (targetSlot.item == null)
+            if (targetSlot.isSlotEmpty())
             {
                 targetSlot.UpdateSlot(droppedItem);
                
-
-                
+          
 
                 // Track the items in the crafting slots
                 if (targetSlot == craftingSlot1)
@@ -123,7 +117,7 @@ public class CraftingManager : MonoBehaviour
                 // Only check the combination once both slots are filled
                 if (itemInSlot1 != null && itemInSlot2 != null)
                 {
-                    bool validCombination = CheckForValidCombination(itemInSlot1, itemInSlot2);
+                    bool validCombination = CheckForValidCraftingSlotsCombination(itemInSlot1, itemInSlot2);
                     if (validCombination)
                     {
                         CraftItem(itemInSlot1, itemInSlot2);
@@ -157,7 +151,7 @@ public class CraftingManager : MonoBehaviour
 
 
     // Check if the combination of two items is valid
-    public bool CheckForValidCombination(ItemData item1, ItemData item2)
+    public bool CheckForValidCraftingSlotsCombination(ItemData item1, ItemData item2)
     {
         return (item1.itemName == "Wood" && item2.itemName == "Stone") ||
                (item1.itemName == "Stone" && item2.itemName == "Wood");
@@ -186,8 +180,7 @@ public class CraftingManager : MonoBehaviour
 
                     Inventory.Instance.AddItem(daggerItem);
 
-                    ClearCraftingSlots();   
-
+                    ClearCraftingSlots();  
                     Debug.Log("Dagger crafted and placed in Slot 3.");
             }
             else
@@ -212,6 +205,12 @@ public class CraftingManager : MonoBehaviour
     public ItemSlot GetCraftingSlot2()
     {
         return craftingSlot2;
+    }
+
+
+    public void onCraftingSlotItemUpdated()
+    {
+        // move here the logic from ItemSlog.OnDrop
     }
 }
 

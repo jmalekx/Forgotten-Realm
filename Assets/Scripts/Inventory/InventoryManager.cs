@@ -283,17 +283,7 @@ public class InventoryManager : MonoBehaviour
                 craftingManager = droppedItem.AddComponent<CraftingManager>();
             }
 
-            //if (item.itemName == "Wood")
-            //{
-            //    droppedItem.tag = "Wood";
-            //    craftingManager.wood = item;
-            //}
-            //else if (item.itemName == "Stone")
-            //{
-            //    droppedItem.tag = "Stone";
-            //    craftingManager.stone = item;
-            //}
-
+    
             Debug.Log("Dropped " + item.itemName + " into the world.");
         }
         else
