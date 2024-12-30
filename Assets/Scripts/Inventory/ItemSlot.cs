@@ -15,7 +15,7 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     public Image tintOverlay;
     public TMP_Text countText;
     public TMP_Text itemNameText;
-    private CraftingManager craftingManager;
+
     
 
     public ItemData item;
@@ -32,14 +32,6 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         canvas = GetComponentInParent<Canvas>();
     }
 
-    private void Awake()
-    {
-        craftingManager = FindObjectOfType<CraftingManager>();
-        if (craftingManager == null)
-        {
-            Debug.LogError("CraftingManager not found in the scene.");
-        }
-    }
 
     //--------------------------------------------------------------------------------------------------------------
 

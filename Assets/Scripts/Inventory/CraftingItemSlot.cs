@@ -9,31 +9,8 @@ using UnityEngine.UI;
 
 public class CraftingItemSlot : ItemSlot, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler
 {
-    //private ItemData item;
-    //private Image iconImage;
-    //private Image tintOverlay;
-    //private TMP_Text countText;
-    //private TMP_Text itemNameText;
 
-    private CraftingManager craftingManager;
-
-
-    //private RectTransform rectTransform;
-    //private CanvasGroup canvasGroup;
-
-    //private GameObject itemVisual;
-    //private Canvas canvas;
-
-
-
-    private void Awake()
-    {
-        craftingManager = FindObjectOfType<CraftingManager>();
-        if (craftingManager == null)
-        {
-            Debug.LogError("CraftingManager not found in the scene.");
-        }
-    }
+    public CraftingManager craftingManager;    
 
     public override void UpdateSlot(ItemData itemData)
     {
@@ -58,8 +35,9 @@ public class CraftingItemSlot : ItemSlot, IBeginDragHandler, IDragHandler, IEndD
         // Get the source slot from the event data
         ItemSlot sourceSlot = eventData.pointerDrag?.GetComponent<ItemSlot>();
 
-        if (isSlotFilled())
+        if (sourceSlot != null && sourceSlot.isSlotFilled())
         {
+            
             //notify the crafting manager about the item change
             craftingManager.HandleItemDrop(sourceSlot.item, this);
             sourceSlot.ClearSlot();

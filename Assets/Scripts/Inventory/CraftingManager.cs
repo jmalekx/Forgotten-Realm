@@ -70,12 +70,23 @@ public class CraftingManager : MonoBehaviour
     public void HandleItemDrop(ItemData droppedItem, ItemSlot targetSlot)
     {
 
+        Debug.Log("1");
+
         if (droppedItem != null)
         {
+
+            Debug.Log("2");
+
+            Debug.Log("Item in slot 1: " + itemInSlot1);
+            Debug.Log("Item in slot 2: " + itemInSlot2);
+
             // If the targetSlot is empty, assign the dropped item to it
 
             if (targetSlot.isSlotEmpty())
             {
+
+                Debug.Log("3");
+
                 targetSlot.UpdateSlot(droppedItem);
                 TrackDroppedItem(droppedItem, targetSlot);
 
@@ -186,10 +197,7 @@ public class CraftingManager : MonoBehaviour
     }
 
 
-    public void onCraftingSlotItemUpdated()
-    {
-        // move here the logic from ItemSlog.OnDrop
-    }
+ 
 }
 
 
