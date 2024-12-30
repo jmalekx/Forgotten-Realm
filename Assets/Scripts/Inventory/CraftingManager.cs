@@ -14,12 +14,8 @@ public class CraftingManager : MonoBehaviour
     public ItemData currentItem;
     public ItemData daggerItemData; // Reference to the dagger's ItemData (assign in inspector)
     public GameObject craftedDagger = null; // Reference to track the crafted dagger
-
-
     public ItemSlot[] craftingSlots;
 
-    private Vector2 originalPosition;
-    private RectTransform draggingRectTransform;
    
     // Track items in the crafting slots
     private ItemData itemInSlot1 = null;
@@ -71,7 +67,7 @@ public class CraftingManager : MonoBehaviour
 
     }
 
-    public void OnItemDropped(ItemData droppedItem, ItemSlot targetSlot)
+    public void HandleItemDrop(ItemData droppedItem, ItemSlot targetSlot)
     {
 
         if (droppedItem != null)
@@ -81,36 +77,7 @@ public class CraftingManager : MonoBehaviour
             if (targetSlot.isSlotEmpty())
             {
                 targetSlot.UpdateSlot(droppedItem);
-               
-          
-
-                // Track the items in the crafting slots
-                if (targetSlot == craftingSlot1)
-                {
-                    itemInSlot1 = droppedItem;
-                }
-                else if (targetSlot == craftingSlot2)
-                {
-                    itemInSlot2 = droppedItem;
-                }
-                //else if (targetSlot == craftingSlot3)
-                //{
-                //    itemInSlot3 = droppedItem;
-                   
-
-
-
-                //    // If a dagger is dropped into the inventory or another slot, clear crafting slot 3
-                //    //if (craftedDagger != null && droppedItem == craftedDagger.GetComponent<ItemData>())
-                //    //{
-                //    //    //Inventory.Instance.AddItem(droppedItem); // Add the dagger to the inventory
-
-                //    //    //craftedDagger = null; // Reset craftedDagger reference
-
-
-                //    //    Debug.Log("Dagger removed from Craft Slot 3 and added to inventory.");
-                //    //}
-                //}
+                TrackDroppedItem(droppedItem, targetSlot);
 
                 //craftingSlot3.ClearSlot(); // Clear slot 3 if the dagger is dragged
 
@@ -137,8 +104,6 @@ public class CraftingManager : MonoBehaviour
                     Debug.Log("Both crafting slots must be occupied before crafting.");
                 }
 
-
-
             }
            
 
@@ -147,6 +112,19 @@ public class CraftingManager : MonoBehaviour
         Inventory.Instance.RemoveItem(droppedItem);
 
 
+    }
+
+    private void TrackDroppedItem(ItemData droppedItem, ItemSlot targetSlot)
+    {
+        // Track the items in the crafting slots
+        if (targetSlot == craftingSlot1)
+        {
+            itemInSlot1 = droppedItem;
+        }
+        else if (targetSlot == craftingSlot2)
+        {
+            itemInSlot2 = droppedItem;
+        }
     }
 
 
