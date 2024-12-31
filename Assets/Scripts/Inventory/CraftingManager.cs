@@ -14,71 +14,65 @@ public class CraftingManager : MonoBehaviour
     public ItemData currentItem;
     public ItemData daggerItemData; // Reference to the dagger's ItemData (assign in inspector)
     public GameObject craftedDagger = null; // Reference to track the crafted dagger
-    public ItemSlot[] craftingSlots;
-
-
-    // Track items in the crafting slots
-    private ItemData itemInSlot1 = null;
-    private ItemData itemInSlot2 = null;
-    //private ItemData itemInSlot3 = null;
 
     // References to the crafting slots
-    public CraftingItemSlot craftingSlot1;
-    public CraftingItemSlot craftingSlot2;
-    //public ItemSlot craftingSlot3;
-
+    public CraftingItemSlot[] craftingItemSlots;
 
     private bool daggerCrafted = false;
-
-    //public void OnMouseDownItem(ItemData item)
-    //{
-    //    if (currentItem == null)
-    //    {
-    //        currentItem = item;
-
-    //    }
-    //}
 
     // Clears the crafting slots
     private void ClearCraftingSlots()
     {
-        itemInSlot1 = null;
-        itemInSlot2 = null;
-        //itemInSlot3 = null;
-
-        craftingSlot1.ClearSlot();
-        craftingSlot2.ClearSlot();
-        //craftingSlot3.ClearSlot();
-
+        CraftingItemSlot1().ClearSlot();
+        CraftingItemSlot2().ClearSlot();
     }
 
-    public void HandleSlotItemChange()
+
+    private CraftingItemSlot CraftingItemSlot1()
+    {
+        return craftingItemSlots[0];
+    } 
+
+    private CraftingItemSlot CraftingItemSlot2()
+    {
+        return craftingItemSlots[1];
+    }
+    public void HandleSlotItemChange(ItemData oldItem, ItemData newItem)
     {
 
-        Debug.Log("1");
+        // 1. Craft an item?
+        CraftItemIfNeeded();
+        ReturnItemToInventoryIfNeeded(oldItem);
+        RemoveItemFromInventoryIfNeeded(newItem);
+    }
 
-        // 1. Are both slots filled?
+    private void ReturnItemToInventoryIfNeeded(ItemData item)
+    {
+        if (item != null)
+        {
+            Inventory.Instance.AddItem(item);
+        }
+    }
 
-        if (craftingSlot1.IsSlotFilled() && craftingSlot2.IsSlotFilled())
+    private void RemoveItemFromInventoryIfNeeded(ItemData item)
+    {
+        if (item != null)
+        {
+            Inventory.Instance.RemoveItem(item);
+        }
+    }
+
+    private void CraftItemIfNeeded()
+    {
+        if (CraftingItemSlot1().IsSlotFilled() && CraftingItemSlot2().IsSlotFilled())
         {
 
             Debug.Log("2");
 
-            Debug.Log("Item in slot 1: " + itemInSlot1);
-            Debug.Log("Item in slot 2: " + itemInSlot2);
-
-            // If the targetSlot is empty, assign the dropped item to it
-
-            Debug.Log("3");
-
-            //targetSlot.UpdateSlot(droppedItem);
-            //TrackDroppedItem(droppedItem, targetSlot);
-            //craftingSlot3.ClearSlot(); // Clear slot 3 if the dagger is dragged
-
             // Only check the combination once both slots are filled
-            if (IsCraftingSlotsCombinationValid(craftingSlot1, craftingSlot2))
+            if (IsCraftingSlotsCombinationValid(CraftingItemSlot1(), CraftingItemSlot2()))
             {
-                CreateCraftItem(itemInSlot1, itemInSlot2);
+                CreateCraftItem(CraftingItemSlot1().GetItem(), CraftingItemSlot2().GetItem());
             }
             else
             {
@@ -88,23 +82,9 @@ public class CraftingManager : MonoBehaviour
                 //ClearCraftingSlots();
             }
         }
+
     }
 
-    private void TrackDroppedItem(ItemData droppedItem, ItemSlot targetSlot)
-    {
-        // Track the items in the crafting slots
-        if (targetSlot == craftingSlot1)
-        {
-            itemInSlot1 = droppedItem;
-        }
-        else if (targetSlot == craftingSlot2)
-        {
-            itemInSlot2 = droppedItem;
-        }
-    }
-
-
-    // Check if the combination of two items is valid
     private bool IsCraftingSlotsCombinationValid(CraftingItemSlot slot1, CraftingItemSlot slot2)
     {
         return slot1.IsSlotFilled() && slot2.IsSlotFilled() && IsCraftingSlotsItemsCombinationValid(slot1.GetItem(), slot2.GetItem());
@@ -128,11 +108,13 @@ public class CraftingManager : MonoBehaviour
 
             Inventory.Instance.AddItem(daggerItem);
 
-            ClearCraftingSlots();
+           
             Debug.Log("Dagger crafted and placed in Inventory.");
 
-            Inventory.Instance.RemoveItem(craftingSlot1.GetItem());
-            Inventory.Instance.RemoveItem(craftingSlot2.GetItem());
+            Inventory.Instance.RemoveItem(CraftingItemSlot1().GetItem());
+            Inventory.Instance.RemoveItem(CraftingItemSlot2().GetItem());
+
+            ClearCraftingSlots();
         }
         else
         {
