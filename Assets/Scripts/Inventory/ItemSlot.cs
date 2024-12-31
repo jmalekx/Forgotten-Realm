@@ -18,7 +18,7 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     
 
-    public ItemData item;
+    private ItemData item;
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
     private Vector2 originalPosition;
@@ -80,7 +80,10 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
 
     //--------------------------------------------------------------------------------------------------------------
-
+    public ItemData GetItem()
+    {
+        return item;
+    }
 
     public void SetSelected(bool isSelected)
     {
@@ -151,21 +154,21 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         canvasGroup.blocksRaycasts = true;
 
 
-        // If the item wasn't dropped over a valid slot, reset its position
-        //if (eventData.pointerEnter == null || !IsValidDrop(eventData.pointerEnter))
-        //{
-        //    rectTransform.anchoredPosition = originalPosition;
-        //    if (item != null && item.count > 0)
-        //    {
-        //        item.count += 1;
-        //        UpdateSlot(item);
-        //    }
-        //    else
-        //    {
-        //        item = null;
-        //        ClearSlot();
-        //    }
-        //}
+        //If the item wasn't dropped over a valid slot, reset its position
+        if (eventData.pointerEnter == null || !IsValidDrop(eventData.pointerEnter))
+        {
+            rectTransform.anchoredPosition = originalPosition;
+            if (item != null && item.count > 0)
+            {
+                item.count += 1;
+                UpdateSlot(item);
+            }
+            else
+            {
+                item = null;
+                ClearSlot();
+            }
+        }
     }
 
     //--------------------------------------------------------------------------------------------------------------
@@ -226,7 +229,7 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         //    if (validCombination)
         //    {
                 
-        //        craftingManager.CraftItem(craftingSlot1.item, craftingSlot2.item);
+        //        craftingManager.CreateCraftItem(craftingSlot1.item, craftingSlot2.item);
 
         //        craftingSlot1.ClearSlot();
         //        craftingSlot2.ClearSlot();
@@ -243,7 +246,7 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         //    {
         //        // Log that the combination is not valid and return the items
         //        Debug.Log("Invalid combination. Returning items to the inventory.");
-        //        sourceSlot.UpdateSlot(sourceSlot.item); // Return the item back to its original slot
+        //        sourceSlot.UpdateSlotIfNeeded(sourceSlot.item); // Return the item back to its original slot
         //    }
         }
     }
@@ -251,6 +254,11 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     //--------------------------------------------------------------------------------------------------------------
 
+    private bool IsValidDrop(GameObject dropTarget)
+    {
+        // Check if the drop target is a valid slot (e.g., CraftingSlot)
+        return dropTarget != null && dropTarget.GetComponent<ItemSlot>() != null;
+    }
 
 }
 
