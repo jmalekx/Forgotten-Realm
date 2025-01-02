@@ -21,12 +21,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // Property to access the gem count
+    public int GemCount
+    {
+        get { return gemCount; }
+    }
+
+    // Method to increment gem count
     public void CollectGem()
     {
         gemCount++; // Increase the gem count
         UpdateGemUI(); // Update the UI
     }
 
+    // Update the UI to display the current gem count
     private void UpdateGemUI()
     {
         if (gemCountText != null)
