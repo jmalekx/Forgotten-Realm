@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1396489414}
-  m_IndirectSpecularColor: {r: 0.017339656, g: 0.017771475, b: 0.054877713, a: 1}
+  m_IndirectSpecularColor: {r: 0.06284635, g: 0.06441461, b: 0.19890065, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7549,7 +7549,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Collect Stone
+  m_text: 'Collect Stone and Wood
 
 '
   m_isRightToLeft: 0
@@ -18601,7 +18601,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Collect wood
+  m_text: Collect all 10 gems
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -22832,7 +22832,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2139236373538714039, guid: 4b36f7ab0a90e40b5a6f02dc4a6c3233, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -784.5601
+      value: -777.43
       objectReference: {fileID: 0}
     - target: {fileID: 2139236373538714039, guid: 4b36f7ab0a90e40b5a6f02dc4a6c3233, type: 3}
       propertyPath: m_LocalPosition.y
@@ -22840,7 +22840,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2139236373538714039, guid: 4b36f7ab0a90e40b5a6f02dc4a6c3233, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -381.74857
+      value: -372.33
       objectReference: {fileID: 0}
     - target: {fileID: 2139236373538714039, guid: 4b36f7ab0a90e40b5a6f02dc4a6c3233, type: 3}
       propertyPath: m_LocalRotation.w
@@ -33447,8 +33447,37 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3688722674990396637, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4108629495336714649, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4116401870129570769, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7093791603881671045, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7110436774692112344, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7410130793860079635, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7945953894594096990, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 1223947089, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1782702501690864755, guid: 60770bdb4dc667c45bea53db0339dc05, type: 3}
@@ -33480,7 +33509,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2139236373538714039, guid: 4b36f7ab0a90e40b5a6f02dc4a6c3233, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 223.1292
+      value: 243.1
       objectReference: {fileID: 0}
     - target: {fileID: 2139236373538714039, guid: 4b36f7ab0a90e40b5a6f02dc4a6c3233, type: 3}
       propertyPath: m_LocalRotation.w
@@ -36332,7 +36361,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2139236373538714039, guid: 4b36f7ab0a90e40b5a6f02dc4a6c3233, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -542.2616
+      value: -612.8
       objectReference: {fileID: 0}
     - target: {fileID: 2139236373538714039, guid: 4b36f7ab0a90e40b5a6f02dc4a6c3233, type: 3}
       propertyPath: m_LocalPosition.y
@@ -36454,7 +36483,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2139236373538714039, guid: 4b36f7ab0a90e40b5a6f02dc4a6c3233, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -775.2125
+      value: -752.1
       objectReference: {fileID: 0}
     - target: {fileID: 2139236373538714039, guid: 4b36f7ab0a90e40b5a6f02dc4a6c3233, type: 3}
       propertyPath: m_LocalPosition.y
@@ -37161,7 +37190,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Find the final gem and unlock the portal
+  m_text: Find the final scroll and unlock the portal
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -38609,15 +38638,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2139236373538714039, guid: 4b36f7ab0a90e40b5a6f02dc4a6c3233, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -106.85774
+      value: -73.57
       objectReference: {fileID: 0}
     - target: {fileID: 2139236373538714039, guid: 4b36f7ab0a90e40b5a6f02dc4a6c3233, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 49.536766
+      value: 46.97
       objectReference: {fileID: 0}
     - target: {fileID: 2139236373538714039, guid: 4b36f7ab0a90e40b5a6f02dc4a6c3233, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 9.500405
+      value: -0.89
       objectReference: {fileID: 0}
     - target: {fileID: 2139236373538714039, guid: 4b36f7ab0a90e40b5a6f02dc4a6c3233, type: 3}
       propertyPath: m_LocalRotation.w

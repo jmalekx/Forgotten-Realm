@@ -273,7 +273,7 @@ QualitySettings:
     realtimeReflectionProbes: 1
     billboardsFaceCameraPosition: 1
     useLegacyDetailDistribution: 1
-    vSyncCount: 1
+    vSyncCount: 0
     realtimeGICPUUsage: 100
     lodBias: 2
     maximumLODLevel: 0
@@ -311,8 +311,8 @@ QualitySettings:
     PS4: 5
     PS5: 5
     Stadia: 5
-    Standalone: 5
-    WebGL: 3
+    Standalone: 0
+    WebGL: 0
     Windows Store Apps: 5
     XboxOne: 5
     iPhone: 2
