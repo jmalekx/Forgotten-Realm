@@ -6,23 +6,24 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using static UnityEditor.Timeline.TimelinePlaybackControls;
 
-public class ItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class ItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler
 {
   
     public int index;
     public Image iconImage;
     public Image tintOverlay;
-    //public TMP_Text countText;
-    //public TMP_Text itemNameText;
+    public TMP_Text countText;
+    public TMP_Text itemNameText;
 
+    public GameObject itemVisual;
 
 
     private ItemData item;
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
     private Vector2 originalPosition;
-    private GameObject itemVisual;
     private Canvas canvas;
 
     private void Start()
@@ -31,6 +32,7 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         canvasGroup = GetComponent<CanvasGroup>();
         canvas = GetComponentInParent<Canvas>();
     }
+
 
     //--------------------------------------------------------------------------------------------------------------
     public void UpdateSlot(ItemData itemData)
@@ -59,7 +61,7 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         item = null;
         iconImage.sprite = null;
         iconImage.color = new Color(0f, 0f, 0f, 0f);
-        tintOverlay.enabled = false;
+        //tintOverlay.enabled = false;
     }
 
     //--------------------------------------------------------------------------------------------------------------
@@ -70,8 +72,8 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     public void SetSelected(bool isSelected)
     {
-            tintOverlay.enabled = true;
-            tintOverlay.color = new Color(0.6f, 0f, 0.9f, 0.5f);
+        tintOverlay.enabled = true;
+        tintOverlay.color = new Color(0.6f, 0f, 0.9f, 0.5f);
     }
 
     public bool isSlotFilled()
@@ -132,10 +134,22 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     {
         Debug.Log("ItemSlot::OnEndDrag");
     
-        Destroy(itemVisual);
+        //Destroy(itemVisual);
 
         canvasGroup.alpha = 1f;
         canvasGroup.blocksRaycasts = true;
+    }
+
+    //--------------------------------------------------------------------------------------------------------------
+
+    public void OnDrop(PointerEventData eventData)
+    {
+        Debug.Log("ItemSlot::OnDrop");
+
+       
+            Destroy(itemVisual);
+            Debug.Log("Destroyed itemVisual on drop.");
+        
     }
 }
 

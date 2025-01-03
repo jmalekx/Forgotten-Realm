@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -12,19 +13,25 @@ public class CraftingItemSlot : MonoBehaviour, IDropHandler
     public CraftingManager craftingManager;
     public Image iconImage;
     public Image tintOverlay;
+    public TMP_Text countText;
+    public TMP_Text itemNameText;
 
     public ItemData item;
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
     private Vector2 originalPosition;
-    private GameObject draggedCloneVisual;
+    
     private Canvas canvas;
+
+ 
 
     private void Start()
     {
         rectTransform = GetComponent<RectTransform>();  // Ensure RectTransform reference
         canvasGroup = GetComponent<CanvasGroup>();
         canvas = GetComponentInParent<Canvas>();
+
+
     }
 
     public ItemData GetItem()
@@ -89,10 +96,12 @@ public class CraftingItemSlot : MonoBehaviour, IDropHandler
     public void OnDrop(PointerEventData eventData)
 
     {
-       
-        Destroy(draggedCloneVisual);    
-
         Debug.Log("CraftingItemSlot::OnDrop");
+
+        ItemSlot sourceSlot = eventData.pointerDrag?.GetComponent<ItemSlot>();
+
+        Destroy(sourceSlot.itemVisual);
+
         ItemData oldItem = item; 
         ClearSlot();
         
