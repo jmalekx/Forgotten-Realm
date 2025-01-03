@@ -13,8 +13,8 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     public int index;
     public Image iconImage;
     public Image tintOverlay;
-    public TMP_Text countText;
-    public TMP_Text itemNameText;
+    //public TMP_Text countText;
+    //public TMP_Text itemNameText;
 
 
 
