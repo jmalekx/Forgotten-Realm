@@ -44,6 +44,7 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             iconImage.sprite = itemData.icon;
             iconImage.enabled = true;
             tintOverlay.enabled = false;
+            countText.text = item.count.ToString();
             iconImage.color = new Color(1.5f, 1.5f, 1.5f, 1.5f);
         }
         else
@@ -96,6 +97,7 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             originalPosition = rectTransform.anchoredPosition;
             canvasGroup.alpha = 0.6f;
             canvasGroup.blocksRaycasts = false;
+            countText.text = null;
 
             // Create a visual copy of the item to follow the mouse
             itemVisual = Instantiate(gameObject, canvas.transform);
