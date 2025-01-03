@@ -72,8 +72,8 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     public void SetSelected(bool isSelected)
     {
-        tintOverlay.enabled = true;
-        tintOverlay.color = new Color(0.6f, 0f, 0.9f, 0.5f);
+        //tintOverlay.enabled = true;
+        //tintOverlay.color = new Color(0.6f, 0f, 0.9f, 0.5f);
     }
 
     public bool isSlotFilled()
