@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1396489414}
-  m_IndirectSpecularColor: {r: 0.06382144, g: 0.06538321, b: 0.20195329, a: 1}
+  m_IndirectSpecularColor: {r: 0.06356853, g: 0.0651535, b: 0.20119, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -9393,7 +9393,6 @@ Transform:
   - {fileID: 418314634}
   - {fileID: 1515240253}
   - {fileID: 307796611}
-  - {fileID: 1769561261}
   - {fileID: 2092465879}
   - {fileID: 1998346517}
   - {fileID: 942708936}
@@ -9950,7 +9949,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: I need tools
+  m_text: My Gem Please!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -18592,7 +18591,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 215, y: -56}
-  m_SizeDelta: {x: 160, y: 40}
+  m_SizeDelta: {x: 160, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!4 &804258559 stripped
 Transform:
@@ -24717,7 +24716,7 @@ MonoBehaviour:
   option1Button: {fileID: 2042058596}
   option2Button: {fileID: 801240884}
   interactKey: i
-  daggerPrefab: {fileID: 3781618474913775520, guid: 1cc4721bb827e0243bbbd60f05f1fa5f, type: 3}
+  daggerPrefab: {fileID: 1656137780300802829, guid: 4b36f7ab0a90e40b5a6f02dc4a6c3233, type: 3}
   spawnPoint: {fileID: 1893575009}
 --- !u!65 &1227296229
 BoxCollider:
@@ -27896,63 +27895,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8770690382541398369, guid: 98ac8a8ef31d0884f884541a22e3d4dc, type: 3}
   m_PrefabInstance: {fileID: 1388165743}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1388358067
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 250172130}
-    m_Modifications:
-    - target: {fileID: 1656137780300802829, guid: 4b36f7ab0a90e40b5a6f02dc4a6c3233, type: 3}
-      propertyPath: m_Name
-      value: redGem (8)
-      objectReference: {fileID: 0}
-    - target: {fileID: 2139236373538714039, guid: 4b36f7ab0a90e40b5a6f02dc4a6c3233, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -824.3625
-      objectReference: {fileID: 0}
-    - target: {fileID: 2139236373538714039, guid: 4b36f7ab0a90e40b5a6f02dc4a6c3233, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 5.757618
-      objectReference: {fileID: 0}
-    - target: {fileID: 2139236373538714039, guid: 4b36f7ab0a90e40b5a6f02dc4a6c3233, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -472.40717
-      objectReference: {fileID: 0}
-    - target: {fileID: 2139236373538714039, guid: 4b36f7ab0a90e40b5a6f02dc4a6c3233, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: -0.26563022
-      objectReference: {fileID: 0}
-    - target: {fileID: 2139236373538714039, guid: 4b36f7ab0a90e40b5a6f02dc4a6c3233, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.964075
-      objectReference: {fileID: 0}
-    - target: {fileID: 2139236373538714039, guid: 4b36f7ab0a90e40b5a6f02dc4a6c3233, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2139236373538714039, guid: 4b36f7ab0a90e40b5a6f02dc4a6c3233, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2139236373538714039, guid: 4b36f7ab0a90e40b5a6f02dc4a6c3233, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -149.191
-      objectReference: {fileID: 0}
-    - target: {fileID: 2139236373538714039, guid: 4b36f7ab0a90e40b5a6f02dc4a6c3233, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2139236373538714039, guid: 4b36f7ab0a90e40b5a6f02dc4a6c3233, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 4b36f7ab0a90e40b5a6f02dc4a6c3233, type: 3}
 --- !u!1001 &1394499903
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39347,11 +39289,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7354209265070405897, guid: 226fd489f77854cbcafcab151caa3b9e, type: 3}
   m_PrefabInstance: {fileID: 8507834710747055596}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1769561261 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2139236373538714039, guid: 4b36f7ab0a90e40b5a6f02dc4a6c3233, type: 3}
-  m_PrefabInstance: {fileID: 1388358067}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1771048343
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43628,7 +43565,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -224, y: -56}
-  m_SizeDelta: {x: 160, y: 40}
+  m_SizeDelta: {x: 160, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2042058594
 MonoBehaviour:

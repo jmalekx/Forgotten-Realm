@@ -25,7 +25,7 @@ public class BlacksmithDialogue : MonoBehaviour
         "How can I help you today?"
     };
 
-    private string daggerExplanation = "Here is a dagger if you don't already have one, use it to kill enemies!";
+    private string daggerExplanation = "Here is your gem! good luck on your quest!";
 
     void Update()
     {
