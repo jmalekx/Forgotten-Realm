@@ -23634,7 +23634,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Collect wood
+  m_text: Consume an apple
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -25768,15 +25768,15 @@ MonoBehaviour:
   - description: Collect an apple
     isComplete: 0
     objectiveText: {fileID: 1040986697}
-  - description: Consume an apple
-    isComplete: 0
-    objectiveText: {fileID: 1424946378}
   - description: Collect wood
     isComplete: 0
-    objectiveText: {fileID: 1142436149}
+    objectiveText: {fileID: 1424946378}
   - description: 'Collect stone '
     isComplete: 0
     objectiveText: {fileID: 466113269}
+  - description: Consume an apple
+    isComplete: 0
+    objectiveText: {fileID: 1142436149}
   - description: Craft a dagger
     isComplete: 0
     objectiveText: {fileID: 581163525}
@@ -29029,7 +29029,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Consume an apple
+  m_text: Collect wood
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
