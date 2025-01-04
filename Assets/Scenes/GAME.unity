@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1396489414}
-  m_IndirectSpecularColor: {r: 0.06378317, g: 0.06537874, b: 0.20187575, a: 1}
+  m_IndirectSpecularColor: {r: 0.06382144, g: 0.06538321, b: 0.20195329, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7391,6 +7391,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3380956483916401607, guid: db0da2f8df9eb5c45bfa57b842024c5d, type: 3}
       propertyPath: m_Name
+      value: Stone
+      objectReference: {fileID: 0}
+    - target: {fileID: 3380956483916401607, guid: db0da2f8df9eb5c45bfa57b842024c5d, type: 3}
+      propertyPath: m_TagString
       value: Stone
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -15258,6 +15262,10 @@ PrefabInstance:
     - target: {fileID: 3380956483916401607, guid: db0da2f8df9eb5c45bfa57b842024c5d, type: 3}
       propertyPath: m_Name
       value: Stone (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3380956483916401607, guid: db0da2f8df9eb5c45bfa57b842024c5d, type: 3}
+      propertyPath: m_TagString
+      value: Stone
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -25774,7 +25782,7 @@ MonoBehaviour:
   - description: Collect wood
     isComplete: 0
     objectiveText: {fileID: 1142436149}
-  - description: 'Collect stone '
+  - description: Collect stone
     isComplete: 0
     objectiveText: {fileID: 466113269}
   - description: Craft a dagger
@@ -35960,6 +35968,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3380956483916401607, guid: db0da2f8df9eb5c45bfa57b842024c5d, type: 3}
       propertyPath: m_Name
+      value: Stone
+      objectReference: {fileID: 0}
+    - target: {fileID: 3380956483916401607, guid: db0da2f8df9eb5c45bfa57b842024c5d, type: 3}
+      propertyPath: m_TagString
       value: Stone
       objectReference: {fileID: 0}
     m_RemovedComponents: []
