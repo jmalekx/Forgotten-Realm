@@ -65,7 +65,9 @@ PrefabInstance:
       value: RawMushroom
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 65702495048144492, guid: 466fbc801de48417a8bcd6a33086a04a, type: 3}
+    - {fileID: -8700617353114198275, guid: 466fbc801de48417a8bcd6a33086a04a, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 466fbc801de48417a8bcd6a33086a04a, type: 3}
