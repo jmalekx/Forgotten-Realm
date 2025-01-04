@@ -5,12 +5,12 @@ using TMPro;
 public class BlacksmithDialogue : MonoBehaviour
 {
     public GameObject dialogueUI; // The panel for the dialogue text
-    public TMP_Text Etext; // The prompt text (Press E to interact)
+    public TMP_Text Etext; // The prompt text (Press I to interact)
     public TMP_Text dialogueText; // The TextMeshPro UI component for the dialogue
     public GameObject optionButtons; // The panel for dialogue options
     public Button option1Button; // Button for the first option
     public Button option2Button; // Button for the second option
-    public string interactKey = "e"; // Which key to press to interact with the villager
+    public string interactKey = "i"; // Which key to press to interact with the villager
 
     public GameObject daggerPrefab; // Reference to the dagger object prefab
     public Transform spawnPoint; // Assign this in the Inspector to the empty GameObject representing the spawn point
@@ -25,7 +25,7 @@ public class BlacksmithDialogue : MonoBehaviour
         "How can I help you today?"
     };
 
-    private string daggerExplanation = "This dagger will help you kill enemies faster. Use it wisely!";
+    private string daggerExplanation = "Here is a dagger if you don't already have one, use it to kill enemies!";
 
     void Update()
     {
@@ -129,7 +129,7 @@ public class BlacksmithDialogue : MonoBehaviour
         isInteracting = false;
         awaitingPlayerInput = false;
         dialogueIndex = 0;
-        Etext.text = "Press E to interact with the villager";
+        Etext.text = "Press I to interact with the villager";
 
         // Lock the cursor back after interaction
         Cursor.lockState = CursorLockMode.Locked;
@@ -142,7 +142,7 @@ public class BlacksmithDialogue : MonoBehaviour
         {
             playerInRange = true;
             Debug.Log("Player entered range.");
-            Etext.text = "Press E to interact with the villager";
+            Etext.text = "Press I to interact with the villager";
         }
     }
 
