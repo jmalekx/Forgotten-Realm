@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
         // Track the objective when gemsNeededToComplete is reached
         if (gemCount >= gemsNeededToComplete)
         {
-            TrackObjective("Collect all 10 gems to collect final scroll");
+            TrackObjective("Collect all 10 gems to collect final green gem");
         }
     }
 

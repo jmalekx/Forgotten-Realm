@@ -13,9 +13,6 @@ public class BlacksmithInteraction : MonoBehaviour
     private bool playerInRange = false;
     public TMP_Text Etext;
 
-    // Flag to track if the objective is already completed
-    private bool objectiveCompleted = false;
-
     void Update()
     {
         if (playerInRange)
@@ -32,17 +29,6 @@ public class BlacksmithInteraction : MonoBehaviour
             playerInRange = true;
             Debug.Log("Player entered range.");
 
-            // Complete the objective if it hasn't been completed already
-            if (!objectiveCompleted)
-            {
-                CompleteBlacksmithObjective();
-            }
-
-            // Show the interaction UI
-            if (dialogueUI != null)
-            {
-                dialogueUI.SetActive(true);
-            }
         }
     }
 
@@ -64,23 +50,6 @@ public class BlacksmithInteraction : MonoBehaviour
         }
     }
 
-    void CompleteBlacksmithObjective()
-    {
-        // Track the objective when the player enters the range for the first time
-        if (ObjectiveManager.Instance != null)
-        {
-            ObjectiveManager.Instance.TrackObjective("Speak to the blacksmith");
-            Debug.Log("Objective Completed: Speak to the blacksmith");
-            objectiveCompleted = true; // Set the flag to prevent repeated completion
-        }
-        else
-        {
-            Debug.LogError("ObjectiveManager.Instance is null. Make sure it is set up correctly.");
-        }
-
-        // After completing the objective, give the player the sword
-        GivePlayerSword();
-    }
 
     void GivePlayerSword()
     {
