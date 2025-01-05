@@ -43,6 +43,7 @@ The intended player experience is an immersive survival adventure where players 
 ## Asset Attribution
 ### Third Party Assets
 - [Mushroom Man](https://assetstore.unity.com/packages/3d/characters/humanoids/lowpoly-mushroomman-character-287820) - 3D Character Model, Unity Asset Store
+- [Chest](https://assetstore.unity.com/packages/3d/props/interior/treasure-set-free-chest-72345) - 3D Model, Unity asset store
 - [Stylized Dagger](https://sketchfab.com/3d-models/stylized-dagger-2f482db3693f4da39556a8cdd2026bb2) - 3D Model, Sketchfab
 - [Translucent Crystals](https://assetstore.unity.com/packages/3d/environments/fantasy/translucent-crystals-106274) - 3D Environment Asset (Blue Crystal), Unity Asset Store
 - [25 Free Stylized Textures](https://assetstore.unity.com/packages/2d/textures-materials/25-free-stylized-textures-grass-ground-floors-walls-more-241895) - Textures, Unity Asset Store
