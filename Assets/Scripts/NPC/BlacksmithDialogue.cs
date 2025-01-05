@@ -98,8 +98,8 @@ public class BlacksmithDialogue : MonoBehaviour
         // Mark the objective as complete
         if (ObjectiveManager.Instance != null)
         {
-            ObjectiveManager.Instance.TrackObjective("Speak to the blacksmith");
-            Debug.Log("Objective 'Speak to the blacksmith' marked as complete.");
+            ObjectiveManager.Instance.TrackObjective("Collect gem from blacksmith");
+            Debug.Log("Objective 'Collect gem from blacksmith' marked as complete.");
         }
         else
         {
