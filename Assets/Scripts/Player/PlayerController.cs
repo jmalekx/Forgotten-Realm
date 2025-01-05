@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     [Header("Audio")]
     public AudioClip HitSound; 
     public AudioClip EnemyHitSound;
+    public AudioClip fistSound;
     private AudioSource audioSource;
 
     [Header("Health UI")]
@@ -86,6 +87,7 @@ public class PlayerController : MonoBehaviour
     [Header("Attacking")]
     public float attackDistance = 2f;
     private bool AttackingState = false;
+    private InventoryManager inventoryManager;
 
     //[Header("Crafting")]
     //public GameObject craftingPanel;
@@ -101,6 +103,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        inventoryManager = FindObjectOfType<InventoryManager>();
         audioSource = gameObject.AddComponent<AudioSource>();
         rb = GetComponent<Rigidbody>();
         rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
@@ -411,7 +414,23 @@ public class PlayerController : MonoBehaviour
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             Debug.DrawRay(ray.origin, ray.direction * attackDistance, Color.red, 1f);
-            audioSource.PlayOneShot(HitSound); // Play the attack sound once
+            Inventory inventory = Inventory.Instance;
+             // Play the attack sound once
+            if (inventory.items.Count > 0 && inventoryManager.selectedItemIndex >= 0 && inventoryManager.selectedItemIndex < inventory.items.Count)
+            {
+                if (inventory.items[inventoryManager.selectedItemIndex].itemName == "Dagger")
+                {
+                    audioSource.PlayOneShot(HitSound);
+                }
+                else
+                {
+                    audioSource.PlayOneShot(fistSound);
+                }
+            }
+            else
+            {
+                audioSource.PlayOneShot(fistSound);
+            }
             AttackingState = true;
             StartCoroutine(ChangeAttackState(1f));
             if (Physics.Raycast(ray, out hit, attackDistance))
@@ -423,7 +442,23 @@ public class PlayerController : MonoBehaviour
                     EnemyAI enemyAI = enemyHit.GetComponent<EnemyAI>();
                     if (enemyAI != null)
                     {
-                        enemyAI.TakeHit(); // Inform the enemy it has been hit
+                        float damage = 0.25f;
+                        if (inventory.items.Count > 0 && inventoryManager.selectedItemIndex >= 0 && inventoryManager.selectedItemIndex < inventory.items.Count)
+                        {
+                            if (inventory.items[inventoryManager.selectedItemIndex].itemName == "Dagger")
+                            {
+                               damage = 1f;
+                            }
+                            else
+                            {
+                                damage = 0.25f;
+                            }
+                        }
+                        else
+                        {
+                            damage = 0.25f;
+                        }
+                        enemyAI.TakeHit(damage); // Inform the enemy it has been hit
                     }     
 
                     //UnityEngine.AI.NavMeshAgent enemyNavAgent = enemyHit.GetComponent<UnityEngine.AI.NavMeshAgent>();

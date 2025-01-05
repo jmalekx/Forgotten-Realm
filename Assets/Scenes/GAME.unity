@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1396489414}
-  m_IndirectSpecularColor: {r: 0.06356853, g: 0.0651535, b: 0.20119, a: 1}
+  m_IndirectSpecularColor: {r: 0.06344346, g: 0.06507337, b: 0.20079665, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -24784,6 +24784,7 @@ MonoBehaviour:
   eatSound: {fileID: 8300000, guid: e826078cf40d18c45a22ff49999dde58, type: 3}
   paperSound: {fileID: 8300000, guid: 07930971972d362488f67c45eb9b04c5, type: 3}
   playerCamera: {fileID: 1711789845}
+  selectedItemIndex: 0
 --- !u!114 &1228010666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41273,6 +41274,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HitSound: {fileID: 8300000, guid: 63805829b669921459d77748fc3b6e35, type: 3}
   EnemyHitSound: {fileID: 8300000, guid: 0d53d6a202a1bf74fa82a2b532a872ba, type: 3}
+  fistSound: {fileID: 8300000, guid: 15f742b373223c64784074e934062724, type: 3}
   DeathText: {fileID: 379335369}
   HealthBar: {fileID: 821993093}
   HealthDecreaseSpeed: 0

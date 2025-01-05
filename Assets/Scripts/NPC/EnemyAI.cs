@@ -20,11 +20,11 @@ public class EnemyAI : MonoBehaviour
     bool AttackingState = false;
     private Slider playerHealthBar; 
     public Slider EnemyHealthBar; 
-    private InventoryManager inventoryManager;
+    
 
     void Start()
     {
-        inventoryManager = FindObjectOfType<InventoryManager>();
+        
         NavAgent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         playerHealthBar = playerVariable.GetComponent<PlayerController>().HealthBar;
@@ -71,28 +71,11 @@ public class EnemyAI : MonoBehaviour
     
     }
 
-public void TakeHit()
+public void TakeHit(float damage)
 {
     if (!EnemyAlive) return;
 
-    Inventory inventory = Inventory.Instance;
-
-    // Check if inventory and selected index are valid
-    if (inventory.items.Count > 0 && inventoryManager.selectedItemIndex >= 0 && inventoryManager.selectedItemIndex < inventory.items.Count)
-    {
-        if (inventory.items[inventoryManager.selectedItemIndex].itemName == "Dagger")
-        {
-            EnemyHealthPoints -= 1;
-        }
-        else
-        {
-            EnemyHealthPoints -= 0.25f;
-        }
-    }
-    else
-    {
-        EnemyHealthPoints -= 0.25f;
-    }
+    EnemyHealthPoints -= damage;
     EnemyHealthBar.value = EnemyHealthPoints;
 
     if (EnemyHealthPoints <= 0)
