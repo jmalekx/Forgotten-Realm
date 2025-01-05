@@ -87,9 +87,9 @@ The intended player experience is an immersive survival adventure where players 
 - Signpost - 3D Model
 - Abandoned House for villages - 3D Model
 #### By Ben
-- Main Menu Buttons
+- Main Menu Buttons - UI Design
 #### By Darena and Ben
-- Crafting UI
+- Crafting UI - UI Design
   
 ## Collaborators
 
