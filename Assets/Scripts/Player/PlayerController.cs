@@ -152,21 +152,10 @@ public class PlayerController : MonoBehaviour
         input.ToggleCrafting.performed += ToggleCraftingPanel; // Assign the toggle crafting action
     }
 
-    // public void easy(){
-    //     HealthDecreaseSpeed = 0.5f;
-    // }
-    // public void medium(){
-    //     HealthDecreaseSpeed = 1f;
-
-    // }
-
-    // public void hard(){
-    //     HealthDecreaseSpeed = 4f; 
-    // }
     void Update()
     {
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, ground); //checking if ground
-        if (HealthBar.value > 0)
+        if (HealthBar.value >= -1)
         {
             HealthBar.value -= Time.deltaTime * HealthDecreaseSpeed;
         }

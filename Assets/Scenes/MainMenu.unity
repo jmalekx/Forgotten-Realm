@@ -826,7 +826,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &240757942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1574,7 +1574,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &509792936
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2860,15 +2860,15 @@ MonoBehaviour:
 
     Sunset: 8 PM
 
-    Enemy
-    Attack Amount: 10
+    Enemy Attack
+    Amount: 10
 
     Health Decrease Speed: 0.1
 
-    Sprint Decrease Speed:
-    1.0
+    Sprint Decrease Speed: 1.0
 
-    Sprint Regen Speed: 1.0'
+    Sprint
+    Regen Speed: 1.0'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
