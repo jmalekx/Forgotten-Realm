@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Raw Mushroom
   icon: {fileID: 21300000, guid: a23147a50cd724dfbb1788f85745670d, type: 3}
-  count: 0
-  itemPrefab: {fileID: 5632187646838735095, guid: 2b5a1c8297aef429d9e978e86ceb4b10, type: 3}
+  count: 1
+  itemPrefab: {fileID: 8957730910449280152, guid: 3b5627a43834242028b84997ac25ca02, type: 3}
   isConsumable: 1
-  healthRestoreAmount: 20
-  customDescription: right click to consume
+  healthRestoreAmount: 10
+  customDescription: +10 health
