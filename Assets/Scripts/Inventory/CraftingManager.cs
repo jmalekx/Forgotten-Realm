@@ -133,14 +133,6 @@ public class CraftingManager : MonoBehaviour
                 Debug.LogError("ObjectiveManager.Instance is null!");
             }
 
-           
-            Debug.Log("Dagger crafted and placed in Inventory.");
-
-            // Remove the items from the inventory
-
-            //Inventory.Instance.DecrementAvailableItem(CraftingItemSlot1().GetItem());
-            //Inventory.Instance.DecrementAvailableItem(CraftingItemSlot2().GetItem());
-
             ClearCraftingSlots();
         }
         else
