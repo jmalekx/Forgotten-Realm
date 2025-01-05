@@ -9,13 +9,14 @@ public class PortalTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("Player entered portal. Game Over.");
-            EndGame(); // Call the method to end the game
+            
+            // Call the method to end the game
+            EndGame(); 
         }
     }
 
     void EndGame()
     {
         // Load the Game Over scene
-        SceneManager.LoadScene("GameCompleted"); // Replace with your actual scene name
-    }
+        SceneManager.LoadScene("GameCompleted"); 
 }

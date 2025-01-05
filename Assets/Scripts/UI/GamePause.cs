@@ -1,19 +1,20 @@
 using UnityEngine;
-using UnityEngine.SceneManagement; // Required for loading scenes
+using UnityEngine.SceneManagement;
 
 public class PauseGame : MonoBehaviour
 {
-    public GameObject pauseMenu; // Assign your PauseMenu Panel in the Inspector
-    private bool isPaused = false;
+    public GameObject pauseMenu; //pauseMenu panel (assigned in inspector to panel UI element)
+    private bool isPaused = false; //boolean to track if paused 
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P)) // Toggle pause with 'P' key
+        if (Input.GetKeyDown(KeyCode.P)) // Turn pause on with 'p' key
         {
-            Pause(); // Pause the game when 'P' is pressed
+            Pause(); //call pause
         }
     }
 
+    //pause method
     public void Pause()
     {
         pauseMenu.SetActive(true); // Show the pause menu
@@ -23,9 +24,9 @@ public class PauseGame : MonoBehaviour
         isPaused = true;
     }
 
+    //resume button method
     public void ResumeGame()
     {
-        Debug.Log("Resume button clicked!"); // Log for debugging
         pauseMenu.SetActive(false); // Hide the pause menu
         Time.timeScale = 1f; // Resume the game
         Cursor.lockState = CursorLockMode.Locked; // Lock the cursor to the center
@@ -33,12 +34,12 @@ public class PauseGame : MonoBehaviour
         isPaused = false;
     }
 
+    //main menu button method
     public void LoadMainMenu()
     {
-        Debug.Log("Main Menu button clicked!"); // Log for debugging
         Time.timeScale = 1f; // Reset time scale to normal
         Cursor.lockState = CursorLockMode.None; // Unlock the cursor
-        Cursor.visible = true; // Ensure cursor visibility
+        Cursor.visible = true; // Make cursor visible 
         SceneManager.LoadScene("MainMenu"); // Load the MainMenu scene
     }
 }

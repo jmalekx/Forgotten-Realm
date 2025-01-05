@@ -3,30 +3,34 @@ using TMPro; // For TextMeshPro
 
 public class PortalPickup : MonoBehaviour
 {
-    public GameObject portalPrefab; // Reference to the portal prefab
+    //variables
+    public GameObject portalPrefab; //portal prefab
     public Transform portalSpawnPoint; // Where to spawn the portal
-    public TextMeshProUGUI finalGemText; // UI text for displaying messages
-    private float messageDuration = 2f; // Duration to show the message
+    public TextMeshProUGUI finalGemText; // UI text to display final gem text 
+    private float messageDuration = 2f;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player")) // Check if the colliding object is tagged as "Player"
+        // Check if the colliding object is tagged as "Player"
+        if (other.CompareTag("Player")) 
         {
             if (GameManager.instance != null && GameManager.instance.GemCount >= 10)
             {
-                SpawnPortal(); // Call the method to spawn the portal
-                Destroy(gameObject); // Destroy the pickup object
+                SpawnPortal(); //Spawn the portal
+                Destroy(gameObject); //Destroy the gem object
             }
             else
             {
+                //if the player tries to collect the gem before collecting all 10 gems show below message
                 ShowMessage("You need 10 gems to unlock the portal!");
             }
         }
     }
 
+    //method to spawn the portal 
     void SpawnPortal()
     {
-        // Instantiate the portal at the specified spawn point
+        // Instantiate the portal at the specific spawn point
         if (portalPrefab != null && portalSpawnPoint != null)
         {
             Instantiate(portalPrefab, portalSpawnPoint.position, portalSpawnPoint.rotation);
@@ -38,6 +42,7 @@ public class PortalPickup : MonoBehaviour
         }
     }
 
+    //method to show the message if 10 gems arent met 
     void ShowMessage(string message)
     {
         if (finalGemText != null)
@@ -48,6 +53,7 @@ public class PortalPickup : MonoBehaviour
         }
     }
 
+    //method to hide the message
     void HideMessage()
     {
         if (finalGemText != null)
