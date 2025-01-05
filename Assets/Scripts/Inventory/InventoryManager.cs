@@ -238,6 +238,10 @@ public class InventoryManager : MonoBehaviour
     {
         if (inventory.items.Count > 0)
         {
+            //debug log the inventory contents
+
+            Debug.Log("Dropping item at index: " + selectedItemIndex);
+
             ItemData selectedItem = inventory.items[selectedItemIndex];
 
             if (selectedItem.count > 0)
