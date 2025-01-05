@@ -1525,7 +1525,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1162908617574518150, guid: 87d21bcb16883d746ab8cdf124ef34d0, type: 3}
       propertyPath: m_Name
-      value: Enemy Prototype (4)
+      value: Enemy 5
       objectReference: {fileID: 0}
     - target: {fileID: 4994425875730254311, guid: 87d21bcb16883d746ab8cdf124ef34d0, type: 3}
       propertyPath: m_Speed
@@ -2789,7 +2789,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1162908617574518150, guid: 87d21bcb16883d746ab8cdf124ef34d0, type: 3}
       propertyPath: m_Name
-      value: Enemy Prototype (8)
+      value: Enemy 9
       objectReference: {fileID: 0}
     - target: {fileID: 4994425875730254311, guid: 87d21bcb16883d746ab8cdf124ef34d0, type: 3}
       propertyPath: m_Speed
@@ -4884,7 +4884,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1162908617574518150, guid: 87d21bcb16883d746ab8cdf124ef34d0, type: 3}
       propertyPath: m_Name
-      value: Enemy Prototype (15)
+      value: Enemy 16
       objectReference: {fileID: 0}
     - target: {fileID: 4994425875730254311, guid: 87d21bcb16883d746ab8cdf124ef34d0, type: 3}
       propertyPath: m_Speed
@@ -7183,7 +7183,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1162908617574518150, guid: 87d21bcb16883d746ab8cdf124ef34d0, type: 3}
       propertyPath: m_Name
-      value: Enemy Prototype (7)
+      value: Enemy 8
       objectReference: {fileID: 0}
     - target: {fileID: 4994425875730254311, guid: 87d21bcb16883d746ab8cdf124ef34d0, type: 3}
       propertyPath: m_Speed
@@ -7304,7 +7304,7 @@ PrefabInstance:
       objectReference: {fileID: 1892168048}
     - target: {fileID: 7947731617784803582, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
       propertyPath: m_Name
-      value: velociraptor prefab (2)
+      value: velociraptor 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8050,6 +8050,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 476710340}
   m_CullTransparentMesh: 1
+--- !u!4 &493926566 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2921543917412703340, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+  m_PrefabInstance: {fileID: 806725472}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &494302394
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9046,7 +9051,7 @@ PrefabInstance:
       objectReference: {fileID: 1892168048}
     - target: {fileID: 7947731617784803582, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
       propertyPath: m_Name
-      value: velociraptor prefab (4)
+      value: velociraptor 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9501,6 +9506,10 @@ Transform:
   - {fileID: 1980489443}
   - {fileID: 1564648782}
   - {fileID: 532737230}
+  - {fileID: 2106988743}
+  - {fileID: 1081035219}
+  - {fileID: 833966185}
+  - {fileID: 493926566}
   - {fileID: 380957827}
   - {fileID: 83991129}
   - {fileID: 1828497985}
@@ -11145,7 +11154,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1162908617574518150, guid: 87d21bcb16883d746ab8cdf124ef34d0, type: 3}
       propertyPath: m_Name
-      value: Enemy Prototype (13)
+      value: Enemy 14
       objectReference: {fileID: 0}
     - target: {fileID: 4994425875730254311, guid: 87d21bcb16883d746ab8cdf124ef34d0, type: 3}
       propertyPath: m_Speed
@@ -13553,6 +13562,75 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1775832282030252105, guid: 069c9cbc336ac3542b6be681742e4035, type: 3}
   m_PrefabInstance: {fileID: 806130832}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &806725472
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 569038939}
+    m_Modifications:
+    - target: {fileID: 2921543917412703340, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 145.66711
+      objectReference: {fileID: 0}
+    - target: {fileID: 2921543917412703340, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.000011444092
+      objectReference: {fileID: 0}
+    - target: {fileID: 2921543917412703340, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -77.645905
+      objectReference: {fileID: 0}
+    - target: {fileID: 2921543917412703340, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2921543917412703340, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2921543917412703340, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2921543917412703340, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2921543917412703340, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2921543917412703340, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2921543917412703340, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4175529720251637653, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6488696668437228963, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: m_Speed
+      value: 5.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6640866189620513131, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: playerVariable
+      value: 
+      objectReference: {fileID: 1892168048}
+    - target: {fileID: 7947731617784803582, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: m_Name
+      value: velociraptor 4
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
 --- !u!1001 &814601383
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13927,6 +14005,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4decae53c1208dd45a08875a221ede25, type: 3}
+--- !u!4 &833966185 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2921543917412703340, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+  m_PrefabInstance: {fileID: 1540041829}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &835857915
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14362,7 +14445,7 @@ PrefabInstance:
       objectReference: {fileID: 1892168048}
     - target: {fileID: 7947731617784803582, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
       propertyPath: m_Name
-      value: velociraptor prefab (3)
+      value: velociraptor 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15170,7 +15253,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1162908617574518150, guid: 87d21bcb16883d746ab8cdf124ef34d0, type: 3}
       propertyPath: m_Name
-      value: Enemy Prototype (17)
+      value: Enemy 18
       objectReference: {fileID: 0}
     - target: {fileID: 4994425875730254311, guid: 87d21bcb16883d746ab8cdf124ef34d0, type: 3}
       propertyPath: m_Speed
@@ -15234,6 +15317,75 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7641600409262435663, guid: 87d21bcb16883d746ab8cdf124ef34d0, type: 3}
   m_PrefabInstance: {fileID: 2115998964601310742}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &920448866
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 569038939}
+    m_Modifications:
+    - target: {fileID: 2921543917412703340, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 396.68005
+      objectReference: {fileID: 0}
+    - target: {fileID: 2921543917412703340, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 16.224133
+      objectReference: {fileID: 0}
+    - target: {fileID: 2921543917412703340, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -533.7716
+      objectReference: {fileID: 0}
+    - target: {fileID: 2921543917412703340, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2921543917412703340, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2921543917412703340, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2921543917412703340, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2921543917412703340, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2921543917412703340, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2921543917412703340, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4175529720251637653, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6488696668437228963, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: m_Speed
+      value: 5.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6640866189620513131, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: playerVariable
+      value: 
+      objectReference: {fileID: 1892168048}
+    - target: {fileID: 7947731617784803582, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: m_Name
+      value: velociraptor 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
 --- !u!1001 &921808286
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15977,7 +16129,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1162908617574518150, guid: 87d21bcb16883d746ab8cdf124ef34d0, type: 3}
       propertyPath: m_Name
-      value: Enemy Prototype (16)
+      value: Enemy 17
       objectReference: {fileID: 0}
     - target: {fileID: 4994425875730254311, guid: 87d21bcb16883d746ab8cdf124ef34d0, type: 3}
       propertyPath: m_Speed
@@ -16165,7 +16317,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1162908617574518150, guid: 87d21bcb16883d746ab8cdf124ef34d0, type: 3}
       propertyPath: m_Name
-      value: Enemy Prototype
+      value: Enemy 1
       objectReference: {fileID: 0}
     - target: {fileID: 4994425875730254311, guid: 87d21bcb16883d746ab8cdf124ef34d0, type: 3}
       propertyPath: m_Speed
@@ -17858,6 +18010,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b36f7ab0a90e40b5a6f02dc4a6c3233, type: 3}
+--- !u!4 &1081035219 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2921543917412703340, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+  m_PrefabInstance: {fileID: 920448866}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1082359410
 GameObject:
   m_ObjectHideFlags: 0
@@ -18894,7 +19051,7 @@ PrefabInstance:
       objectReference: {fileID: 1892168048}
     - target: {fileID: 7947731617784803582, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
       propertyPath: m_Name
-      value: velociraptor prefab (1)
+      value: velociraptor 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -19166,7 +19323,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1162908617574518150, guid: 87d21bcb16883d746ab8cdf124ef34d0, type: 3}
       propertyPath: m_Name
-      value: Enemy Prototype (5)
+      value: Enemy 6
       objectReference: {fileID: 0}
     - target: {fileID: 4994425875730254311, guid: 87d21bcb16883d746ab8cdf124ef34d0, type: 3}
       propertyPath: m_Speed
@@ -20966,7 +21123,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1162908617574518150, guid: 87d21bcb16883d746ab8cdf124ef34d0, type: 3}
       propertyPath: m_Name
-      value: Enemy Prototype (14)
+      value: Enemy 15
       objectReference: {fileID: 0}
     - target: {fileID: 4994425875730254311, guid: 87d21bcb16883d746ab8cdf124ef34d0, type: 3}
       propertyPath: m_Speed
@@ -21468,7 +21625,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1162908617574518150, guid: 87d21bcb16883d746ab8cdf124ef34d0, type: 3}
       propertyPath: m_Name
-      value: Enemy Prototype (6)
+      value: Enemy 7
       objectReference: {fileID: 0}
     - target: {fileID: 4994425875730254311, guid: 87d21bcb16883d746ab8cdf124ef34d0, type: 3}
       propertyPath: m_Speed
@@ -22084,7 +22241,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1162908617574518150, guid: 87d21bcb16883d746ab8cdf124ef34d0, type: 3}
       propertyPath: m_Name
-      value: Enemy Prototype (2)
+      value: Enemy 3
       objectReference: {fileID: 0}
     - target: {fileID: 4994425875730254311, guid: 87d21bcb16883d746ab8cdf124ef34d0, type: 3}
       propertyPath: m_Speed
@@ -35299,6 +35456,75 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4237741520885958, guid: 8ad137f6808375f4e885d60451f0c4fc, type: 3}
   m_PrefabInstance: {fileID: 473823468}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1540041829
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 569038939}
+    m_Modifications:
+    - target: {fileID: 2921543917412703340, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 238.04102
+      objectReference: {fileID: 0}
+    - target: {fileID: 2921543917412703340, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -9.201061
+      objectReference: {fileID: 0}
+    - target: {fileID: 2921543917412703340, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -317.20047
+      objectReference: {fileID: 0}
+    - target: {fileID: 2921543917412703340, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2921543917412703340, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2921543917412703340, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2921543917412703340, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2921543917412703340, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2921543917412703340, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2921543917412703340, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4175529720251637653, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6488696668437228963, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: m_Speed
+      value: 5.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6640866189620513131, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: playerVariable
+      value: 
+      objectReference: {fileID: 1892168048}
+    - target: {fileID: 7947731617784803582, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: m_Name
+      value: velociraptor 3
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
 --- !u!1 &1540147959
 GameObject:
   m_ObjectHideFlags: 0
@@ -35384,7 +35610,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1162908617574518150, guid: 87d21bcb16883d746ab8cdf124ef34d0, type: 3}
       propertyPath: m_Name
-      value: Enemy Prototype (3)
+      value: Enemy 4
       objectReference: {fileID: 0}
     - target: {fileID: 4994425875730254311, guid: 87d21bcb16883d746ab8cdf124ef34d0, type: 3}
       propertyPath: m_Speed
@@ -37589,7 +37815,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1162908617574518150, guid: 87d21bcb16883d746ab8cdf124ef34d0, type: 3}
       propertyPath: m_Name
-      value: Enemy Prototype (11)
+      value: Enemy 12
       objectReference: {fileID: 0}
     - target: {fileID: 4994425875730254311, guid: 87d21bcb16883d746ab8cdf124ef34d0, type: 3}
       propertyPath: m_Speed
@@ -38632,7 +38858,7 @@ PrefabInstance:
       objectReference: {fileID: 1892168048}
     - target: {fileID: 7947731617784803582, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
       propertyPath: m_Name
-      value: velociraptor prefab
+      value: 'velociraptor '
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -39517,6 +39743,75 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2060381455714356111, guid: a01fb0aec220dbe47a3127080b71818c, type: 3}
   m_PrefabInstance: {fileID: 427367740}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1787388534
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 569038939}
+    m_Modifications:
+    - target: {fileID: 2921543917412703340, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 490.40222
+      objectReference: {fileID: 0}
+    - target: {fileID: 2921543917412703340, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4.0704308
+      objectReference: {fileID: 0}
+    - target: {fileID: 2921543917412703340, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -355.13116
+      objectReference: {fileID: 0}
+    - target: {fileID: 2921543917412703340, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2921543917412703340, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2921543917412703340, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2921543917412703340, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2921543917412703340, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2921543917412703340, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2921543917412703340, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4175529720251637653, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6488696668437228963, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: m_Speed
+      value: 5.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6640866189620513131, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: playerVariable
+      value: 
+      objectReference: {fileID: 1892168048}
+    - target: {fileID: 7947731617784803582, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+      propertyPath: m_Name
+      value: velociraptor 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
 --- !u!4 &1789088505 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2139236373538714039, guid: 4b36f7ab0a90e40b5a6f02dc4a6c3233, type: 3}
@@ -40825,7 +41120,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1162908617574518150, guid: 87d21bcb16883d746ab8cdf124ef34d0, type: 3}
       propertyPath: m_Name
-      value: Enemy Prototype (1)
+      value: Enemy 2
       objectReference: {fileID: 0}
     - target: {fileID: 4994425875730254311, guid: 87d21bcb16883d746ab8cdf124ef34d0, type: 3}
       propertyPath: m_Speed
@@ -41393,7 +41688,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1162908617574518150, guid: 87d21bcb16883d746ab8cdf124ef34d0, type: 3}
       propertyPath: m_Name
-      value: Enemy Prototype (12)
+      value: Enemy 13
       objectReference: {fileID: 0}
     - target: {fileID: 4994425875730254311, guid: 87d21bcb16883d746ab8cdf124ef34d0, type: 3}
       propertyPath: m_Speed
@@ -41728,7 +42023,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1162908617574518150, guid: 87d21bcb16883d746ab8cdf124ef34d0, type: 3}
       propertyPath: m_Name
-      value: Enemy Prototype (10)
+      value: Enemy 11
       objectReference: {fileID: 0}
     - target: {fileID: 4994425875730254311, guid: 87d21bcb16883d746ab8cdf124ef34d0, type: 3}
       propertyPath: m_Speed
@@ -42235,7 +42530,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1162908617574518150, guid: 87d21bcb16883d746ab8cdf124ef34d0, type: 3}
       propertyPath: m_Name
-      value: Enemy Prototype (9)
+      value: Enemy 10
       objectReference: {fileID: 0}
     - target: {fileID: 4994425875730254311, guid: 87d21bcb16883d746ab8cdf124ef34d0, type: 3}
       propertyPath: m_Speed
@@ -44576,6 +44871,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 5282878872941326262, guid: ee42bd7f8a4527b49a5a176a37b56c97, type: 3}
   m_PrefabInstance: {fileID: 2106935538}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2106988743 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2921543917412703340, guid: 604e6927b82aa56469b85804dbdd7ddb, type: 3}
+  m_PrefabInstance: {fileID: 1787388534}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &2107652532 stripped
 Transform:
