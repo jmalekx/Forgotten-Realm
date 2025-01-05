@@ -108,6 +108,17 @@ public class CraftingManager : MonoBehaviour
 
             Inventory.Instance.AddItem(daggerItem);
 
+            // Mark the objective as complete
+            if (ObjectiveManager.Instance != null)
+            {
+                ObjectiveManager.Instance.TrackObjective("Craft a dagger");
+                Debug.Log("Objective 'Craft a dagger' marked as complete.");
+            }
+            else
+            {
+                Debug.LogError("ObjectiveManager.Instance is null!");
+            }
+
            
             Debug.Log("Dagger crafted and placed in Inventory.");
 
