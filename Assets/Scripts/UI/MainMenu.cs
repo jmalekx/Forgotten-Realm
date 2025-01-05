@@ -7,11 +7,14 @@ using TMPro;
 
 public class MainMenu : MonoBehaviour
 {
-
+    [Header("UI")]
     public Slider SensitivitySlider;
     public Slider QualitySlider;
     public Slider VolumeSlider;
     public Slider LoadingSlider;
+    public TextMeshProUGUI modeInfo; 
+    [Header("settings")]
+    //variables for game settings. default set to medium level in case player doesn't choose a difficulty
     public static float ChosenSunrise = 6f;
     public static float ChosenSunset = 20f; 
     public static float ChosenHealthDecreaseSpeed = 0.05f;
@@ -20,7 +23,7 @@ public class MainMenu : MonoBehaviour
     public static int ChosenenemyAttackAmount = 10;
     public static float ChosenSensitivity = 50;
     public static int ChosenQuality = 4;
-    public TextMeshProUGUI modeInfo; 
+    
 
     void Start()
     {
@@ -30,9 +33,9 @@ public class MainMenu : MonoBehaviour
     {   
         StartCoroutine(Loading());
         
-        //SceneManager.LoadScene("GAME");
     }
     IEnumerator Loading(){
+        //game loaded whilst updating loading slider
         AsyncOperation load = SceneManager.LoadSceneAsync("GAME");
         while(!load.isDone){
             float progressing = Mathf.Clamp01(load.progress / 0.9f);
@@ -41,13 +44,14 @@ public class MainMenu : MonoBehaviour
         }
     }
     public void easy(){
+        //settings set for easy difficulty
         ChosenSunrise = 4f;
         ChosenSunset = 22f; 
         ChosenHealthDecreaseSpeed = 0.05f;
         ChosenenemyAttackAmount = 5;
         ChosensSprintDecreaseSpeed = 0.5f;
         ChosensSprintRegenSpeed = 1.3f;
-                // Update modeInfo text
+        // Update modeInfo text
         modeInfo.text = "Difficulty: Easy\n" +
                         "Sunrise: 4 AM\n" +
                         "Sunset: 10 PM\n" +
@@ -90,18 +94,19 @@ public class MainMenu : MonoBehaviour
     }
 
     public void Quit(){
+        //exits application
         Application.Quit();
     }
     public void setVolume(){
+        //global volume can be adjusted
         AudioListener.volume = VolumeSlider.value;
     }
     public void setSensitivity(){
+        //mouse sensitivity adjusted
         ChosenSensitivity = SensitivitySlider.value;
     }
-    public void setNightBrightness(){
-
-    }
     public void setQuality(){
+        //game quality changed based on slider value
         ChosenQuality = Mathf.RoundToInt(QualitySlider.value);
         QualitySettings.SetQualityLevel(ChosenQuality);
     }

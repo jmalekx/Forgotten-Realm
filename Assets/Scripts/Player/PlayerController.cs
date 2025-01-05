@@ -398,13 +398,13 @@ public class PlayerController : MonoBehaviour
     }
 
     void Attack()
-    {
+    {   //attack function played out if not already in a current attacking state
         if(!AttackingState){
+            //ray cast from camera towards mouse
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            Debug.DrawRay(ray.origin, ray.direction * attackDistance, Color.red, 1f);
             Inventory inventory = Inventory.Instance;
-             // Play the attack sound once
+            //certain sounds played depending on selected inventory item. dagger sound played if selected. if dagger isn't selected just a fist sound
             if (inventory.items.Count > 0 && inventoryManager.selectedItemIndex >= 0 && inventoryManager.selectedItemIndex < inventory.items.Count)
             {
                 if (inventory.items[inventoryManager.selectedItemIndex].itemName == "Dagger")
@@ -424,13 +424,16 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(ChangeAttackState(1f));
             if (Physics.Raycast(ray, out hit, attackDistance))
             {
+                //if the ray hits an object within attack range and the object has the enemy tag
                 if (hit.collider.CompareTag("Enemy"))
                 {
-                    audioSource.PlayOneShot(EnemyHitSound); // Play the attack sound once
+                    //enemy hit sound is played and enemies game object is accessed
+                    audioSource.PlayOneShot(EnemyHitSound); 
                     GameObject enemyHit = hit.collider.gameObject;
                     EnemyAI enemyAI = enemyHit.GetComponent<EnemyAI>();
                     if (enemyAI != null)
                     {
+                        //different damage dealt to the enemy based on if the player is holding the dagger
                         float damage = 0.25f;
                         if (inventory.items.Count > 0 && inventoryManager.selectedItemIndex >= 0 && inventoryManager.selectedItemIndex < inventory.items.Count)
                         {
@@ -447,7 +450,8 @@ public class PlayerController : MonoBehaviour
                         {
                             damage = 0.25f;
                         }
-                        enemyAI.TakeHit(damage); // Inform the enemy it has been hit
+                        //applies damage to the enemy is enemy ai script
+                        enemyAI.TakeHit(damage); 
                     }     
                 }
             }
@@ -458,6 +462,7 @@ public class PlayerController : MonoBehaviour
     
     IEnumerator ChangeAttackState(float delay)
     {
+        //wait a small delay before allowing another attack
         yield return new WaitForSeconds(delay);
         AttackingState = false;
     }
