@@ -4,22 +4,22 @@ using TMPro;
 
 public class BlacksmithDialogue : MonoBehaviour
 {
-    public GameObject dialogueUI; // The panel for the dialogue text
-    public TMP_Text Etext; // The prompt text (Press I to interact)
-    public TMP_Text dialogueText; // The TextMeshPro UI component for the dialogue
-    public GameObject optionButtons; // The panel for dialogue options
-    public Button option1Button; // Button for the first option
-    public Button option2Button; // Button for the second option
-    public string interactKey = "i"; // Which key to press to interact with the villager
+    public GameObject dialogueUI; // Panel for dialogue
+    public TMP_Text Etext; // Prompt text
+    public TMP_Text dialogueText; // Text for dialogue content
+    public GameObject optionButtons; // Panel for options
+    public Button option1Button; // First option button
+    public Button option2Button; // Second option button
+    public string interactKey = "i"; // Interaction key
 
-    public GameObject daggerPrefab; // Reference to the dagger object prefab
-    public GameObject swordPrefab; // Reference to the sword object prefab (new addition)
-    public Transform spawnPoint; // Assign this in the Inspector to the empty GameObject representing the spawn point
+    public GameObject daggerPrefab; // Dagger prefab
+    public GameObject swordPrefab; // Sword prefab
+    public Transform spawnPoint; // Item spawn point
 
-    private bool playerInRange = false; // Tracks if the player is in range
-    private bool isInteracting = false; // Tracks if the player is currently interacting
-    private int dialogueIndex = 0; // Tracks the current line of dialogue
-    private bool awaitingPlayerInput = false; // Tracks if waiting for player input to end the dialogue
+    private bool playerInRange = false; // Is player in range
+    private bool isInteracting = false; // Is interacting with NPC
+    private int dialogueIndex = 0; // Current dialogue line index
+    private bool awaitingPlayerInput = false; // Waiting for player input to end dialogue
 
     private string[] dialogueLines = {
         "Hello, welcome to my blacksmith!",
@@ -27,174 +27,164 @@ public class BlacksmithDialogue : MonoBehaviour
     };
 
     private string daggerExplanation = "Here is your gem! Good luck on your quest!";
-    private string swordExplanation = "Here is your sword! May it help you in battle!"; // New explanation for the sword
+    private string swordExplanation = "Here is your sword! May it help you in battle!";
 
     void Update()
     {
+        // Handles player interactions and dialogue progression
         if (playerInRange && Input.GetKeyDown(interactKey))
         {
             if (awaitingPlayerInput)
             {
-                EndInteraction(); // End the interaction if we're waiting for player input
+                EndInteraction(); // End interaction
             }
             else if (!isInteracting)
             {
                 StartInteraction();
             }
+            else if (dialogueIndex < dialogueLines.Length)
+            {
+                ShowNextDialogue();
+            }
             else
             {
-                if (dialogueIndex < dialogueLines.Length)
-                {
-                    ShowNextDialogue();
-                }
-                else
-                {
-                    ShowOptions();
-                }
+                ShowOptions();
             }
         }
     }
 
     void StartInteraction()
     {
+        // Starts interaction with the blacksmith
         isInteracting = true;
         dialogueUI.SetActive(true);
         Etext.text = "";
         ShowNextDialogue();
-
-        // Unlock the cursor for interaction
-        Cursor.lockState = CursorLockMode.None;
+        Cursor.lockState = CursorLockMode.None; // Unlock cursor
         Cursor.visible = true;
     }
 
     void ShowNextDialogue()
     {
+        // Displays the next line of dialogue
         dialogueText.text = dialogueLines[dialogueIndex];
         dialogueIndex++;
     }
 
     void ShowOptions()
     {
+        // Displays dialogue options to the player
         dialogueUI.SetActive(false);
         optionButtons.SetActive(true);
     }
 
     public void OnOption1Selected()
     {
+        // Handles the selection of the first option (dagger)
         Debug.Log("Option 1 selected: I need tools");
 
         if (daggerPrefab != null && spawnPoint != null)
         {
-            // Spawn the dagger at the specified spawn point
-            Instantiate(daggerPrefab, spawnPoint.position, spawnPoint.rotation);
-            Debug.Log("Dagger spawned at the spawn point.");
+            Instantiate(daggerPrefab, spawnPoint.position, spawnPoint.rotation); // Spawn dagger
+            Debug.Log("Dagger spawned.");
         }
         else
         {
-            Debug.LogWarning("Dagger prefab or spawn point is not assigned!");
+            Debug.LogWarning("Dagger prefab or spawn point not assigned!");
         }
 
-        // Show the dagger explanation dialogue
         ShowDaggerExplanation();
 
-        // Mark the objective as complete
         if (ObjectiveManager.Instance != null)
         {
             ObjectiveManager.Instance.TrackObjective("Collect gem from blacksmith");
-            Debug.Log("Objective 'Collect gem from blacksmith' marked as complete.");
         }
         else
         {
-            Debug.LogError("ObjectiveManager.Instance is null!");
+            Debug.LogError("ObjectiveManager is null!");
         }
     }
 
     void ShowDaggerExplanation()
     {
-        optionButtons.SetActive(false); // Hide the options panel
-        dialogueUI.SetActive(true); // Show the dialogue UI
-        dialogueText.text = daggerExplanation; // Display the dagger explanation
-
-        // Wait for player input to end dialogue
-        awaitingPlayerInput = true;
+        // Displays explanation for selecting the dagger
+        optionButtons.SetActive(false); 
+        dialogueUI.SetActive(true); 
+        dialogueText.text = daggerExplanation;
+        awaitingPlayerInput = true; // Wait for input
     }
 
     public void OnOption2Selected()
     {
+        // Handles the selection of the second option (sword)
         Debug.Log("Option 2 selected: I need a sword");
 
         if (swordPrefab != null && spawnPoint != null)
         {
-            // Spawn the sword at the specified spawn point
-            Instantiate(swordPrefab, spawnPoint.position, spawnPoint.rotation);
-            Debug.Log("Sword spawned at the spawn point.");
+            Instantiate(swordPrefab, spawnPoint.position, spawnPoint.rotation); // Spawn sword
+            Debug.Log("Sword spawned.");
         }
         else
         {
-            Debug.LogWarning("Sword prefab or spawn point is not assigned!");
+            Debug.LogWarning("Sword prefab or spawn point not assigned!");
         }
 
-        // Show the sword explanation dialogue
         ShowSwordExplanation();
 
-        // Mark the objective as complete
         if (ObjectiveManager.Instance != null)
         {
             ObjectiveManager.Instance.TrackObjective("Collect sword from blacksmith");
-            Debug.Log("Objective 'Collect sword from blacksmith' marked as complete.");
         }
         else
         {
-            Debug.LogError("ObjectiveManager.Instance is null!");
+            Debug.LogError("ObjectiveManager is null!");
         }
     }
 
     void ShowSwordExplanation()
     {
-        optionButtons.SetActive(false); // Hide the options panel
-        dialogueUI.SetActive(true); // Show the dialogue UI
-        dialogueText.text = swordExplanation; // Display the sword explanation
-
-        // Wait for player input to end dialogue
+        // Displays explanation for selecting the sword
+        optionButtons.SetActive(false);
+        dialogueUI.SetActive(true);
+        dialogueText.text = swordExplanation;
         awaitingPlayerInput = true;
     }
 
     void EndInteraction()
     {
-        Debug.Log("Ending interaction.");
+        // Ends the current interaction
         ResetDialogue();
     }
 
     void ResetDialogue()
     {
+        // Resets dialogue and interaction states
         dialogueUI.SetActive(false);
         optionButtons.SetActive(false);
         isInteracting = false;
         awaitingPlayerInput = false;
         dialogueIndex = 0;
         Etext.text = "Press I to interact with the villager";
-
-        // Lock the cursor back after interaction
-        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Locked; // Lock cursor
         Cursor.visible = false;
     }
 
     void OnTriggerEnter(Collider other)
     {
+        // Detects when the player enters interaction range
         if (other.CompareTag("Player"))
         {
             playerInRange = true;
-            Debug.Log("Player entered range.");
             Etext.text = "Press I to interact with the villager";
         }
     }
 
     void OnTriggerExit(Collider other)
     {
+        // Detects when the player exits interaction range
         if (other.CompareTag("Player"))
         {
             playerInRange = false;
-            Debug.Log("Player exited range.");
             Etext.text = "";
             if (isInteracting || awaitingPlayerInput)
             {

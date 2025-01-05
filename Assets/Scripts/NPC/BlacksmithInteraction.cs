@@ -6,13 +6,16 @@ using TMPro;
 
 public class BlacksmithInteraction : MonoBehaviour
 {
-    public GameObject swordPrefab; // This is the prefab for the sword
-    public Transform swordSpawnPoint; // Where the sword will spawn and appear
-    public GameObject dialogueUI; // UI for feedback
+    //variables for prefabs and UI
+    public GameObject swordPrefab; 
+    public Transform swordSpawnPoint; 
+    public GameObject dialogueUI;
     
     private bool playerInRange = false;
     public TMP_Text Etext;
 
+
+    //Give e text when player is in range
     void Update()
     {
         if (playerInRange)
@@ -22,6 +25,7 @@ public class BlacksmithInteraction : MonoBehaviour
         }
     }
 
+    //Check if player is in range and set to true
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -32,6 +36,7 @@ public class BlacksmithInteraction : MonoBehaviour
         }
     }
 
+    //Stop the interaction when player exits the range
     void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -51,9 +56,10 @@ public class BlacksmithInteraction : MonoBehaviour
     }
 
 
+    // Spawn the sword at the specified location
     void GivePlayerSword()
     {
-        // Spawn the sword at the specified location
+        
         Instantiate(swordPrefab, swordSpawnPoint.position, swordSpawnPoint.rotation);
         Debug.Log("Player received a sword!");
     }
