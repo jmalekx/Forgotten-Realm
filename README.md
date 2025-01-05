@@ -31,8 +31,9 @@ The intended player experience is an immersive survival adventure where players 
 * Jump: `Space bar`
 * Attack/Use: `Right click`
 * Interact/Pickup: `E`
+* Talk to Blacksmith: `I`
 * Drop Items: `Q`
-* Inventory Select: `Scroll Wheel` or `NumKeys 1 through to 0`
+* Inventory Select: `Scroll Wheel` or `NumKeys 1 through to 7`
 
 ## Asset Attribution
 ### Third Party Assets
@@ -80,6 +81,7 @@ The intended player experience is an immersive survival adventure where players 
 - Scroll - 3D Model + Texture, UI Design
 - Inventory Item UI Icons - 3D Render
 - Signpost - 3D Model
+- Abandoned House for villages - 3D Model
   
 ## Collaborators
 
