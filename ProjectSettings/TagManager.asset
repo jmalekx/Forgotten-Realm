@@ -15,6 +15,7 @@ TagManager:
   - StoneSound
   - SwimSound
   - UncookedMushroom
+  - RawMushroom
   layers:
   - Default
   - TransparentFX
