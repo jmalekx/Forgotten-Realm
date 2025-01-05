@@ -460,29 +460,12 @@ public class PlayerController : MonoBehaviour
                         }
                         enemyAI.TakeHit(damage); // Inform the enemy it has been hit
                     }     
-
-                    //UnityEngine.AI.NavMeshAgent enemyNavAgent = enemyHit.GetComponent<UnityEngine.AI.NavMeshAgent>();
-                  //  if (enemyNavAgent != null)
-                    //{
-                      //  enemyNavAgent.isStopped = true; // Disable movement
-                    //}
-                   // Animator enemyAnimator = enemyHit.GetComponent<Animator>();
-                 //   if (enemyAnimator != null)
-                  //  {
-                   //     enemyAnimator.Play("Death", 0, 0f);
-                //        ObjectiveManager.Instance.TrackObjective("Fight off an enemy");
-                 //   }
-                //    StartCoroutine(Destroyed(enemyHit, 5f));
                 }
             }
         }
 
     }
-    // IEnumerator Destroyed(GameObject TargetedEnemy, float delay)
-    // {
-    //     yield return new WaitForSeconds(delay);
-    //     Destroy(TargetedEnemy);
-    // }
+
     
     IEnumerator ChangeAttackState(float delay)
     {

@@ -14,7 +14,6 @@ public class EnemyAI : MonoBehaviour
     private float timeSinceLastAttack = 0f;
     private float EnemyHealthPoints = 3;
     private bool EnemyAlive = true;
-    //private int currentHits = 0; // Track the current hit count
     NavMeshAgent NavAgent;
     Animator animator;
     bool AttackingState = false;
