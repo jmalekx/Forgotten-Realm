@@ -14506,7 +14506,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &860306682
 Transform:
   m_ObjectHideFlags: 0
@@ -14534,7 +14534,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f91972402c477da479f34454e875744d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  npcPrefab: {fileID: 0}
+  npcPrefab: {fileID: 5119153330874887841, guid: 6bad1d57af9931843bd5447afb2e63ea, type: 3}
   spawnCenter: {x: -500, y: 50, z: 300}
   spawnRadius: 80
   spawnCount: 25
@@ -14552,7 +14552,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f91972402c477da479f34454e875744d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  npcPrefab: {fileID: 0}
+  npcPrefab: {fileID: 5119153330874887841, guid: 6bad1d57af9931843bd5447afb2e63ea, type: 3}
   spawnCenter: {x: -340, y: 50, z: -20}
   spawnRadius: 80
   spawnCount: 25
