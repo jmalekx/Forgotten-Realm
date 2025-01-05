@@ -25,7 +25,7 @@ public class BlacksmithDialogue : MonoBehaviour
         "How can I help you today?"
     };
 
-    private string daggerExplanation = "Here is your gem! good luck on your quest!";
+    private string daggerExplanation = "Here is your gem! Good luck on your quest!";
 
     void Update()
     {
@@ -94,6 +94,17 @@ public class BlacksmithDialogue : MonoBehaviour
 
         // Show the dagger explanation dialogue
         ShowDaggerExplanation();
+
+        // Mark the objective as complete
+        if (ObjectiveManager.Instance != null)
+        {
+            ObjectiveManager.Instance.TrackObjective("Speak to the blacksmith");
+            Debug.Log("Objective 'Speak to the blacksmith' marked as complete.");
+        }
+        else
+        {
+            Debug.LogError("ObjectiveManager.Instance is null!");
+        }
     }
 
     void ShowDaggerExplanation()
