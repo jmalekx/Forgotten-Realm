@@ -15426,10 +15426,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3420b32923e154e89a58f7dcc7052e0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rawMushroomPrefab: {fileID: 0}
-  cookedMushroomPrefab: {fileID: 54066649312892907, guid: f221ed07db23b46b28ea66ce5cee22d1, type: 3}
-  cookingRadius: 2
-  spawnPoint: {fileID: 0}
 --- !u!1001 &918652573
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19702,6 +19698,67 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1194855004}
   m_CullTransparentMesh: 1
+--- !u!1001 &1199386003
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4999660234258176589, guid: 2b5a1c8297aef429d9e978e86ceb4b10, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 41.38683
+      objectReference: {fileID: 0}
+    - target: {fileID: 4999660234258176589, guid: 2b5a1c8297aef429d9e978e86ceb4b10, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 46.073223
+      objectReference: {fileID: 0}
+    - target: {fileID: 4999660234258176589, guid: 2b5a1c8297aef429d9e978e86ceb4b10, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 94.16652
+      objectReference: {fileID: 0}
+    - target: {fileID: 4999660234258176589, guid: 2b5a1c8297aef429d9e978e86ceb4b10, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.8660254
+      objectReference: {fileID: 0}
+    - target: {fileID: 4999660234258176589, guid: 2b5a1c8297aef429d9e978e86ceb4b10, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4999660234258176589, guid: 2b5a1c8297aef429d9e978e86ceb4b10, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4999660234258176589, guid: 2b5a1c8297aef429d9e978e86ceb4b10, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4999660234258176589, guid: 2b5a1c8297aef429d9e978e86ceb4b10, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 4999660234258176589, guid: 2b5a1c8297aef429d9e978e86ceb4b10, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4999660234258176589, guid: 2b5a1c8297aef429d9e978e86ceb4b10, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5102813112064254079, guid: 2b5a1c8297aef429d9e978e86ceb4b10, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5632187646838735095, guid: 2b5a1c8297aef429d9e978e86ceb4b10, type: 3}
+      propertyPath: m_Name
+      value: RawMushroom
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2b5a1c8297aef429d9e978e86ceb4b10, type: 3}
 --- !u!1 &1209229782
 GameObject:
   m_ObjectHideFlags: 0
@@ -46559,3 +46616,4 @@ SceneRoots:
   - {fileID: 1614629090}
   - {fileID: 379698514}
   - {fileID: 515184642}
+  - {fileID: 1199386003}
