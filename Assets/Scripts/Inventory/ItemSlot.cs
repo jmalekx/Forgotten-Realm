@@ -8,6 +8,9 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using static UnityEditor.Timeline.TimelinePlaybackControls;
 
+
+// Class to represent an item slot in the inventory
+
 public class ItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler
 {
   
@@ -16,7 +19,6 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     public Image tintOverlay;
     public TMP_Text countText;
     public TMP_Text itemNameText;
-
     public GameObject itemVisual;
 
 
@@ -26,15 +28,19 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     private Vector2 originalPosition;
     private Canvas canvas;
 
+    //--------------------------------------------------------------------------------------------------------------
     private void Start()
     {
-        rectTransform = GetComponent<RectTransform>();  // Ensure RectTransform reference
+        rectTransform = GetComponent<RectTransform>(); 
         canvasGroup = GetComponent<CanvasGroup>();
         canvas = GetComponentInParent<Canvas>();
+        tintOverlay.enabled = false;
     }
 
 
     //--------------------------------------------------------------------------------------------------------------
+
+    // Update the slot with the item data
     public void UpdateSlot(ItemData itemData)
     {
         
@@ -56,7 +62,7 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     }
 
     //--------------------------------------------------------------------------------------------------------------
-    // Clear the slot when no item is assigned
+
     public void ClearSlot()
     {
         item = null;
@@ -71,12 +77,15 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         return item;
     }
 
+    //--------------------------------------------------------------------------------------------------------------
+
     public void SetSelected(bool isSelected)
     {
-        //tintOverlay.enabled = true;
-        //tintOverlay.color = new Color(0.6f, 0f, 0.9f, 0.5f);
+        tintOverlay.enabled = true;
+        tintOverlay.color = new Color(0.6f, 0f, 0.9f, 0.5f);
     }
 
+    //--------------------------------------------------------------------------------------------------------------
     public bool isSlotFilled()
     {
         return !isSlotEmpty();
@@ -88,7 +97,7 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     }
     //--------------------------------------------------------------------------------------------------------------
 
-    // Start dragging the item
+    // Handle the beginning of a drag event
     public void OnBeginDrag(PointerEventData eventData)
     {
         if (isSlotFilled())
@@ -110,17 +119,11 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                 item.count -= 1;
                 UpdateSlot(item);
             }
-            else
-            {
-                // Clear the slot if only one item is picked up
-                //ClearSlot();
-            }
         }
     }
 
     //--------------------------------------------------------------------------------------------------------------
 
-    // While dragging the item
     public void OnDrag(PointerEventData eventData)
     {
 
@@ -135,8 +138,6 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     public void OnEndDrag(PointerEventData eventData)
     {
         Debug.Log("ItemSlot::OnEndDrag");
-    
-        //Destroy(itemVisual);
 
         canvasGroup.alpha = 1f;
         canvasGroup.blocksRaycasts = true;
@@ -148,7 +149,6 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     {
         Debug.Log("ItemSlot::OnDrop");
 
-       
             Destroy(itemVisual);
             Debug.Log("Destroyed itemVisual on drop.");
         

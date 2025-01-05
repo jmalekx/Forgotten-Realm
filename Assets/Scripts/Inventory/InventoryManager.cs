@@ -7,6 +7,8 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
+// Inventory Manager class to handle inventory UI and input
+
 public class InventoryManager : MonoBehaviour
 {
     [Header("Inventory Menu")]
@@ -35,13 +37,8 @@ public class InventoryManager : MonoBehaviour
     private PopupAnim objectivePopupAnim;
     private Coroutine holdingTextCoroutine; 
 
-    
-
-
     void Start()
     {
-      
-
         inventory = Inventory.Instance;
         inventory.OnInventoryChanged += UpdateInventoryUI;
         UpdateInventoryUI();
@@ -134,6 +131,8 @@ public class InventoryManager : MonoBehaviour
         holdingText.gameObject.SetActive(false); //hide after 3s
     }
 
+    //---------------------------------------------------------------------------------------------------
+
     void OnUseItem(InputAction.CallbackContext context)
     {
         if (inventory.items.Count > 0 && selectedItemIndex >= 0 && selectedItemIndex < inventory.items.Count)
@@ -156,6 +155,8 @@ public class InventoryManager : MonoBehaviour
             Debug.LogWarning("Invalid selected item index or empty inventory.");
         }
     }
+
+    //---------------------------------------------------------------------------------------------------
     void OnUseItemReleased(InputAction.CallbackContext context)
     {
         if (selectedItemIndex >= 0 && selectedItemIndex < inventory.items.Count)
@@ -172,6 +173,8 @@ public class InventoryManager : MonoBehaviour
             Debug.LogWarning("Invalid selected item index on release.");
         }
     }
+
+    //---------------------------------------------------------------------------------------------------
 
     void UpdateInventoryUI()
     {
@@ -207,17 +210,11 @@ public class InventoryManager : MonoBehaviour
 
                 }
                 itemSlot.SetSelected(i == selectedItemIndex);
-
-
-                //call OnDrop(PointerEventData eventData)
-
-
-
             }
         }
     }
 
-    //scroll input to navigate through items
+    //---------------------------------------------------------------------------------------------------
     private void OnScroll(InputAction.CallbackContext context)
     {
         Vector2 scrollValue = context.ReadValue<Vector2>();
@@ -233,7 +230,8 @@ public class InventoryManager : MonoBehaviour
 
         UpdateInventoryUI();
     }
-    //handle dropping an item
+
+    //---------------------------------------------------------------------------------------------------
     private void OnDropItem(InputAction.CallbackContext context)
     {
         if (inventory.items.Count > 0)
@@ -263,6 +261,8 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
+    //---------------------------------------------------------------------------------------------------
+
     private void DropItemToWorld(ItemData item)
     {
         if (item.itemPrefab != null)
@@ -281,10 +281,10 @@ public class InventoryManager : MonoBehaviour
             rb.isKinematic = false;
             rb.AddForce(playerCamera.transform.up * 5f, ForceMode.Impulse); //upward force
 
-            CraftingManager craftingManager = droppedItem.GetComponent<CraftingManager>();
+            CraftingManager craftingManager = droppedItem.GetComponent<CraftingManager>(); //add crafting manager
             if (craftingManager == null)
             {
-                craftingManager = droppedItem.AddComponent<CraftingManager>();
+                craftingManager = droppedItem.AddComponent<CraftingManager>(); 
             }
 
     
@@ -296,19 +296,20 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
+    //---------------------------------------------------------------------------------------------------
 
     public void AddItemToInventory(ItemData item)
     {
-        // Assuming you have an inventory list or system
+ 
         inventory.items.Add(item);
-        UpdateInventoryUI();  // Update the UI to reflect the changes
+        UpdateInventoryUI(); 
     }
 
     public void RemoveItemFromInventory(ItemData item)
     {
-        // Assuming you have an inventory list or system
+ 
         inventory.items.Remove(item);
-        UpdateInventoryUI();  // Update the UI to reflect the changes
+        UpdateInventoryUI(); 
     }
 
 

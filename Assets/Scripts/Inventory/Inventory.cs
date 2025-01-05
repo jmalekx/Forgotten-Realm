@@ -27,6 +27,9 @@ public class Inventory : MonoBehaviour
         ScrollObtained = false;
     }
 
+    //------------------------------------------------------------------------------------------------------------
+
+    // Use the item and restore health
     public void UseItem(ItemData itemToUse)
     {
         if (itemToUse.count >0)
@@ -49,14 +52,16 @@ public class Inventory : MonoBehaviour
         }
     }
 
-//------------------------------------------------------------------------------------------------------------
-    public void AddItem(ItemData itemToAdd)
+    //------------------------------------------------------------------------------------------------------------
+
+    // Add item to inventory
+    public void AddItem(ItemData itemToAdd) // Add item to inventory
     {
         bool itemExists = false;
 
         foreach (ItemData item in items)
         {
-            if (item.itemName == itemToAdd.itemName) // check by item name
+            if (item.itemName == itemToAdd.itemName) 
             {
                 item.count += 1; // always add 1 to the count for each pickup
                 itemExists = true;
@@ -81,12 +86,15 @@ public class Inventory : MonoBehaviour
         if (itemToAdd.itemName == "Scroll")
         {
             // Set a flag or perform an action to mark that the scroll is now obtained
-            ScrollObtained = true;  // Add a flag to track the scroll's acquisition
+            ScrollObtained = true;
         }
 
         Debug.Log(itemToAdd.itemName + " added to inventory. Total count: " + itemToAdd.count);
     }
 
+    //------------------------------------------------------------------------------------------------------------
+
+    // Track the objective based on the item name
     private void TrackObjective(string itemName)
     {
         var objectiveMap = new Dictionary<string, string>

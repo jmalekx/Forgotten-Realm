@@ -7,6 +7,9 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+
+// Class to represent an item slot in the crafting menu
+
 public class CraftingItemSlot : MonoBehaviour, IDropHandler
 {
 
@@ -76,11 +79,6 @@ public class CraftingItemSlot : MonoBehaviour, IDropHandler
     }
 
     //--------------------------------------------------------------------------------------------------------------
-    public void SetSelected(bool isSelected)
-    {
-        tintOverlay.enabled = true;
-        tintOverlay.color = new Color(0.6f, 0f, 0.9f, 0.5f);
-    }
 
     public bool IsSlotFilled()
     {
