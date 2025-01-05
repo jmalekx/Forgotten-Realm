@@ -34,7 +34,6 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         rectTransform = GetComponent<RectTransform>(); 
         canvasGroup = GetComponent<CanvasGroup>();
         canvas = GetComponentInParent<Canvas>();
-        tintOverlay.enabled = false;
     }
 
 
@@ -68,7 +67,7 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         item = null;
         iconImage.sprite = null;
         iconImage.color = new Color(0f, 0f, 0f, 0f);
-        //tintOverlay.enabled = false;
+        tintOverlay.enabled = false;
     }
 
     //--------------------------------------------------------------------------------------------------------------
@@ -81,8 +80,16 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     public void SetSelected(bool isSelected)
     {
-        tintOverlay.enabled = true;
-        tintOverlay.color = new Color(0.6f, 0f, 0.9f, 0.5f);
+        if (isSelected)
+        {
+            tintOverlay.enabled = true;
+            tintOverlay.color = new Color(0.6f, 0f, 0.9f, 0.5f);
+
+        }
+        else
+        {
+            tintOverlay.enabled = false;
+        }
     }
 
     //--------------------------------------------------------------------------------------------------------------
