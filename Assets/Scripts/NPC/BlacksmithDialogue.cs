@@ -13,6 +13,7 @@ public class BlacksmithDialogue : MonoBehaviour
     public string interactKey = "i"; // Which key to press to interact with the villager
 
     public GameObject daggerPrefab; // Reference to the dagger object prefab
+    public GameObject swordPrefab; // Reference to the sword object prefab (new addition)
     public Transform spawnPoint; // Assign this in the Inspector to the empty GameObject representing the spawn point
 
     private bool playerInRange = false; // Tracks if the player is in range
@@ -26,6 +27,7 @@ public class BlacksmithDialogue : MonoBehaviour
     };
 
     private string daggerExplanation = "Here is your gem! Good luck on your quest!";
+    private string swordExplanation = "Here is your sword! May it help you in battle!"; // New explanation for the sword
 
     void Update()
     {
@@ -119,12 +121,42 @@ public class BlacksmithDialogue : MonoBehaviour
 
     public void OnOption2Selected()
     {
-        Debug.Log("Option 2 selected: Nevermind");
+        Debug.Log("Option 2 selected: I need a sword");
 
-        optionButtons.SetActive(false);
-        dialogueUI.SetActive(false);
+        if (swordPrefab != null && spawnPoint != null)
+        {
+            // Spawn the sword at the specified spawn point
+            Instantiate(swordPrefab, spawnPoint.position, spawnPoint.rotation);
+            Debug.Log("Sword spawned at the spawn point.");
+        }
+        else
+        {
+            Debug.LogWarning("Sword prefab or spawn point is not assigned!");
+        }
 
-        ResetDialogue();
+        // Show the sword explanation dialogue
+        ShowSwordExplanation();
+
+        // Mark the objective as complete
+        if (ObjectiveManager.Instance != null)
+        {
+            ObjectiveManager.Instance.TrackObjective("Collect sword from blacksmith");
+            Debug.Log("Objective 'Collect sword from blacksmith' marked as complete.");
+        }
+        else
+        {
+            Debug.LogError("ObjectiveManager.Instance is null!");
+        }
+    }
+
+    void ShowSwordExplanation()
+    {
+        optionButtons.SetActive(false); // Hide the options panel
+        dialogueUI.SetActive(true); // Show the dialogue UI
+        dialogueText.text = swordExplanation; // Display the sword explanation
+
+        // Wait for player input to end dialogue
+        awaitingPlayerInput = true;
     }
 
     void EndInteraction()
