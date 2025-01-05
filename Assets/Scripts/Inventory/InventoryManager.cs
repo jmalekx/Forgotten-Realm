@@ -30,7 +30,7 @@ public class InventoryManager : MonoBehaviour
     private InputAction selectSlotAction;
 
     private Inventory inventory;
-    private int selectedItemIndex = 0;
+    public int selectedItemIndex = 0;
 
     private PopupAnim objectivePopupAnim;
     private Coroutine holdingTextCoroutine; 

@@ -12,7 +12,7 @@ public class EnemyAI : MonoBehaviour
     public float enemyAttackAmount;
     public float attackCooldown = 2f; 
     private float timeSinceLastAttack = 0f;
-    private int EnemyHealthPoints = 3;
+    private float EnemyHealthPoints = 3;
     private bool EnemyAlive = true;
     //private int currentHits = 0; // Track the current hit count
     NavMeshAgent NavAgent;
@@ -20,9 +20,11 @@ public class EnemyAI : MonoBehaviour
     bool AttackingState = false;
     private Slider playerHealthBar; 
     public Slider EnemyHealthBar; 
+    private InventoryManager inventoryManager;
 
     void Start()
     {
+        inventoryManager = FindObjectOfType<InventoryManager>();
         NavAgent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         playerHealthBar = playerVariable.GetComponent<PlayerController>().HealthBar;
@@ -69,20 +71,36 @@ public class EnemyAI : MonoBehaviour
     
     }
 
-    public void TakeHit()
+public void TakeHit()
+{
+    if (!EnemyAlive) return;
+
+    Inventory inventory = Inventory.Instance;
+
+    // Check if inventory and selected index are valid
+    if (inventory.items.Count > 0 && inventoryManager.selectedItemIndex >= 0 && inventoryManager.selectedItemIndex < inventory.items.Count)
     {
-        if (!EnemyAlive) return;
-        EnemyHealthPoints--;
-        EnemyHealthBar.value = EnemyHealthPoints;
-
-        if (EnemyHealthPoints <= 0) // Check if the enemy has been hit enough times
+        if (inventory.items[inventoryManager.selectedItemIndex].itemName == "Dagger")
         {
-            EnemyAlive = false;
-            StartCoroutine(Destroyed());
+            EnemyHealthPoints -= 1;
         }
-        //healthslider
+        else
+        {
+            EnemyHealthPoints -= 0.25f;
+        }
     }
+    else
+    {
+        EnemyHealthPoints -= 0.25f;
+    }
+    EnemyHealthBar.value = EnemyHealthPoints;
 
+    if (EnemyHealthPoints <= 0)
+    {
+        EnemyAlive = false;
+        StartCoroutine(Destroyed());
+    }
+}
     IEnumerator Destroyed()
     {
         animator.Play("Death", 0, 0f); // Play death animation
