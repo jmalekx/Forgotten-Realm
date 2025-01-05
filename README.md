@@ -29,11 +29,13 @@ The intended player experience is an immersive survival adventure where players 
 * Movement: `WASD`
 * Sprint: `Left Shift`
 * Jump: `Space bar`
-* Attack/Use: `Right click`
+* Attack: `left click`
+* Use: `Right click`
 * Interact/Pickup: `E`
 * Talk to Blacksmith: `I`
 * Drop Items: `Q`
 * Inventory Select: `Scroll Wheel` or `NumKeys 1 through to 7`
+* Open Crafting: `C`
 
 ## Asset Attribution
 ### Third Party Assets
