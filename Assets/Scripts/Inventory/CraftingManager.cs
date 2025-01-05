@@ -65,7 +65,7 @@ public class CraftingManager : MonoBehaviour
     {
         if (item != null)
         {
-            Inventory.Instance.RemoveItem(item);
+            Inventory.Instance.DecrementAvailableItem(item);
         }
     }
 
@@ -138,8 +138,8 @@ public class CraftingManager : MonoBehaviour
 
             // Remove the items from the inventory
 
-            Inventory.Instance.RemoveItem(CraftingItemSlot1().GetItem());
-            Inventory.Instance.RemoveItem(CraftingItemSlot2().GetItem());
+            //Inventory.Instance.DecrementAvailableItem(CraftingItemSlot1().GetItem());
+            //Inventory.Instance.DecrementAvailableItem(CraftingItemSlot2().GetItem());
 
             ClearCraftingSlots();
         }

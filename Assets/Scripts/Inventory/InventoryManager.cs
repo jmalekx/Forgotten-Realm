@@ -232,6 +232,8 @@ public class InventoryManager : MonoBehaviour
     }
 
     //---------------------------------------------------------------------------------------------------
+
+    // Drop the selected item from the inventory into the world
     private void OnDropItem(InputAction.CallbackContext context)
     {
         if (inventory.items.Count > 0)
@@ -245,7 +247,7 @@ public class InventoryManager : MonoBehaviour
             if (selectedItem.count > 0)
             {
                 //decrease the item count by one
-                selectedItem.count--;
+                Inventory.Instance.DecrementAvailableItem(selectedItem);
                 UpdateInventoryUI();
 
                 //if the count reaches zero remove the item from inventory

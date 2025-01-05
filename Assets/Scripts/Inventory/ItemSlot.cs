@@ -44,7 +44,7 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     {
         
         if (itemData != null)
-        {
+        { 
             item = itemData;
             iconImage.sprite = itemData.icon;
             iconImage.enabled = true;
@@ -68,6 +68,7 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         iconImage.sprite = null;
         iconImage.color = new Color(0f, 0f, 0f, 0f);
         tintOverlay.enabled = false;
+
     }
 
     //--------------------------------------------------------------------------------------------------------------
@@ -121,9 +122,8 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             itemVisual.GetComponent<RectTransform>().position = rectTransform.position;  // Start at the original position
 
             // Update the slot with the reduced item count
-            if (item.count > 1)
+            if (item.count >= 1)
             {
-                item.count -= 1;
                 UpdateSlot(item);
             }
         }

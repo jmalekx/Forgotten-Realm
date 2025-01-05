@@ -32,7 +32,7 @@ public class Inventory : MonoBehaviour
     // Use the item and restore health
     public void UseItem(ItemData itemToUse)
     {
-        if (itemToUse.count >0)
+        if (itemToUse.count > 0)
         {
             if (itemToUse.itemName == "Apple")
             {
@@ -40,9 +40,9 @@ public class Inventory : MonoBehaviour
             }
 
             HealthBar.value = Mathf.Min(HealthBar.maxValue, HealthBar.value + itemToUse.healthRestoreAmount);
-            itemToUse.count--;
+            DecrementCount(itemToUse);
 
-            if (itemToUse.count <= 0 )
+            if (itemToUse.count <= 0)
             {
                 items.Remove(itemToUse);
             }
@@ -61,7 +61,7 @@ public class Inventory : MonoBehaviour
 
         foreach (ItemData item in items)
         {
-            if (item.itemName == itemToAdd.itemName) 
+            if (item.itemName == itemToAdd.itemName)
             {
                 item.count += 1; // always add 1 to the count for each pickup
                 itemExists = true;
@@ -81,7 +81,7 @@ public class Inventory : MonoBehaviour
         TrackObjective(itemToAdd.itemName);
         OnInventoryChanged?.Invoke(); // notify the UI to update
 
-        audioSource.PlayOneShot(pickupSound,1.0f);
+        audioSource.PlayOneShot(pickupSound, 1.0f);
 
         if (itemToAdd.itemName == "Scroll")
         {
@@ -110,6 +110,17 @@ public class Inventory : MonoBehaviour
             ObjectiveManager.Instance.TrackObjective(objectiveDescription);
         }
     }
+    //------------------------------------------------------------------------------------------------------------
+
+    // Decrement item count and remove if necessary
+    private void DecrementCount(ItemData item)
+    {
+        item.count--;
+        if (item.count <= 0)
+        {
+            items.Remove(item);
+        }
+    }
 
     //------------------------------------------------------------------------------------------------------------
     public void RemoveItem(ItemData itemToRemove)
@@ -118,11 +129,7 @@ public class Inventory : MonoBehaviour
         {
             if (item.itemName == itemToRemove.itemName)
             {
-                item.count -= itemToRemove.count;
-                if (item.count <= 0)
-                {
-                    items.Remove(item);
-                }
+                DecrementCount(item); 
                 break;
             }
         }
@@ -130,4 +137,20 @@ public class Inventory : MonoBehaviour
         OnInventoryChanged?.Invoke(); // notify the UI to update
         Debug.Log(itemToRemove.count + " " + itemToRemove.itemName + " removed from inventory.");
     }
+
+
+    //------------------------------------------------------------------------------------------------------------
+
+    public void DecrementAvailableItem(ItemData itemToDecrease)
+    {
+        foreach (var item in items)
+        {
+            if (item.itemName == itemToDecrease.itemName)
+            {
+                DecrementCount(item); 
+                break;
+            }
+        }
+    }
+
 }
