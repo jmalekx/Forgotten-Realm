@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1396489414}
-  m_IndirectSpecularColor: {r: 0.08037061, g: 0.08233532, b: 0.25432235, a: 1}
+  m_IndirectSpecularColor: {r: 0.060009096, g: 0.06143596, b: 0.19066074, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -10105,7 +10105,8 @@ PrefabInstance:
       value: Barrel
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7020182953085274254, guid: 226fd489f77854cbcafcab151caa3b9e, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 226fd489f77854cbcafcab151caa3b9e, type: 3}
@@ -20942,7 +20943,7 @@ MonoBehaviour:
     objectiveText: {fileID: 1040986697}
   - description: Collect wood
     isComplete: 0
-    objectiveText: {fileID: 1142436149}
+    objectiveText: {fileID: 1424946378}
   - description: Collect stone
     isComplete: 0
     objectiveText: {fileID: 466113269}
