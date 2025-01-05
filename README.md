@@ -54,6 +54,10 @@ The intended player experience is an immersive survival adventure where players 
 - [Fantasy Butterfly](https://sketchfab.com/3d-models/fantasy-butterfly-animation-0f24b085e8654e4db09c2fe681a79e3f) - 3D Model, Sketchfab
 - [Low Poly Wind](https://assetstore.unity.com/packages/vfx/shaders/low-poly-wind-182586) - Shader Script, Unity Asset Store
 - [Pixabay](https://pixabay.com/) - Sound Effects + Music, Pixabay
+- [Creature Enemy](https://assetstore.unity.com/packages/3d/characters/creatures/creep-horror-creature-244853) - 3D Character Model with animations
+- [Raptor](https://assetstore.unity.com/packages/3d/characters/animals/pbr-animated-dinosaurs-256019#content) - 3D Character Model with animations and sound effects
+- [Main Menu Music](https://assetstore.unity.com/packages/audio/music/music-sanctuary-free-piano-solo-296088) - Audio used in main menu scene
+- [Canva](https://www.canva.com/) UI mapping
 
 ### Original Assets
 #### By Jessica
@@ -82,6 +86,10 @@ The intended player experience is an immersive survival adventure where players 
 - Inventory Item UI Icons - 3D Render
 - Signpost - 3D Model
 - Abandoned House for villages - 3D Model
+#### By Ben
+- Main Menu Buttons
+#### By Darena and Ben
+- Crafting UI
   
 ## Collaborators
 
