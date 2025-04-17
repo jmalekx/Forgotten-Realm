@@ -117,6 +117,23 @@ Custom models, UI elements and particle systems designed and implemented by the 
 This project was developed using Unity, and game mechanics were coded using C#
 
 ### Project Visuals
+#### Spawn
+![Spawn Area](https://github.com/jmalekx/Forgotten-Realm/blob/main/visuals/SpawnArea.png)
+![Objectives](https://github.com/jmalekx/Forgotten-Realm/blob/main/visuals/Objectives.png)
+![River](https://github.com/jmalekx/Forgotten-Realm/blob/main/visuals/River.png)
+
+#### Enemies
+![Enemy](https://github.com/jmalekx/Forgotten-Realm/blob/main/visuals/Enemies.png)
+![Dead Enemy](https://github.com/jmalekx/Forgotten-Realm/blob/main/visuals/DeadEnemy.png)
+
+#### Villages
+![Village 1](https://github.com/jmalekx/Forgotten-Realm/blob/main/visuals/Village1.png)
+![Village 2](https://github.com/jmalekx/Forgotten-Realm/blob/main/visuals/Village2.png)
+![Village 3](https://github.com/jmalekx/Forgotten-Realm/blob/main/visuals/Village3.png)
+
+#### Environment
+![Mushrooms](https://github.com/jmalekx/Forgotten-Realm/blob/main/visuals/Mushrooms.png)
+![Nature](https://github.com/jmalekx/Forgotten-Realm/blob/main/visuals/Nature.png)
   
 ### Collaborators
 
