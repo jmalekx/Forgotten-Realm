@@ -1,47 +1,54 @@
 # Forgotten Realm: The Mushroom Man's Tale
 ## About
-The intended player experience is an immersive survival adventure where players spawn at a portal and must explore three villages, collecting food, fighting enemies,crafting, and completing objectives. In the second village, they talk to a blacksmith and meet a Mushroom Man who guides them to find the final gem, allowing them to open the portal and complete their quest. The game is going to have an enchanted design and therefore create a mystical but exciting game. 
+This is a university group project for Multi-Platform Game Development Module. The selected project brief was a Survival game.
+The intended player experience is an immersive survival adventure, inviting players into a mystical realm where they must navigate villages, gather resources, battle enemies and uncover the secretes of the forgottem world to complete their quests.
+The player begins at a mysterious portal and must explore three abononed villages. Along the way, they meet a cryptic Mushroom Man and a blacksmith who assist them in locating the final gems required to unlockk the final portal and complete their journey.
 
-* **Aim:** Survive long enough, unlock and locate the portal to complete the game
+* **Main Objective:** Survive long enough, unlock and locate the portal to complete the game
 
-## Environment Features
-* A portal where the player spawns and a final portal they have to unlock to complete the game
-* Three abandoned villages each with houses and a campfire at each village 
-* The first village includes food 
-* The second village has a blacksmith, and this is where you get introduced to the mushroom man who will lead you to the final village
-* The third village has a the final gem to unlock the portal
+## 🌿Key Game Features
+### World & Progression
+* **Three unique villages:** each with distinct features and challenges:
+  - The first village includes food
+  - The second village has a blacksmith, and this is where you get introduced to the mushroom man who will lead you to the final village
+  - The third village has a the final gem to unlock the portal
+* **Mystical portal system:** spawn point and final objective
+* **Quest-driven progression**: interact with NPCs to advance the narrative
+* **Enchanted forest aesthetics** with glowing flora, custom skyboxes, and animated creatures
+  
+### Gameplay Mechanics
+* **Resource gathering:** Collect food, wood, stone, and mushrooms
+* **Crafting system:** Combine resources (stone and wood) to craft a dagger
+* **Objectives system:** Pick up the scroll and complete the listed objectives
+* **Gem hunt:** Collect 10 scattered gems to retrieve the final one and open the portal
+* **Health system:** Eat to restore health; starvation causes gradual health decrease
+* **Enemy encounters:** Combat enemies using melee weapons and strategy
+* **Stamina system:** Sprint depletes energy, requiring recovery time before allowing sprint again.
+* **Questline:** Follow the Mushroom Man to discover hidden objectives and unlock the final gem
 
-### Other features
-* Can collect items including food, wood, stone and mushroom
-* Player can pick up a scroll to complete objectives
-* Player has to collect 10 gems throughout the map to pick up the final gem
-* When player eats an apple, it increases their health bar
-* When a player eats a mushroom it increases their health bar
-* Health slowly goes down if player does not eat 
-* Player can gather stone and wood to create a dagger 
-* Player’s sprint will run out and you have to wait for it to reload in order to run again 
-* Player can interact with the blacksmith villager in order to spawn in a sword to fight the enemies
-* Player also interacts with the blacksmith villager to retrieve their gem
-* Player follows mushroom man from second village to third village to find the final gem
-* Enemies will attack player
-* If the player hits an enemy repeatedly, it will die 
-* If an enemy keeps hitting you and you die its game over
-* Player can pick up the final gem to spawn in and unlock final portal to complete the game
+### Interactive NPCs
+* **Blacksmith:** Engage in dialogue to receive weapons and key quest items
+* **Mushroom Man:** Guides the player toward the final gem
 
-## Player controls
-* Movement: `WASD`
-* Sprint: `Left Shift`
-* Jump: `Space bar`
-* Attack: `left click`
-* Use: `Right click`
-* Interact/Pickup: `E`
-* Talk to Blacksmith: `I`
-* Drop Items: `Q`
-* Inventory Select: `Scroll Wheel` or `NumKeys 1 through to 7`
-* Open Crafting: `C`
+## 🕹️Player controls
 
-## Asset Attribution
+| Action  | Key |
+| ------------- | ------------- |
+| Movement  | `WASD` |
+| Sprint  | `Left Shift` |
+| Jump  | `Space bar` |
+| Attack  | `Left Click` |
+| Use  | `Right Click` |
+| Interact/Pickup  | `E` |
+| Talk to NPC  | `I` |
+| Drop Items  | `Q` |
+| Inventory Select  | `Scroll Wheel`/`1-7` |
+| Open Crafting  | `Scroll Wheel`/`C` |
+
+## 🛠️Assets Attribution
+A handcrafted, stylised world with glowing assets and an enchanted enviornmental design - this setting evokes a mysterious and magical atmosphere, supported by ambient music, soft lighting and hand-painted textures.
 ### Third Party Assets
+A full list of third-party 3D models, animations, textures, shaders and sound effects:
 - [Mushroom Man](https://assetstore.unity.com/packages/3d/characters/humanoids/lowpoly-mushroomman-character-287820) - 3D Character Model, Unity Asset Store
 - [Chest](https://assetstore.unity.com/packages/3d/props/interior/treasure-set-free-chest-72345) - 3D Model, Unity asset store
 - [Stylized Dagger](https://sketchfab.com/3d-models/stylized-dagger-2f482db3693f4da39556a8cdd2026bb2) - 3D Model, Sketchfab
@@ -68,6 +75,7 @@ The intended player experience is an immersive survival adventure where players 
 - [Canva](https://www.canva.com/) UI mapping
 
 ### Original Assets
+Custom models, UI elements and particle systems designed and implemented by the development team.
 #### By Jessica
 - Apple - 3D Model
 - Blue Tree - 3D Model
@@ -104,8 +112,13 @@ The intended player experience is an immersive survival adventure where players 
 - Barrel - 3D Model
 - Mushroom house - 3D Model
 - Blacksmith dialogue buttons - UI design
+
+## Project Information
+This project was developed using Unity, and game mechanics were coded using C#
+
+### Project Visuals
   
-## Collaborators
+### Collaborators
 
 - [**jmalekx**](https://github.com/jmalekx)
 - [**CatrionaLAnderson**](https://github.com/CatrionaLAnderson)
